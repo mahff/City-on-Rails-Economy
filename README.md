@@ -1,2 +1,2 @@
 # RailCity
-Simulation d'une ville avec un métro
+Simulation d'un réseau de métro
