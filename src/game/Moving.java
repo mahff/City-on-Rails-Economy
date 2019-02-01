@@ -8,7 +8,6 @@ public class Moving {
 	private Date workEndHour;
 	
 	public Moving(int weekendMovingRate, Date workStartHour, Date workEndHour) {
-		super();
 		this.weekendMovingRate = weekendMovingRate;
 		this.workStartHour = workStartHour;
 		this.workEndHour = workEndHour;
