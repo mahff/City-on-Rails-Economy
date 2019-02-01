@@ -1,5 +1,6 @@
 package game;
 
+// Test du Business
 public class Business extends District{
 	
 	public Business(int population, int income, Station station, int satisfaction) {
