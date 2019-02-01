@@ -3,14 +3,17 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
 public class Map implements ActionListener {
 	ActionListener listener;
 	public int size = 5; 
+	public EditMenu menu = new EditMenu(); 
 	public JButton[][] button = new JButton[size][size];
 	public JFrame frame = new JFrame("RailCity");
 	Icon business = new ImageIcon("business.jpg");
@@ -39,6 +42,7 @@ public class Map implements ActionListener {
 	    frame.getContentPane().setLayout(new BorderLayout());
 	    frame.setSize(800, 600); 
 	    frame.setVisible(true); 
+	    frame.setJMenuBar(menu.getMenu());
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If you close the window, the program will terminate
 	    frame.setResizable(false); //The window is not resizable anymore ;)
 	    
@@ -74,6 +78,8 @@ public class Map implements ActionListener {
 			button[buttonX][buttonY].setEnabled(false);
 		}
 	}
+	
+	
 	
 }
 
