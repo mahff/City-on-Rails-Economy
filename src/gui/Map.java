@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class Map implements ActionListener {
 	ActionListener listener;
@@ -19,14 +24,22 @@ public class Map implements ActionListener {
 	Icon business = new ImageIcon("business.jpg");
 	Icon resident = new ImageIcon("resident.jpg");
 	Icon state = new ImageIcon("state.jpg");
+	private BuildingMenuTemp buildingMenu;
 	
 	public Map(){
 		
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    JPanel map = new JPanel(new GridLayout(size, size));
+	    map.setLocation(0, 0);
 	    map.setSize(400,400);
-	    frame.setLayout(null); 
+	    frame.getContentPane().setLayout(null); 
+	    frame.getContentPane().setLayout(null);
 	    frame.getContentPane().add(map);
+	    
+	    buildingMenu = new BuildingMenuTemp();
+	    buildingMenu.setBounds(461, 108, 252, 211);
+	    frame.getContentPane().add(buildingMenu);
+	    
 	    // Creates the buttons in the array
 	    for (int i = 0; i < size; i++) {
 	    	for(int j=0; j< size; j++) {
@@ -40,13 +53,11 @@ public class Map implements ActionListener {
 	    	}
 	    }
 	    frame.setTitle("RailCity");
-	    frame.getContentPane().setLayout(new BorderLayout());
 	    frame.setSize(800, 600); 
 	    frame.setVisible(true); 
 	    frame.setJMenuBar(menu.getMenu());
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If you close the window, the program will terminate
-	    frame.setResizable(false); //The window is not resizable anymore ;)
-	    
+	    frame.setResizable(false);
 	}
 	
 	public void actionPerformed(ActionEvent ae) {
@@ -66,7 +77,7 @@ public class Map implements ActionListener {
 	}
 	
 	public void updateButton(String type, int buttonX, int buttonY) {
-		System.out.println(type);
+		System.out.println(type+"\n");
 		if(type == "resident") {
 			button[buttonX][buttonY].setIcon(resident);
 			button[buttonX][buttonY].setEnabled(false);
@@ -80,9 +91,6 @@ public class Map implements ActionListener {
 			button[buttonX][buttonY].setEnabled(false);
 		}
 	}
-	
-	
-	
 }
 
 
