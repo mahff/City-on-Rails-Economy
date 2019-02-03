@@ -19,7 +19,8 @@ public class Map implements ActionListener {
 	Icon business = new ImageIcon("business.jpg");
 	Icon resident = new ImageIcon("resident.jpg");
 	Icon state = new ImageIcon("state.jpg");
-	Map(){
+	
+	public Map(){
 		
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    JPanel map = new JPanel(new GridLayout(size, size));
@@ -47,6 +48,7 @@ public class Map implements ActionListener {
 	    frame.setResizable(false); //The window is not resizable anymore ;)
 	    
 	}
+	
 	public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
         for(int i=0; i<size; i++) {
