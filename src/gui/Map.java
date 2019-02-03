@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
+
+import core.VariableRepository;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -69,8 +72,12 @@ public class Map implements ActionListener {
         			String[] parts = data.split(",");
         			String part1 = parts[0]; 
         			String part2 = parts[1];
-        			updateButton("resident", Integer.parseInt(part1), Integer.parseInt(part2)); 
-                    System.out.println(i+"+"+j);
+        			
+        			String parameter = (String) VariableRepository.getInstance().searchByName("BuildingActionChoice");
+        	        updateButton(parameter, Integer.parseInt(part1), Integer.parseInt(part2));
+        	        
+        			// updateButton("resident", Integer.parseInt(part1), Integer.parseInt(part2)); 
+                    // System.out.println(i+"+"+j);
                 }
         	}
         }
@@ -78,17 +85,42 @@ public class Map implements ActionListener {
 	
 	public void updateButton(String type, int buttonX, int buttonY) {
 		System.out.println(type+"\n");
+		// String buildingState = "Failed";
+		Boolean buildingState = false;
 		if(type == "resident") {
 			button[buttonX][buttonY].setIcon(resident);
 			button[buttonX][buttonY].setEnabled(false);
+			buildingState = true;
+			// buildingState = "Success.";
+			// System.out.println("resident");
 		}
 		else if(type == "business") {
 			button[buttonX][buttonY].setIcon(business);
 			button[buttonX][buttonY].setEnabled(false);
+			// buildingState = "Success.";
+			buildingState = true;
 		}
 		else if(type == "state") {
 			button[buttonX][buttonY].setIcon(state);
 			button[buttonX][buttonY].setEnabled(false);
+			// buildingState = "Success.";
+			buildingState = true;
+		} 
+		else if (type == "station") {
+			System.out.println("station");
+		} 
+		else if (type == "line") {
+			System.out.println("line");
+		}
+		
+		if (buildingState) {
+			System.out.println(type + " building state on " + buttonX + " " + buttonY + " ");
+			System.out.println("=> " + "Success.");
+		} else {
+			System.out.println("No building proccess en route.");
+			System.out.println("=> " + "Failed.");
+			
+			System.out.println("Please, select a building before launching a building-site.");
 		}
 	}
 }

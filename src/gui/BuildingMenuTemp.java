@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.LineBorder;
 
+import core.VariableRepository;
+
 import static javax.swing.GroupLayout.Alignment.CENTER;
 import static javax.swing.LayoutStyle.ComponentPlacement.UNRELATED;
 
@@ -49,6 +51,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbc_residentDistrictBuildingButton.insets = new Insets(0, 0, 5, 5);
 	    gbc_residentDistrictBuildingButton.gridx = 0;
 	    gbc_residentDistrictBuildingButton.gridy = 0;
+	    residentDistrictBuildingButton.addActionListener(this);
 	    this.add(residentDistrictBuildingButton, gbc_residentDistrictBuildingButton);
 	    
 	    JButton businessDistrictBuildingButton = new JButton("Business District");
@@ -57,6 +60,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbc_businessDistrictBuildingButton.insets = new Insets(0, 0, 5, 5);
 	    gbc_businessDistrictBuildingButton.gridx = 0;
 	    gbc_businessDistrictBuildingButton.gridy = 1;
+	    businessDistrictBuildingButton.addActionListener(this);
 	    this.add(businessDistrictBuildingButton, gbc_businessDistrictBuildingButton);
 	    
 	    JButton stateDistrictBuildingButton = new JButton("State District");
@@ -65,6 +69,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbc_stateDistrictBuildingButton.anchor = GridBagConstraints.NORTHWEST;
 	    gbc_stateDistrictBuildingButton.gridx = 0;
 	    gbc_stateDistrictBuildingButton.gridy = 2;
+	    stateDistrictBuildingButton.addActionListener(this);
 	    this.add(stateDistrictBuildingButton, gbc_stateDistrictBuildingButton);
 	    
 	    JButton stationBuildingButton = new JButton("Station");
@@ -72,6 +77,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbc_stationBuildingButton.insets = new Insets(0, 0, 5, 5);
 	    gbc_stationBuildingButton.gridx = 0;
 	    gbc_stationBuildingButton.gridy = 3;
+	    stationBuildingButton.addActionListener(this);
 	    this.add(stationBuildingButton, gbc_stationBuildingButton);
 	    
 	    JButton lineBuildingButton = new JButton("Line");
@@ -79,6 +85,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbc_lineBuildingButton.insets = new Insets(0, 0, 0, 5);
 	    gbc_lineBuildingButton.gridx = 0;
 	    gbc_lineBuildingButton.gridy = 4;
+	    lineBuildingButton.addActionListener(this);
 	    this.add(lineBuildingButton, gbc_lineBuildingButton);
 		
 	}
@@ -87,22 +94,63 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		String buildingToBuild = e.getActionCommand().toString();
+		String toReturn = "";
+		// Amaury - Ugly way of doing this, but easier for me to understand it when reading it on the fly
+		// More exotic way to actually do this is to use enum type to list all the different kinds of build-able buildings and to use equals on all the enum-var in the enum type.
+		// Waste-oriented Code
+		/*
+		if ( buildingToBuild.equals("Resident District") ) {
+			toReturn = buildingToBuild;
+		} else if ( buildingToBuild.equals("Business District") ) {
+			toReturn = buildingToBuild;
+		} else if ( buildingToBuild.equals("State District") ) {
+			toReturn = buildingToBuild;
+		} else if ( buildingToBuild.equals("Station") ) {
+			toReturn = buildingToBuild;
+		} else if ( buildingToBuild.equals("Line") ) {
+			toReturn = buildingToBuild;
+		} 
+		*/
+		
+		if ( buildingToBuild.equals("Resident District") ) {
+			toReturn = "resident";
+		} else if ( buildingToBuild.equals("Business District") ) {
+			toReturn = "business";
+		} else if ( buildingToBuild.equals("State District") ) {
+			toReturn = "state";
+		} else if ( buildingToBuild.equals("Station") ) {
+			toReturn = "station";
+		} else if ( buildingToBuild.equals("Line") ) {
+			toReturn = "line";
+		} 
+		
+		// The variable should be instantiated and initialized since the beginning of the game. 
+		// We should actually implements an init-method somewhere to init() ALL the variables that will be used in the program.
+		VariableRepository.getInstance().register("BuildingActionChoice",toReturn);
+		
 		/*
         int red = color.getRed();
         int green = color.getGreen();
         int blue = color.getBlue();
 		*/
-		System.out.println(e.getActionCommand().toString());
-        if (e.getActionCommand().equals("red")) {
-        	/*
-            if (red == 0) {
-                red = 255;
-            } else {
-                red = 0;
-            }
-            */
-        }
-
+		// System.out.println(e.getActionCommand().toString()+"\n");
+		/*
+		switch (e.getActionCommand().toString()) {
+        case "Resident District":  monthString = "January";
+                 break;
+        case 2:  monthString = "February";
+                 break;
+        case 3:  monthString = "March";
+                 break;
+        case 4:  monthString = "April";
+                 break;
+        case 5:  monthString = "May";
+                 break;
+        default: monthString = "Invalid month";
+                 break;
+    } 
+	*/
         // var setCol = new Color(red, green, blue);
         // display.setBackground(setCol);
 		
