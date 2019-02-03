@@ -40,7 +40,10 @@ public class Map implements ActionListener {
 	    frame.getContentPane().add(map);
 	    
 	    buildingMenu = new BuildingMenuTemp();
-	    buildingMenu.setBounds(461, 108, 252, 211);
+	    GridBagLayout gridBagLayout = (GridBagLayout) buildingMenu.getLayout();
+	    gridBagLayout.columnWidths = new int[]{89};
+	    gridBagLayout.columnWeights = new double[]{0.0};
+	    buildingMenu.setBounds(424, 88, 237, 211);
 	    frame.getContentPane().add(buildingMenu);
 	    
 	    // Creates the buttons in the array
