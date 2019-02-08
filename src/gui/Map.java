@@ -21,6 +21,7 @@ public class Map implements ActionListener {
 	private JFrame frame = new JFrame("RailCity");
 	private BuildingMenuTemp buildingMenu;
 	private String[][] disctrictName = new String[8][8];	
+	Boolean isSelect = false; 
 	public Map(){
 		
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +47,6 @@ public class Map implements ActionListener {
 	            button[i][j].setForeground(Color.BLACK);
 	            button[i][j].setBackground(Color.WHITE);
 	            button[i][j].setBorderPainted(true);
-	            //button[i][j].setFocusPainted(false);
 	            button[i][j].addActionListener(this);
 	    	}
 	    }
@@ -67,7 +67,6 @@ public class Map implements ActionListener {
         			String[] parts = data.split(",");
         			String part1 = parts[0]; 
         			String part2 = parts[1];
-        			
         	        updateButton(Integer.parseInt(part1), Integer.parseInt(part2));
                 }
         	}
@@ -75,34 +74,35 @@ public class Map implements ActionListener {
 	}
 	
 	public void updateButton(int buttonX, int buttonY) {
-		 String[] choices = { "Resident", "Business", "State", "Station"};
-		    String districtChoice = (String) JOptionPane.showInputDialog(null, "Choose now...",
-		        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null,choices, choices[1]);
-		    System.out.println(districtChoice);
-		if(districtChoice == "Resident" && button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
-			button[buttonX][buttonY].setBackground(new Resident().getColor());
-			// button[buttonX][buttonY].setEnabled(false);
-			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
-			
-		}
-		else if(districtChoice == "Business" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new State().getColor()) {
-			button[buttonX][buttonY].setBackground(new Business().getColor());
-			// button[buttonX][buttonY].setEnabled(false);
-			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
-		}
-		else if(districtChoice == "State" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
-			button[buttonX][buttonY].setBackground(new State().getColor());
-			// button[buttonX][buttonY].setEnabled(false);
-			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
-		} 
-		else if(districtChoice == "Station") {
-			if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
-				button[buttonX][buttonY].setForeground(Color.RED);
+		 
+		 System.out.println("["+buttonX+"]["+buttonY+"]");
+		 
+		if(button[buttonX][buttonY].getBackground() != Color.WHITE)
+				System.out.println("["+buttonX+"]["+buttonY+"]");
+		else {
+			String[] choices = { "Resident", "Business", "State", "Station"};
+			 String districtChoice = (String) JOptionPane.showInputDialog(null, "Choose now...",
+			        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null,choices, choices[1]);
+			 System.out.println(districtChoice);
+			if(districtChoice == "Resident" && (button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor())) {
+				button[buttonX][buttonY].setBackground(new Resident().getColor());
+				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+			}
+			else if(districtChoice == "Business" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new State().getColor()) {
+				button[buttonX][buttonY].setBackground(new Business().getColor());
+				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+			}
+			else if(districtChoice == "State" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
+				button[buttonX][buttonY].setBackground(new State().getColor());
+				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+			} 
+			else if(districtChoice == "Station") {
+				if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
+					button[buttonX][buttonY].setForeground(Color.RED); 
+				}
 			}
 		}
-		System.out.println(disctrictName[buttonX][buttonY] );
 	}
-
 }
 
 

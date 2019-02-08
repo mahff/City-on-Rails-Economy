@@ -1,30 +1,18 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
-import javax.swing.border.LineBorder;
-
 import core.VariableRepository;
 
-import static javax.swing.GroupLayout.Alignment.CENTER;
-import static javax.swing.LayoutStyle.ComponentPlacement.UNRELATED;
-
 public class BuildingMenuTemp extends JPanel implements ActionListener{
-	
-    
+	JButton businessDistrictBuildingButton = new JButton("Build New Line");
+	JButton stateDistrictBuildingButton = new JButton("Build New Station");
     // private JPanel display;
 	public BuildingMenuTemp() {
 		initUI();
@@ -40,7 +28,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 	    this.setLayout(gbl_panel);
 	    
-	    JButton businessDistrictBuildingButton = new JButton("Build New Line");
+	    
 	    GridBagConstraints gbc_businessDistrictBuildingButton = new GridBagConstraints();
 	    gbc_businessDistrictBuildingButton.anchor = GridBagConstraints.NORTHWEST;
 	    gbc_businessDistrictBuildingButton.insets = new Insets(0, 0, 5, 5);
@@ -49,7 +37,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    businessDistrictBuildingButton.addActionListener(this);
 	    this.add(businessDistrictBuildingButton, gbc_businessDistrictBuildingButton);
 	    
-	    JButton stateDistrictBuildingButton = new JButton("Build New Station");
+	    
 	    GridBagConstraints gbc_stateDistrictBuildingButton = new GridBagConstraints();
 	    gbc_stateDistrictBuildingButton.insets = new Insets(0, 0, 5, 5);
 	    gbc_stateDistrictBuildingButton.anchor = GridBagConstraints.NORTHWEST;
