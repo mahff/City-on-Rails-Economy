@@ -95,7 +95,7 @@ public class Town {
 	
 	public int endGame() {
 		if(this.getFunds()<=-20000 || this.getGeneralSatisfaction()<=5) {
-			//d�faite
+			//defaite
 			return -1;
 		}
 		else if(this.getGeneralSatisfaction()>=100) {
@@ -106,8 +106,29 @@ public class Town {
 	}
 	
 	public int getGeneralSatisfaction() {
-		//TODO
-		return 0;
+		int generalSatisfaction = 0;
+		for(int i=0 ; i<this.getLength() ; i++)
+		{
+			for(int j=0 ; j<this.getLength() ; j++)
+			{
+				District d = getDistrict(i, j);
+				generalSatisfaction += d.getSatisfaction();
+			}
+		}
+		return generalSatisfaction;
+	}
+	
+	public int getGeneralPopulation() {
+		int generalPopulation = 0;
+		for(int i=0 ; i<this.getLength() ; i++)
+		{
+			for(int j=0 ; j<this.getLength() ; j++)
+			{
+				District d = getDistrict(i, j);
+				generalPopulation += d.getPopulation();
+			}
+		}
+		return generalPopulation;
 	}
 	
 	//-------------------------------------------------------
