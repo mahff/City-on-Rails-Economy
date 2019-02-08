@@ -13,6 +13,9 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
 import core.VariableRepository;
+import game.Business;
+import game.Resident;
+import game.State;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -24,9 +27,6 @@ public class Map implements ActionListener {
 	public EditMenu menu = new EditMenu(); 
 	public JButton[][] button = new JButton[size][size];
 	public JFrame frame = new JFrame("RailCity");
-	Icon business = new ImageIcon("business.jpg");
-	Icon resident = new ImageIcon("resident.jpg");
-	Icon state = new ImageIcon("state.jpg");
 	private BuildingMenuTemp buildingMenu;
 	
 	public Map(){
@@ -76,8 +76,8 @@ public class Map implements ActionListener {
         			String part1 = parts[0]; 
         			String part2 = parts[1];
         			
-        			String parameter = (String) VariableRepository.getInstance().searchByName("BuildingActionChoice");
-        	        updateButton(parameter, Integer.parseInt(part1), Integer.parseInt(part2));
+        			
+        	        updateButton(Integer.parseInt(part1), Integer.parseInt(part2));
         	        
         			// updateButton("resident", Integer.parseInt(part1), Integer.parseInt(part2)); 
                     // System.out.println(i+"+"+j);
@@ -86,45 +86,24 @@ public class Map implements ActionListener {
         }
 	}
 	
-	public void updateButton(String type, int buttonX, int buttonY) {
-		System.out.println(type+"\n");
-		// String buildingState = "Failed";
-		Boolean buildingState = false;
-		if(type == "resident") {
-			button[buttonX][buttonY].setIcon(resident);
+	public void updateButton(int buttonX, int buttonY) {
+		 String[] choices = { "Resident", "Business", "State" };
+		    String districtChoice = (String) JOptionPane.showInputDialog(null, "Choose now...",
+		        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null,choices, choices[1]);
+		    System.out.println(districtChoice);
+		if(districtChoice == "Resident") {
+			button[buttonX][buttonY].setBackground(new Resident().getColor());
 			button[buttonX][buttonY].setEnabled(false);
-			buildingState = true;
-			// buildingState = "Success.";
-			// System.out.println("resident");
 		}
-		else if(type == "business") {
-			button[buttonX][buttonY].setIcon(business);
+		else if(districtChoice == "Business") {
+			button[buttonX][buttonY].setBackground(new Business().getColor());
 			button[buttonX][buttonY].setEnabled(false);
-			// buildingState = "Success.";
-			buildingState = true;
 		}
-		else if(type == "state") {
-			button[buttonX][buttonY].setIcon(state);
+		else if(districtChoice == "State") {
+			button[buttonX][buttonY].setBackground(new State().getColor());
 			button[buttonX][buttonY].setEnabled(false);
-			// buildingState = "Success.";
-			buildingState = true;
 		} 
-		else if (type == "station") {
-			System.out.println("station");
-		} 
-		else if (type == "line") {
-			System.out.println("line");
-		}
 		
-		if (buildingState) {
-			System.out.println(type + " building state on " + buttonX + " " + buttonY + " ");
-			System.out.println("=> " + "Success.");
-		} else {
-			System.out.println("No building proccess en route.");
-			System.out.println("=> " + "Failed.");
-			
-			System.out.println("Please, select a building before launching a building-site.");
-		}
 	}
 
 }
