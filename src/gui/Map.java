@@ -9,6 +9,7 @@ import game.Business;
 import game.Resident;
 import game.State;
 import game.Town;
+import gui.BuildingMenuActions;
 
 import java.awt.GridBagLayout;
 
@@ -20,7 +21,8 @@ public class Map implements ActionListener {
 	private JButton[][] button = new JButton[size][size];
 	private JFrame frame = new JFrame("RailCity");
 	InformationPanel infoGene = new InformationPanel(); 
-	private BuildingMenuTemp buildingMenu;
+	//private BuildingMenuTemp buildingMenu;
+	private BuildingMenuActions buildingMenu2;
 	String districtChoice; 
 	private String[][] disctrictName = new String[8][8];
 	Boolean isSelect = false; 
@@ -28,19 +30,26 @@ public class Map implements ActionListener {
 		
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    JPanel map = new JPanel(new GridLayout(size, size));
-	    map.setLocation(0, 0);
+	    map.setLocation(300, 0);
 	    map.setSize(400,400);
 	    frame.getContentPane().setLayout(null); 
 	    frame.getContentPane().setLayout(null);
 	    frame.getContentPane().add(map);
 	    
+	    /*
 	    buildingMenu = new BuildingMenuTemp();
 	    GridBagLayout gridBagLayout = (GridBagLayout) buildingMenu.getLayout();
 	    gridBagLayout.columnWidths = new int[]{89};
 	    gridBagLayout.columnWeights = new double[]{0.0};
 	    buildingMenu.setBounds(424, 88, 237, 211);
 	    frame.getContentPane().add(buildingMenu);
+	    */
 	    
+	    //Import of the new JPanel for the actions of Add new Lines/Stations
+	    
+	    buildingMenu2 = new BuildingMenuActions();
+	    buildingMenu2.setBounds(0, 300, 242, 209);
+	    frame.getContentPane().add(buildingMenu2);
 	    
 	    // Creates the buttons in the array
 	    for (int i = 0; i < size; i++) {
