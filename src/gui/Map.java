@@ -79,24 +79,24 @@ public class Map implements ActionListener {
 		    String districtChoice = (String) JOptionPane.showInputDialog(null, "Choose now...",
 		        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null,choices, choices[1]);
 		    System.out.println(districtChoice);
-		if(districtChoice == "Resident") {
+		if(districtChoice == "Resident" && button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
 			button[buttonX][buttonY].setBackground(new Resident().getColor());
 			// button[buttonX][buttonY].setEnabled(false);
 			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 			
 		}
-		else if(districtChoice == "Business") {
+		else if(districtChoice == "Business" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new State().getColor()) {
 			button[buttonX][buttonY].setBackground(new Business().getColor());
 			// button[buttonX][buttonY].setEnabled(false);
 			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 		}
-		else if(districtChoice == "State") {
+		else if(districtChoice == "State" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
 			button[buttonX][buttonY].setBackground(new State().getColor());
 			// button[buttonX][buttonY].setEnabled(false);
 			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 		} 
 		else if(districtChoice == "Station") {
-			if(button[buttonX][buttonY].getBackground() == new Resident().getColor()) {
+			if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
 				button[buttonX][buttonY].setForeground(Color.RED);
 			}
 		}
