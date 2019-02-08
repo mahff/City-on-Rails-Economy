@@ -19,8 +19,10 @@ public class Map implements ActionListener {
 	private int size = town.getLength(); 
 	private JButton[][] button = new JButton[size][size];
 	private JFrame frame = new JFrame("RailCity");
+	InformationPanel infoGene = new InformationPanel(); 
 	private BuildingMenuTemp buildingMenu;
-	private String[][] disctrictName = new String[8][8];	
+	String districtChoice; 
+	private String[][] disctrictName = new String[8][8];
 	Boolean isSelect = false; 
 	public Map(){
 		
@@ -38,6 +40,7 @@ public class Map implements ActionListener {
 	    gridBagLayout.columnWeights = new double[]{0.0};
 	    buildingMenu.setBounds(424, 88, 237, 211);
 	    frame.getContentPane().add(buildingMenu);
+	    
 	    
 	    // Creates the buttons in the array
 	    for (int i = 0; i < size; i++) {
@@ -77,13 +80,16 @@ public class Map implements ActionListener {
 		 
 		 System.out.println("["+buttonX+"]["+buttonY+"]");
 		 
-		if(button[buttonX][buttonY].getBackground() != Color.WHITE)
-				System.out.println("["+buttonX+"]["+buttonY+"]");
+		if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
+			System.out.println("["+buttonX+"]["+buttonY+"]");
+			infoGene.displayInfo().setBounds(300,300,300,300);
+			frame.add(infoGene.displayInfo()); 
+		}
+				
 		else {
-			String[] choices = { "Resident", "Business", "State", "Station"};
-			 String districtChoice = (String) JOptionPane.showInputDialog(null, "Choose now...",
-			        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null,choices, choices[1]);
-			 System.out.println(districtChoice);
+			ChoiceDisctrictType type = new ChoiceDisctrictType();
+			districtChoice = type.getDistrictChoice(); 
+			
 			if(districtChoice == "Resident" && (button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor())) {
 				button[buttonX][buttonY].setBackground(new Resident().getColor());
 				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
