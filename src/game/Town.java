@@ -94,11 +94,6 @@ public class Town {
 	}
 	
 	public int endGame() {
-		/*La simulation prend fin si le joueur gagne ou perd. 
-		 * Le joueur gagne si la satisfaction de sa ville est supérieureà un certain seuil. 
-		 *  Si le joueur possède une somme d’argent négative (au-delà d’un certain seuil), 
-		 *  ou unesatisfaction générale trop basse (en-dessous d’un certain seuil), il a perdu.*/
-		
 		if(this.getFunds()<=-20000 || this.getGeneralSatisfaction()<=5) {
 			//défaite
 			return -1;
@@ -111,7 +106,8 @@ public class Town {
 	}
 	
 	public int getGeneralSatisfaction() {
-		
+		//TODO
+		return 0;
 	}
 	
 	//-------------------------------------------------------
