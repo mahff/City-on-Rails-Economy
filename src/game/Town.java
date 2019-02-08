@@ -14,7 +14,7 @@ public class Town {
 	private District[][] map;
 	
 	private Date time;
-	private int fund;
+	private int funds;
 	
 	
 	public Town (int length) {
@@ -72,12 +72,8 @@ public class Town {
 		this.time = time;
 	}
 
-	public int getFund() {
-		return fund;
-	}
-
-	public void setFund(int fund) {
-		this.fund = fund;
+	public int getFunds() {
+		return funds;
 	}
 	
 	
@@ -96,4 +92,93 @@ public class Town {
 			System.out.print(" |\n");
 		}
 	}
+	
+	//-------------------------------------------------------
+	
+	public int getStationConstructionPrice() {
+		if(funds>=500000) return 100000;
+		else if(funds>=250000) return 70000;
+		else if(funds>=175000) return 60000;
+		else return 50000;
+	}
+	
+	public int getDistrictConstructionPrice() {
+		if(funds>=500000) return 60000;
+		else if(funds>=250000) return 40000;
+		else if(funds>=175000) return 35000;
+		else return 30000;
+	}
+	
+	public int getLineSegmentConstructionPrice() {
+		if(funds>=500000) return 40000;
+		else if(funds>=250000) return 30000;
+		else if(funds>=175000) return 250000;
+		else return 20000;
+	}
+	
+	public void payStationConstruction(){
+		funds -= getStationConstructionPrice();
+	}
+	
+	public void payDistrictConstruction(){
+		funds -= getDistrictConstructionPrice();
+	}
+	
+	public void payLineSegmentConstruction(){
+		funds -= getLineSegmentConstructionPrice();
+	}
+	
+	public void payStationDestruction(){
+		int amount;
+		if(funds>=500000) amount = 30000;
+		else if(funds>=250000) amount = 25000;
+		else if(funds>=175000) amount = 20000;
+		else amount = 15000;
+		funds -= amount;
+	}
+	
+	public void payLineSegmentDestruction(){
+		int amount;
+		if(funds>=500000) amount = 10000;
+		else if(funds>=250000) amount = 7000;
+		else if(funds>=175000) amount = 6000;
+		else amount = 5000;
+		funds -= amount;
+	}
+	
+	public void payStateDistrictMaintainance(){
+		int amount;
+		if(funds>=500000) amount = 7000;
+		else if(funds>=250000) amount = 5000;
+		else if(funds>=175000) amount = 4000;
+		else amount = 3500;
+		funds -= amount;
+	}
+	
+	public void payLineMaintainance(){
+		int amount;
+		if(funds>=500000) amount = 2500;
+		else if(funds>=250000) amount = 2000;
+		else if(funds>=175000) amount = 1500;
+		else amount = 1000;
+		funds -= amount;
+	}
+	
+	public void payStationMaintainance(){
+		int amount;
+		if(funds>=500000) amount = 3500;
+		else if(funds>=250000) amount = 3000;
+		else if(funds>=175000) amount = 2000;
+		else amount = 1500;
+		funds -= amount;
+	}
+	
+	public void collectResidentialTaxes(){
+		
+	}
+	
+	public void collectBusinessTaxes(){
+		
+	}
+	
 }
