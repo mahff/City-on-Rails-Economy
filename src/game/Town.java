@@ -95,7 +95,7 @@ public class Town {
 	
 	public int endGame() {
 		if(this.getFunds()<=-20000 || this.getGeneralSatisfaction()<=5) {
-			//défaite
+			//dï¿½faite
 			return -1;
 		}
 		else if(this.getGeneralSatisfaction()>=100) {
@@ -169,23 +169,33 @@ public class Town {
 	}
 	
 	public void payStationConstruction(){
-		funds -= getStationConstructionPrice();
+		if(funds>=getStationConstructionPrice())
+			funds -= getStationConstructionPrice();
+		else; //...
 	}
 	
 	public void payDistrictConstruction(){
-		funds -= getDistrictConstructionPrice();
+		if(funds>=getDistrictConstructionPrice())
+			funds -= getDistrictConstructionPrice();
+		else; //...
 	}
 	
 	public void payLineSegmentConstruction(){
-		funds -= getLineSegmentConstructionPrice();
+		if(funds>=getLineSegmentConstructionPrice())
+			funds -= getLineSegmentConstructionPrice();
+		else; //...
 	}
 	
 	public void payStationDestruction(){
-		funds -= getStationDestructionPrice();
+		if(funds>=getStationDestructionPrice())
+			funds -= getStationDestructionPrice();
+		else; //...
 	}
 	
 	public void payLineSegmentDestruction(){
-		funds -= getLineSegmentDestructionPrice();
+		if(funds>=getLineSegmentDestructionPrice())
+			funds -= getLineSegmentDestructionPrice();
+		else; //...
 	}
 	
 	public void payStateDistrictMaintainance(){
