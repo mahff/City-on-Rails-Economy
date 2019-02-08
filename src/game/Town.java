@@ -211,7 +211,7 @@ public class Town {
 	}
 	
 	public void collectResidentialTaxes(){
-		
+		 
 	}
 	
 	public void collectBusinessTaxes(){
