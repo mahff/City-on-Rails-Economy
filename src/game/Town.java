@@ -129,7 +129,7 @@ public class Town {
 			for(int j=0 ; j<this.getLength() ; j++)
 			{
 				District d = getDistrict(i, j);
-				if(d != null) {
+				if(d != null&&d.getClass().getName()=="Resident") {
 					generalPopulation += d.getPopulation();
 				}
 			}
@@ -259,7 +259,7 @@ public class Town {
 		int amount = 0;
 		 for(District districts[] : map) {
 			 for(District district : districts){
-				 if(district.getClass().getName()=="Resident") {
+				 if(district.getClass().getName()=="Business") {
 					 int currentAmount = 140*district.getPopulation();
 					 if(district.getSatisfaction()<=10) currentAmount *= 0.95;
 					 else if(district.getSatisfaction()<=5) currentAmount *= 0.7;
