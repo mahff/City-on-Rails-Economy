@@ -162,7 +162,8 @@ public class Town {
 	
 	public int getStationDestructionPrice() {
 		if(funds>=500000) return 30000;
-		else if(funds>=250000) return 25000;
+		else if(funds>=250000) return 25000;		 
+
 		else if(funds>=175000) return 20000;
 		else return 15000;
 	}
@@ -238,11 +239,37 @@ public class Town {
 	}
 	
 	public void collectResidentialTaxes(){
-		 
+		 int amount = 0;
+		 for(District districts[] : map) {
+			 for(District district : districts){
+				 if(district.getClass().getName()=="Resident") {
+					 int currentAmount = 140*district.getPopulation();
+					 if(district.getSatisfaction()<=10) currentAmount *= 0.95;
+					 else if(district.getSatisfaction()<=5) currentAmount *= 0.7;
+					 else if(district.getSatisfaction()<=3) currentAmount *= 0.6;
+					 amount += currentAmount;
+				 }
+			 }
+		 }
+		 funds += amount;
+		 //...
 	}
 	
 	public void collectBusinessTaxes(){
-		
+		int amount = 0;
+		 for(District districts[] : map) {
+			 for(District district : districts){
+				 if(district.getClass().getName()=="Resident") {
+					 int currentAmount = 140*district.getPopulation();
+					 if(district.getSatisfaction()<=10) currentAmount *= 0.95;
+					 else if(district.getSatisfaction()<=5) currentAmount *= 0.7;
+					 else if(district.getSatisfaction()<=3) currentAmount *= 0.6;
+					 amount += currentAmount;
+				 }
+			 }
+		 }
+		 funds += amount;
+		 //...
 	}
 	
 }
