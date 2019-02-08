@@ -116,6 +116,41 @@ public class Town {
 		else return 20000;
 	}
 	
+	public int getStationDestructionPrice() {
+		if(funds>=500000) return 30000;
+		else if(funds>=250000) return 25000;
+		else if(funds>=175000) return 20000;
+		else return 15000;
+	}
+	
+	public int getLineSegmentDestructionPrice() {
+		if(funds>=500000) return 10000;
+		else if(funds>=250000) return 7000;
+		else if(funds>=175000) return 6000;
+		else return 5000;
+	}
+	
+	public int getStateDistrictMaintainancePrice() {
+		if(funds>=500000) return 7000;
+		else if(funds>=250000) return 5000;
+		else if(funds>=175000) return 4000;
+		else return 3500;
+	}
+	
+	public int getLineMaintainancePrice() {
+		if(funds>=500000) return 2500;
+		else if(funds>=250000) return 2000;
+		else if(funds>=175000) return 1500;
+		else return 1000;
+	}
+	
+	public int getStationMaintainancePrice() {
+		if(funds>=500000) return 3500;
+		else if(funds>=250000) return 3000;
+		else if(funds>=175000) return 2000;
+		else return 1500;
+	}
+	
 	public void payStationConstruction(){
 		funds -= getStationConstructionPrice();
 	}
@@ -129,48 +164,23 @@ public class Town {
 	}
 	
 	public void payStationDestruction(){
-		int amount;
-		if(funds>=500000) amount = 30000;
-		else if(funds>=250000) amount = 25000;
-		else if(funds>=175000) amount = 20000;
-		else amount = 15000;
-		funds -= amount;
+		funds -= getStationDestructionPrice();
 	}
 	
 	public void payLineSegmentDestruction(){
-		int amount;
-		if(funds>=500000) amount = 10000;
-		else if(funds>=250000) amount = 7000;
-		else if(funds>=175000) amount = 6000;
-		else amount = 5000;
-		funds -= amount;
+		funds -= getLineSegmentDestructionPrice();
 	}
 	
 	public void payStateDistrictMaintainance(){
-		int amount;
-		if(funds>=500000) amount = 7000;
-		else if(funds>=250000) amount = 5000;
-		else if(funds>=175000) amount = 4000;
-		else amount = 3500;
-		funds -= amount;
+		funds -= getStateDistrictMaintainancePrice();
 	}
 	
 	public void payLineMaintainance(){
-		int amount;
-		if(funds>=500000) amount = 2500;
-		else if(funds>=250000) amount = 2000;
-		else if(funds>=175000) amount = 1500;
-		else amount = 1000;
-		funds -= amount;
+		funds -= getLineMaintainancePrice();
 	}
 	
 	public void payStationMaintainance(){
-		int amount;
-		if(funds>=500000) amount = 3500;
-		else if(funds>=250000) amount = 3000;
-		else if(funds>=175000) amount = 2000;
-		else amount = 1500;
-		funds -= amount;
+		funds -= getStationMaintainancePrice();
 	}
 	
 	public void collectResidentialTaxes(){
