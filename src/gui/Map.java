@@ -1,34 +1,26 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-
-import core.VariableRepository;
 import game.Business;
 import game.Resident;
 import game.State;
+import game.Town;
 
 import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class Map implements ActionListener {
 	ActionListener listener;
-	public int size = 5; 
-	public EditMenu menu = new EditMenu(); 
-	public JButton[][] button = new JButton[size][size];
-	public JFrame frame = new JFrame("RailCity");
+	private EditMenu menu = new EditMenu(); 
+    Town town = new Town(6); 
+	private int size = town.getLength(); 
+	private JButton[][] button = new JButton[size][size];
+	private JFrame frame = new JFrame("RailCity");
 	private BuildingMenuTemp buildingMenu;
-	
+	private String[][] disctrictName = new String[8][8];	
 	public Map(){
 		
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,11 +68,7 @@ public class Map implements ActionListener {
         			String part1 = parts[0]; 
         			String part2 = parts[1];
         			
-        			
         	        updateButton(Integer.parseInt(part1), Integer.parseInt(part2));
-        	        
-        			// updateButton("resident", Integer.parseInt(part1), Integer.parseInt(part2)); 
-                    // System.out.println(i+"+"+j);
                 }
         	}
         }
@@ -94,16 +82,20 @@ public class Map implements ActionListener {
 		if(districtChoice == "Resident") {
 			button[buttonX][buttonY].setBackground(new Resident().getColor());
 			button[buttonX][buttonY].setEnabled(false);
+			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+			
 		}
 		else if(districtChoice == "Business") {
 			button[buttonX][buttonY].setBackground(new Business().getColor());
 			button[buttonX][buttonY].setEnabled(false);
+			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 		}
 		else if(districtChoice == "State") {
 			button[buttonX][buttonY].setBackground(new State().getColor());
 			button[buttonX][buttonY].setEnabled(false);
+			disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 		} 
-		
+		System.out.println(disctrictName[buttonX][buttonY] );
 	}
 
 }

@@ -28,7 +28,7 @@ public class ButtonNumber implements ActionListener{
         
         // Newly-implemented line of code
         String parameter = (String) VariableRepository.getInstance().searchByName("BuildingActionChoice");
-        updateMap.updateButton(parameter, getButtonX(), getButtonY());
+        updateMap.updateButton(getButtonX(), getButtonY());
     }
 	public int getButtonX() {
 		return buttonX;

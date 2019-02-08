@@ -28,17 +28,17 @@ public class FirstView {
 
     public FirstView() {
     	
-		// try {
-			/*
+		try {
+			
 			icon = ImageIO.read(new File("rail.png"));
 			
 			logo = new ImageIcon(icon);
 			picLabel = new JLabel(logo);
-			*/
+			
          
 	    	frame.setLayout(null); 
-	    	// picLabel.setBounds(0,0,0,0);
-			// view.add(picLabel); 
+	    	 picLabel.setBounds(0,0,0,0);
+			 view.add(picLabel); 
 	    	newGame.setBounds(0, 200, 100, 100);
 	    	backup.setBounds(0, 200, 100, 100);
 	    	close.setBounds(0, 200, 100, 100);
@@ -61,11 +61,11 @@ public class FirstView {
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setVisible(true);
 	        frame.setResizable(false); //The window is not resizable anymore ;)
-	        /*
+	        
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
+		
     }
 
     public static void main(String[] args) {

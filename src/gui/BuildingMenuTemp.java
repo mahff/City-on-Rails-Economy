@@ -24,11 +24,6 @@ import static javax.swing.LayoutStyle.ComponentPlacement.UNRELATED;
 
 public class BuildingMenuTemp extends JPanel implements ActionListener{
 	
-	private JToggleButton residentDistrictBuildingButton;
-    private JToggleButton businessDistrictBuildingButton;
-    private JToggleButton stateDistrictBuildingButton;
-    private JToggleButton stationBuildingButton;
-    private JToggleButton lineBuildingButton;
     
     // private JPanel display;
 	public BuildingMenuTemp() {
@@ -45,16 +40,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 	    this.setLayout(gbl_panel);
 	    
-	    JButton residentDistrictBuildingButton = new JButton("Resident District");
-	    GridBagConstraints gbc_residentDistrictBuildingButton = new GridBagConstraints();
-	    gbc_residentDistrictBuildingButton.anchor = GridBagConstraints.NORTHWEST;
-	    gbc_residentDistrictBuildingButton.insets = new Insets(0, 0, 5, 5);
-	    gbc_residentDistrictBuildingButton.gridx = 0;
-	    gbc_residentDistrictBuildingButton.gridy = 0;
-	    residentDistrictBuildingButton.addActionListener(this);
-	    this.add(residentDistrictBuildingButton, gbc_residentDistrictBuildingButton);
-	    
-	    JButton businessDistrictBuildingButton = new JButton("Business District");
+	    JButton businessDistrictBuildingButton = new JButton("Build New Line");
 	    GridBagConstraints gbc_businessDistrictBuildingButton = new GridBagConstraints();
 	    gbc_businessDistrictBuildingButton.anchor = GridBagConstraints.NORTHWEST;
 	    gbc_businessDistrictBuildingButton.insets = new Insets(0, 0, 5, 5);
@@ -63,7 +49,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    businessDistrictBuildingButton.addActionListener(this);
 	    this.add(businessDistrictBuildingButton, gbc_businessDistrictBuildingButton);
 	    
-	    JButton stateDistrictBuildingButton = new JButton("State District");
+	    JButton stateDistrictBuildingButton = new JButton("Build New Station");
 	    GridBagConstraints gbc_stateDistrictBuildingButton = new GridBagConstraints();
 	    gbc_stateDistrictBuildingButton.insets = new Insets(0, 0, 5, 5);
 	    gbc_stateDistrictBuildingButton.anchor = GridBagConstraints.NORTHWEST;
@@ -71,22 +57,6 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 	    gbc_stateDistrictBuildingButton.gridy = 2;
 	    stateDistrictBuildingButton.addActionListener(this);
 	    this.add(stateDistrictBuildingButton, gbc_stateDistrictBuildingButton);
-	    
-	    JButton stationBuildingButton = new JButton("Station");
-	    GridBagConstraints gbc_stationBuildingButton = new GridBagConstraints();
-	    gbc_stationBuildingButton.insets = new Insets(0, 0, 5, 5);
-	    gbc_stationBuildingButton.gridx = 0;
-	    gbc_stationBuildingButton.gridy = 3;
-	    stationBuildingButton.addActionListener(this);
-	    this.add(stationBuildingButton, gbc_stationBuildingButton);
-	    
-	    JButton lineBuildingButton = new JButton("Line");
-	    GridBagConstraints gbc_lineBuildingButton = new GridBagConstraints();
-	    gbc_lineBuildingButton.insets = new Insets(0, 0, 0, 5);
-	    gbc_lineBuildingButton.gridx = 0;
-	    gbc_lineBuildingButton.gridy = 4;
-	    lineBuildingButton.addActionListener(this);
-	    this.add(lineBuildingButton, gbc_lineBuildingButton);
 		
 	}
 		 
@@ -113,7 +83,7 @@ public class BuildingMenuTemp extends JPanel implements ActionListener{
 		} 
 		*/
 		
-		if ( buildingToBuild.equals("Resident District") ) {
+		if (buildingToBuild.equals("Build New District") ) {
 			toReturn = "resident";
 		} else if ( buildingToBuild.equals("Business District") ) {
 			toReturn = "business";
