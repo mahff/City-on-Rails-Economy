@@ -7,16 +7,16 @@ public class Station {
 	public Boolean overload; 
 	public int numberPassenger; 
 	public Moving moving; 
-	public ArrayList<Line> lines = new ArrayList<>();
+	public ArrayList<Line> lines;
 	
 	
-	public Station(int capacity, Boolean overload, int numberPassenger, Moving moving, ArrayList<Line> lines) {
-		super();
+	public Station(int capacity, Boolean overload, int numberPassenger, Moving moving) {
+		// super();
 		this.capacity = capacity;
 		this.overload = overload;
 		this.numberPassenger = numberPassenger;
 		this.moving = moving;
-		this.lines = lines;
+		this.lines = new ArrayList<Line>();
 	}
 	public int getCapacity() {
 		return capacity;
@@ -45,8 +45,8 @@ public class Station {
 	public ArrayList<Line> getLines() {
 		return lines;
 	}
-	public void setLines(ArrayList<Line> lines) {
-		this.lines = lines;
+	public void addLines(Line line) {
+		this.lines.add(line);
 	} 
 	
 

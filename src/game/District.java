@@ -16,7 +16,6 @@ public class District {
 		
 	}
 
-
 	/**
 	 * @return the population
 	 */
