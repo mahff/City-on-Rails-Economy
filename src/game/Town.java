@@ -10,12 +10,10 @@ import java.util.Date;
  *
  */
 public class Town {
-	//TODO comms
-	
 	private int length;
 	private District[][] map;
-	private Date time;
 	
+	private Date time;
 	private int fund;
 	
 	
@@ -60,16 +58,10 @@ public class Town {
 	}
 
 	
-	/**
-	 * @param positionX
-	 * @param positionY
-	 * @param car
-	 */
 	public void setDistrict(int positionX, int positionY, District district) 
 	{
 		this.map[positionX][positionY] = district;
 	}
-	
 	
 
 	public Date getTime() {
