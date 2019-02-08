@@ -11,6 +11,8 @@ import java.util.Date;
  *
  */
 public class Town {
+	//TODO comms
+	
 	private int length;
 	private String[][] map;
 	private Date time;
@@ -18,8 +20,18 @@ public class Town {
 	private int fund;
 	private ArrayList<District> districts;
 	
+	
 	public Town (int length) {
+		this.setLength(length);
+		int dim = this.getLength();
 		
+		map = new String[dim][dim];
+		
+		for(int i=0 ; i<dim ; i++){
+			for(int j=0 ; j<dim ; j++){
+				setMapIJ(i, j, i+","+j);
+			}
+		}
 	}
 
 	
@@ -38,6 +50,29 @@ public class Town {
 	public void setMap(String[][] map) {
 		this.map = map;
 	}
+	
+	/**
+	 * @param positionX
+	 * @param positionY
+	 * @return the value of the grid at the given position
+	 */
+	public String getMapIJ(int positionX, int positionY) 
+	{
+		return map[positionX][positionY];
+	}
+
+	
+	/**
+	 * @param positionX
+	 * @param positionY
+	 * @param car
+	 */
+	public void setMapIJ(int positionX, int positionY, String car) 
+	{
+		this.map[positionX][positionY] = car;
+	}
+	
+	
 
 	public Date getTime() {
 		return time;
@@ -64,4 +99,19 @@ public class Town {
 	}
 	
 	
+	/** 
+	 * Print the current map 
+	 * */
+	public void printMap() 
+	{
+		System.out.println("\nMAP :\n");
+		for(int i=0 ; i<this.getLength() ; i++)
+		{
+			for(int j=0 ; j<this.getLength() ; j++)
+			{
+				System.out.print(" | " + getMapIJ(i, j));
+			}
+			System.out.print(" |\n");
+		}
+	}
 }
