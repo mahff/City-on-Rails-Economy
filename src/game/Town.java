@@ -3,7 +3,6 @@
  */
 package game;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,22 +13,21 @@ public class Town {
 	//TODO comms
 	
 	private int length;
-	private String[][] map;
+	private District[][] map;
 	private Date time;
 	
 	private int fund;
-	private ArrayList<District> districts;
 	
 	
 	public Town (int length) {
 		this.setLength(length);
 		int dim = this.getLength();
 		
-		map = new String[dim][dim];
+		map = new District[dim][dim];
 		
 		for(int i=0 ; i<dim ; i++){
 			for(int j=0 ; j<dim ; j++){
-				setMapIJ(i, j, i+","+j);
+				setDistrict(i, j, null);
 			}
 		}
 	}
@@ -43,11 +41,11 @@ public class Town {
 		this.length = length;
 	}
 
-	public String[][] getMap() {
+	public District[][] getMap() {
 		return map;
 	}
 
-	public void setMap(String[][] map) {
+	public void setMap(District[][] map) {
 		this.map = map;
 	}
 	
@@ -56,7 +54,7 @@ public class Town {
 	 * @param positionY
 	 * @return the value of the grid at the given position
 	 */
-	public String getMapIJ(int positionX, int positionY) 
+	public District getDistrict(int positionX, int positionY) 
 	{
 		return map[positionX][positionY];
 	}
@@ -67,9 +65,9 @@ public class Town {
 	 * @param positionY
 	 * @param car
 	 */
-	public void setMapIJ(int positionX, int positionY, String car) 
+	public void setDistrict(int positionX, int positionY, District district) 
 	{
-		this.map[positionX][positionY] = car;
+		this.map[positionX][positionY] = district;
 	}
 	
 	
@@ -89,14 +87,6 @@ public class Town {
 	public void setFund(int fund) {
 		this.fund = fund;
 	}
-
-	public ArrayList<District> getDistricts() {
-		return districts;
-	}
-
-	public void setDistricts(ArrayList<District> districts) {
-		this.districts = districts;
-	}
 	
 	
 	/** 
@@ -109,7 +99,7 @@ public class Town {
 		{
 			for(int j=0 ; j<this.getLength() ; j++)
 			{
-				System.out.print(" | " + getMapIJ(i, j));
+				System.out.print(" | " + getDistrict(i, j));
 			}
 			System.out.print(" |\n");
 		}

@@ -1,20 +1,10 @@
 package game;
 
+import java.awt.Color;
+
 public class Resident extends District{
 	
-	public Resident(int population, int income, Station station, int satisfaction) {
-		super(population, income, station, satisfaction);
+	public Resident() {
+		super(50, 10, Color.GREEN);
 	}
-
-	public int income;
-
-	
-
-	public int getIncome() {
-		return income;
-	}
-
-	public void setIncome(int income) {
-		this.income = income;
-	} 
 }
