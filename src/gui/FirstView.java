@@ -80,7 +80,8 @@ public class FirstView {
     	    public void actionPerformed(ActionEvent e) {
     	        System.out.println("Going to Map!"+e);
     	        frame.dispose();
-    	        new Map(); 
+    	        
+    	        new MapArea(); 
     	    }
     	});
     }

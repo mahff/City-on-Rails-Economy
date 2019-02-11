@@ -24,7 +24,6 @@ public class ChoiceDisctrictType {
 	    JPanel panel = new JPanel();
 	    JLabel label = new JLabel("Java Technology Dive Log");
 	    panel.add(label);
-
 	    return panel;
 	  }
 	  

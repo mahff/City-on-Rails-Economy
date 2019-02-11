@@ -19,8 +19,7 @@ public class Map implements ActionListener {
     Town town = new Town(6); 
 	private int size = town.getLength(); 
 	private JButton[][] button = new JButton[size][size];
-	private JFrame frame = new JFrame("RailCity");
-	InformationPanel infoGene = new InformationPanel(); 
+	private JFrame frame = new JFrame("RailCity"); 
 	//private BuildingMenuTemp buildingMenu;
 	private BuildingMenuActions buildingMenu2;
 	String districtChoice; 
@@ -91,8 +90,7 @@ public class Map implements ActionListener {
 		 
 		if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
 			System.out.println("["+buttonX+"]["+buttonY+"]");
-			infoGene.displayInfo().setBounds(300,300,300,300);
-			frame.add(infoGene.displayInfo()); 
+			
 		}
 				
 		else {
