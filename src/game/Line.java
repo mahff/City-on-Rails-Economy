@@ -43,8 +43,14 @@ public class Line {
 		this.departureHour = departureHour;
 	}
 	
+	public String toString() {
+		StringBuffer toReturn = new StringBuffer();
+		toReturn.append("Line Informations : \n\tStations : " + this.stations.toString() + " \n\tInterval Subway : " + this.intervalSubway + " \n\tdepartureHour : " + this.departureHour + ".\n");
+		return toReturn.toString();
+	}
 	// TODO Amaury - Maybe change to Boolean ? 
 	// public Line buildLine(HashMap<String, Station> stationsParam) {
+	/*
 	public Line buildLine(HashMap<String, Station> stationsToBuildParam) {
 		// TODO - Update Lines and Stations instances correctly !!!!!
 		Town townInstance = (Town) VariableRepository.getInstance().searchByName("Town");
@@ -66,5 +72,24 @@ public class Line {
 		
 		return lineToCreate;
 	}
+	*/
+	
+	public void updateStations(ArrayList<Station> stationsToBuildParam) {
+		ArrayList<Station> newLineStations = stationsToBuildParam; 
+		// TODO - Update Lines and Stations instances correctly !!!!!
+		Iterator<Station> itr = stationsToBuildParam.iterator();
+		
+		while (itr.hasNext()) {
+			// System.out.println(itr.next());
+			Station station= (Station) itr.next();
+			station.addLines(this);
+		}
+		
+		// TODO - 
+		// Line lineToCreate = new Line(newLineStations, 5, new Date());
+		
+		// townInstance
+	}
+	
 	
 }

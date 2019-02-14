@@ -48,6 +48,10 @@ public class Station {
 	public void addLines(Line line) {
 		this.lines.add(line);
 	} 
-	
+	public String toString() {
+		StringBuffer toReturn = new StringBuffer();
+		toReturn.append("Station Informations : \n\tCapacity : " + this.capacity + " \n\t" + "Overload state : " + this.overload + " \n\tNumber of Passengers : " + this.numberPassenger + " \n\tMoving States : " + this.moving + "\n\tLines List :" + this.lines.size() + ".\n");
+		return toReturn.toString();
+	}
 
 }
