@@ -108,7 +108,7 @@ public class Town {
 	
 	public int getGeneralSatisfaction() {
 		int generalSatisfaction = 0;
-		int div = 0;
+		int div = 1;
 		for(int i=0 ; i<this.getLength() ; i++)
 		{
 			for(int j=0 ; j<this.getLength() ; j++)
