@@ -39,7 +39,7 @@ public class FirstView {
 		picLabel = new JLabel(logo);
 		picLabel.setBounds(144,13,225,225);
 		
-		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'! Have fun!");
+		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'! Have fun!", SwingConstants.CENTER);
 		welcome.setBounds(28, 240, 455, 16);
 		
     	newGame.setBounds(213, 269, 95, 25);

@@ -27,6 +27,7 @@ public class ParameterArea {
 		combo.addItem("Resident");
 		combo.addItem("Business");
 		combo.addItem("State");
+		combo.addItem("Station");
 		summary.setText("Summary");
 		JSplitPane sumSug = new JSplitPane(JSplitPane.VERTICAL_SPLIT, combo, summary);
 

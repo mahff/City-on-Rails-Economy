@@ -19,6 +19,7 @@ import javax.swing.Timer;
 
 import core.VariableRepository;
 import game.Business;
+import game.District;
 import game.Resident;
 import game.State;
 import game.Town;
@@ -26,12 +27,14 @@ import game.Town;
 
 public class MapArea extends JFrame implements ActionListener {
 	private String[][] disctrictName = new String[8][8];
+	private District[][] districts;
 	Town town = new Town(6); 
 	ParameterArea paramArea = new ParameterArea(town); 
 	private EditMenu menu = new EditMenu(); 
 	String districtChoice; 
 	String geneInfo; 
 	EventInformation eventInfo = new EventInformation();
+	GeneralInformation generalInfo; 
 	private int size = town.getLength(); 
 	JPanel map = new JPanel(new GridLayout(size, size));
 	private  JButton[][] button = new JButton[size][size];
@@ -157,9 +160,12 @@ public class MapArea extends JFrame implements ActionListener {
 				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 				town.payDistrictConstruction();
 			} 
+			
 			System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
 			EventInformation.summary.setText("A new district "+districtChoice +" has been created !");
-			
+			generalInfo = new GeneralInformation(town); 
+			System.out.println("town pop="+town.getGeneralPopulation()); 
+			generalInfo.updateGeneralInfo();
 		}
 	}
 	

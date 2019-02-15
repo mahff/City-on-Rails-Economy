@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.util.Date;
 
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import game.Town;
 
@@ -18,7 +19,7 @@ public class GeneralInformation {
 	
 	
 	public Component updateGeneralInfo() {
-		String content = "City Statistics:\n";
+		String content = "<html><center>City Statistics: <br/>";
 		
 		//TODO : appel aux fonctions pour recup les stats (dans TOWN)
 		int generalPopulation = town.getGeneralPopulation();
@@ -28,12 +29,12 @@ public class GeneralInformation {
 		int funds = town.getFunds();
 		Date date = town.getTime();
 		
-		content += "Population: "+generalPopulation+"\n"
-				+ "Satisfaction: "+generalSatisfaction+"\n"
-				+ "Number of lines (metro): "+generalNbLines+"\n"
-				+ "Number of stations (metro): "+generalNbStations+"\n"
-				+ "Money: "+funds+" MyLiu\n"
-				+ "Date: "+date+"\n";
+		content += "Population: "+generalPopulation+"<br/>"
+				+ "Satisfaction: "+generalSatisfaction+"<br/>"
+				+ "Number of lines (metro): "+generalNbLines+"<br/>"
+				+ "Number of stations (metro): "+generalNbStations+"<br/>"
+				+ "Money: "+funds+" MyLiu<br/>"
+				+ "Date: "+date+"</center></html>";
 
 		summary.setText(content);
 		

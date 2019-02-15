@@ -50,7 +50,8 @@ public class ConsoleTests {
 		int weekEndMovingRate = 5;
 		Date date1 = new Date();
 		Date date2 = new Date();
-		Town town = new Town(length);
+		
+		Town town = new Town(6);
 			// town.printMap();
 			testMapPrint(length, town);
 			//Cr�ation d'un quartier 
