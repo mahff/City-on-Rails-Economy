@@ -138,6 +138,29 @@ public class Town {
 		return generalPopulation;
 	}
 	
+	public int getGeneralNumberOfStation() {
+		District[][] arrayToIterateThrough = this.getMap();
+		int i = 0;
+		int j = 0;
+		int numberOfStations = 0;
+		for (i = 0; i < this.getLength(); i++) {
+			for (j = 0; j < this.getLength(); j++) {
+				if ( arrayToIterateThrough[i][j] != null ) {
+					if ( arrayToIterateThrough[i][j].getStation() != null ) {
+						numberOfStations++;
+					}
+				}
+			}
+		}
+		return numberOfStations;
+		
+	}
+	
+	public int getGeneralNumberOfLines() {
+
+		return 0;
+		
+	}
 	//-------------------------------------------------------
 	
 	public int getStationConstructionPrice() {

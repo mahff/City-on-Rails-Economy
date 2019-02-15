@@ -14,7 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.Timer;
 
+import core.VariableRepository;
 import game.Business;
 import game.Resident;
 import game.State;
@@ -30,6 +32,10 @@ public class MapArea extends JFrame implements ActionListener {
 	private int size = town.getLength(); 
 	JPanel map = new JPanel(new GridLayout(size, size));
 	private  JButton[][] button = new JButton[size][size];
+	private Timer timerTest;
+	// Amaury - Temporary variables for testing purpose
+	private int valueToTest;
+	private int daysTestValue;
 	
 	public MapArea(){
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ParameterArea.summaryParamFrame(), createMap());
@@ -51,6 +57,31 @@ public class MapArea extends JFrame implements ActionListener {
 				frame.dispose();
 			}
 		});
+		
+		VariableRepository.getInstance().register("NumberOfDistricts", 0);
+		VariableRepository.getInstance().register("NumberOfLines", 0);
+		VariableRepository.getInstance().register("NumberOfStations", 0);
+		
+		// Amaury - Temporary affectations
+		this.valueToTest = 0;
+		this.daysTestValue = 0;
+		
+		// Amaury - Temporary timer. A real one should be implemented soon.
+		this.timerTest = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				valueToTest++;
+				System.out.println(valueToTest);
+				if ( valueToTest == 15 ) {
+					valueToTest=0;
+					daysTestValue+=1;
+					System.out.println(daysTestValue+" jours sont passés.\n");
+				}
+			}
+	    });
+		
+		this.timerTest.start();
 		
 	}
 	public Component createMap() {

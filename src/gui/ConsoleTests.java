@@ -3,8 +3,13 @@
  */
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.swing.Timer;
+
 import game.*;
 
 /**
@@ -40,6 +45,7 @@ public class ConsoleTests {
 	 */
 	public static void main(String[] args) {
 		//Cr�ation ville / carte
+		int timerSpeed = 1000;
 		int length = 5;
 		int weekEndMovingRate = 5;
 		Date date1 = new Date();
@@ -105,6 +111,22 @@ public class ConsoleTests {
 		System.out.println(station2.toString());
 		System.out.println(station8.toString());
 		
+		// Creation of a timer to test the real time clock
+				Timer test = new Timer(timerSpeed, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						System.out.println("i");
+					}
+		        });
+				
+				
+				// test.setInitialDelay(timerPause);
+				// test.setRepeats(true);
+				// System.out.println("start test");
+				test.start(); 
+				
 		System.out.println("Pop="+town.getGeneralPopulation()+" Satisf="+town.getGeneralSatisfaction());
 		
 	}

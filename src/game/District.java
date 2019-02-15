@@ -2,18 +2,24 @@ package game;
 
 import java.awt.Color;
 
+import core.VariableRepository;
+
 public class District {
 	public int population;
 	public Station station;
 	public int satisfaction;
 	private Color color;
+	private String name;
 
 	
 	public District(int population, int satisfaction, Color color) {
+		int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfDistricts");
 		this.setPopulation(population);
 		this.setSatisfaction(satisfaction);
 		this.setColor(color);
 		
+		this.setName("District " + numberOfDistricts);
+		VariableRepository.getInstance().register("NumberOfDistricts", numberOfDistricts++);
 	}
 
 	/**
@@ -77,6 +83,20 @@ public class District {
 	 */
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	/**
+	 * @name name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
+	 * @return the name of the District
+	 */
+	public String getName() {
+		return this.name;
 	}
 
 

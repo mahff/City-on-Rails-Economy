@@ -12,11 +12,16 @@ public class Line {
 	private ArrayList<Station> stations = new ArrayList<>(); 
 	private int intervalSubway; // time between 2 subways
 	private Date departureHour; // hour the the first subway
+	private String name;
 	
 	public Line(ArrayList<Station> stations, int intervalSubway, Date departureHour) {
+		int numberOfLines = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
 		this.stations = stations;
 		this.intervalSubway = intervalSubway;
 		this.departureHour = departureHour;
+		
+		this.setName("Line " + numberOfLines);
+		VariableRepository.getInstance().register("NumberOfLines", numberOfLines++);
 	}
 	
 	public ArrayList<Station> getStations() {
@@ -73,6 +78,20 @@ public class Line {
 		return lineToCreate;
 	}
 	*/
+	
+	/**
+	 * @name name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
+	 * @return the name of the District
+	 */
+	public String getName() {
+		return this.name;
+	}
 	
 	public void updateStations(ArrayList<Station> stationsToBuildParam) {
 		ArrayList<Station> newLineStations = stationsToBuildParam; 
