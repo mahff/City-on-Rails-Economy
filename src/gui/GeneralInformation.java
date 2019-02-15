@@ -22,6 +22,7 @@ public class GeneralInformation {
 		int generalPopulation = town.getGeneralPopulation();
 		int generalSatisfaction = town.getGeneralSatisfaction();
 		
+		//TODO : appel aux fonctions pour recup les stats (dans TOWN)
 		content += "Population: "+generalPopulation+"\n"
 				+ "Satisfaction: "+generalSatisfaction+"\n"
 				+ "Number of lines (metro): "+"0"+"\n"
