@@ -18,6 +18,7 @@ public class Town {
 	
 	
 	public Town (int length) {
+		funds = 70000;
 		this.setLength(length);
 		int dim = this.getLength();
 		
