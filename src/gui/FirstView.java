@@ -1,8 +1,7 @@
 package gui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,61 +18,78 @@ public class FirstView {
     //Image
     BufferedImage icon;
 	JLabel picLabel;
+	JLabel welcome;
 	ImageIcon logo; 
     
     // Buttons
-    JButton newGame = new JButton("New Game");
+    JButton newGame = new JButton("New game");
     JButton backup = new JButton("Back up"); 
-    JButton close = new JButton("Close");
+    JButton close = new JButton("Quit");
 
     public FirstView() {
     	
 		try {
-			
 			icon = ImageIO.read(new File("rail.png"));
-			
-			logo = new ImageIcon(icon);
-			picLabel = new JLabel(logo);
-			
-         
-	    	frame.setLayout(null); 
-	    	 picLabel.setBounds(0,0,0,0);
-			 view.add(picLabel); 
-	    	newGame.setBounds(0, 200, 100, 100);
-	    	backup.setBounds(0, 200, 100, 100);
-	    	close.setBounds(0, 200, 100, 100);
-	    	
-	        // JPanel bounds
-	        view.setBounds(1200, 1200, 150, 400);
-	
-	        // Adding to JFrame
-	        view.add(newGame);
-	        view.add(backup); 
-	        view.add(close); 
-	        frame.add(view);
-	        view.setLocation(325,100);
-	
-	        // JFrame properties
-	        frame.setSize(800, 600);
-	        frame.setBackground(Color.BLACK);
-	        frame.setTitle("RailCity");
-	        frame.setLocationRelativeTo(null);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        frame.setVisible(true);
-	        frame.setResizable(false); //The window is not resizable anymore ;)
-	        
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 		
+		logo = new ImageIcon(icon);
+		
+		picLabel = new JLabel(logo);
+		picLabel.setBounds(144,13,225,225);
+		
+		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'! Have fun!");
+		welcome.setBounds(28, 240, 455, 16);
+		
+    	newGame.setBounds(213, 269, 95, 25);
+    	backup.setBounds(213, 307, 95, 25);
+    	close.setBounds(213, 345, 95, 25);
+    	
+        // JPanel bounds
+        view.setBounds(32, 29, 508, 447);
+        view.setLayout(null);
+        
+        // Adding to JFrame
+        view.add(picLabel); 
+        view.add(welcome);
+        view.add(newGame);
+        view.add(backup); 
+        view.add(close); 
+        
+        // JFrame properties
+        frame.getContentPane().setLayout(null);
+        frame.getContentPane().add(view);
+        frame.setSize(592, 549);
+        frame.setBackground(Color.BLACK);
+        frame.setTitle("RailCity - Menu");
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setResizable(false); //The window is not resizable anymore ;)
+	    
+        // listeners
+        close.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				closeFrame();
+			}
+    	});
+        
+		frame.addWindowListener(new WindowAdapter() {
+			  public void windowClosing(WindowEvent e) {
+				   closeFrame();
+			  }
+		});
     }
 
-    public static void main(String[] args) {
+    
+	public static void main(String[] args) {
     	FirstView test = new FirstView(); 
     	test.initializeMap();
-        test.closeFrame();
     }
     
+	
     public void initializeMap() {
     	newGame.addActionListener(new ActionListener() {
     	    @Override
@@ -87,11 +103,10 @@ public class FirstView {
     }
 
     public void closeFrame() {
-    	close.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e){
-    	    	System.exit(0);
-    	    }
-    	});
+    	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program?",JOptionPane.YES_NO_OPTION);
+	    if (confirmed == JOptionPane.YES_OPTION) {
+	    		System.exit(0);
+	    }
     }
     
     public void Backup(File save) {
