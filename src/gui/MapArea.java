@@ -110,11 +110,12 @@ public class MapArea extends JFrame implements ActionListener {
 				button[buttonX][buttonY].setBackground(new State().getColor());
 				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 				button[buttonX][buttonY].setForeground(Color.YELLOW); 
+				town.payDistrictConstruction();
 			} 
 			else if(districtChoice == "Station") {
 				if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
 					button[buttonX][buttonY].setForeground(Color.RED); 
-					button[buttonX][buttonY].setForeground(Color.RED); 
+					town.payStationConstruction();
 				}
 			}
 			EventInformation.summary.setText("A new district "+districtChoice +" created !");
