@@ -23,7 +23,11 @@ public class GeneralInformation {
 		int generalSatisfaction = town.getGeneralSatisfaction();
 		
 		content += "Population: "+generalPopulation+"\n"
-				+ "Satisfaction: "+generalSatisfaction+"\n";
+				+ "Satisfaction: "+generalSatisfaction+"\n"
+				+ "Number of lines (metro): "+"0"+"\n"
+				+ "Number of stations (metro): "+"0"+"\n"
+				+ "Money: "+"0"+" MyLiu\n"
+				+ "Date: "+"0"+"\n";
 
 		summary.setText(content);
 		
@@ -33,10 +37,6 @@ public class GeneralInformation {
 	
 	private void setTown(Town town) {
 		this.town = town;
-	}
-	
-	private Town getTown() {
-		return this.town;
 	}
 
 }
