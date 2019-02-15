@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.Timer;
@@ -26,9 +27,11 @@ import game.Town;
 public class MapArea extends JFrame implements ActionListener {
 	private String[][] disctrictName = new String[8][8];
 	Town town = new Town(6); 
+	ParameterArea paramArea = new ParameterArea(town); 
 	private EditMenu menu = new EditMenu(); 
 	String districtChoice; 
 	String geneInfo; 
+	EventInformation eventInfo = new EventInformation();
 	private int size = town.getLength(); 
 	JPanel map = new JPanel(new GridLayout(size, size));
 	private  JButton[][] button = new JButton[size][size];
@@ -38,7 +41,7 @@ public class MapArea extends JFrame implements ActionListener {
 	private int daysTestValue;
 	
 	public MapArea(){
-		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ParameterArea.summaryParamFrame(), createMap());
+		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paramArea.summaryParamFrame(), createMap());
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
 		sp.setDividerLocation(300);
 		sp2.setDividerLocation(490);
@@ -54,7 +57,7 @@ public class MapArea extends JFrame implements ActionListener {
 	    frame.setResizable(false);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				frame.dispose();
+				closeFrame(); 
 			}
 		});
 		
@@ -76,7 +79,7 @@ public class MapArea extends JFrame implements ActionListener {
 				if ( valueToTest == 15 ) {
 					valueToTest=0;
 					daysTestValue+=1;
-					System.out.println(daysTestValue+" jours sont passés.\n");
+					System.out.println(daysTestValue+" jours sont passï¿½s.\n");
 				}
 			}
 	    });
@@ -117,8 +120,8 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 		
 	public void updateButton(int buttonX, int buttonY) {
-		ParameterArea param = new ParameterArea();
-		JComboBox<String> combo = param.combo; 
+		
+		JComboBox<String> combo = paramArea.combo; 
 		districtChoice = String.valueOf(combo.getSelectedItem()) ; 
 		if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
 			System.out.println("["+buttonX+"]["+buttonY+"]");
@@ -156,7 +159,7 @@ public class MapArea extends JFrame implements ActionListener {
 			} 
 			System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
 			EventInformation.summary.setText("A new district "+districtChoice +" has been created !");
-			GeneralInformation.summary.setText(getNumberOfDisctrict());
+			
 		}
 	}
 	
@@ -166,7 +169,7 @@ public class MapArea extends JFrame implements ActionListener {
 		int business = 0; 
 		
 		for (int i = 0; i < size; i++) {
-	    	for(int j = 0; j< size; j++) {
+	    	for(int j=0; j< size; j++) {
 	    		if(button[i][j].getBackground() == Color.YELLOW) 
 	    			state ++; 
 	    		else if(button[i][j].getBackground() == Color.BLUE) business++;
@@ -178,8 +181,17 @@ public class MapArea extends JFrame implements ActionListener {
 		geneInfo+=resident+" Resident Disctrict </br>";
 		geneInfo+= business+" Business district "+" Information "+town.getGeneralPopulation()
 				+ "</html>";
-		GeneralInformation.summary.setText(geneInfo);
+		paramArea.changeInformation(); 
 		return geneInfo; 
+	}
+	
+	
+	public void closeFrame() {
+		
+		int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?", "Exit program?", JOptionPane.YES_NO_OPTION );
+		if(confirmed == JOptionPane.YES_OPTION) {
+			System.exit(0);
+		}
 	}
 
 }
