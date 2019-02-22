@@ -1,18 +1,18 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import java.awt.*;
 
 import javax.swing.JLabel;
 
 import game.District;
 
 public class DistrictInformation {
-	private JLabel summary = new JLabel();
+	private JLabel summary;
 	private District district;
 	
+	
 	public DistrictInformation(District district) {
+		summary = new JLabel();
 		setDistrict(district);
 	}
 	
@@ -64,5 +64,4 @@ public class DistrictInformation {
 	void setDistrict(District district) {
 		this.district = district;
 	}
-
 }
