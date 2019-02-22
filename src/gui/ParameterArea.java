@@ -20,7 +20,7 @@ public class ParameterArea {
 	static JButton button = new JButton("Choose");
 	static JPanel lines = new JPanel();
 	static JButton stationButton = new JButton("Station");
-	static JButton lineButton = new JButton("Line");
+	static JButton lineButton = new JButton("Create Line");
 	static GeneralInformation generalInfo; 
 	private static DistrictInformation distInfo;
 	

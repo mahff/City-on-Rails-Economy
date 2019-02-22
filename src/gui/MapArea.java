@@ -77,6 +77,7 @@ public class MapArea extends JFrame implements ActionListener {
 	            button[i][j].setBackground(Color.WHITE);
 	            button[i][j].setBorderPainted(true);
 	            button[i][j].addActionListener(this);
+	            ParameterArea.lineButton.addActionListener(this);
 	            map.add(button[i][j]); 
 	    	}
 	    }
@@ -85,27 +86,33 @@ public class MapArea extends JFrame implements ActionListener {
 	}
 	public void actionPerformed(ActionEvent ae) {
 	        String action = ae.getActionCommand();
-	        for(int i=0; i<size; i++) {
-	        	for(int j=0; j<size;j++) {
-	        		String data = i+","+j; 
-	        		if (action.equals(data)) {
-	        			String[] parts = data.split(",");
-	        			String part1 = parts[0]; 
-	        			String part2 = parts[1];
-	        	        updateButton(Integer.parseInt(part1), Integer.parseInt(part2));
-	                }
-	        	}
+	        if(action.equals("Create Line")) {
+	        	generateLine();
+	        }
+	        else {
+	        	for(int i=0; i<size; i++) {
+		        	for(int j=0; j<size;j++) {
+		        		String data = i+","+j; 
+		        		if (action.equals(data)) {
+		        			String[] parts = data.split(",");
+		        			String part1 = parts[0]; 
+		        			String part2 = parts[1];
+		        	        updateButton(Integer.parseInt(part1), Integer.parseInt(part2));
+		                }
+		        	}
+		        }
 	        }
 		}
 	
 	public void generateLine(){
-		JButton lineButton = paramArea.lineButton;
+		System.out.println("YOLO");
+		JButton lineButton = ParameterArea.lineButton;
 		if(creatingLine==0) {
 			lineButton.setText("Complete Line Creation");
 			creatingLine = 1;
 		}
 		else {
-			lineButton.setText("Create Line: "+town.getLineSegmentConstructionPrice()+"Mylius per section");
+			lineButton.setText("Create Line");
 			creatingLine = 0;
 		}
 	}
@@ -156,7 +163,7 @@ public class MapArea extends JFrame implements ActionListener {
 				} 
 				
 				//System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
-				EventInformation.summary.setText("A new district "+districtChoice +" has been created !");
+				EventInformation.listModel.add(0,"A new district "+districtChoice +" has been created !");
 				generalInfo = new GeneralInformation(town); 
 				generalInfo.updateGeneralInfo();
 				paramArea.changeInformation(); 
