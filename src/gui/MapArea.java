@@ -57,7 +57,7 @@ public class MapArea extends JFrame implements ActionListener {
 		frame.setSize(800,600);
 		frame.setVisible(true);
 		frame.setJMenuBar(menu.getMenu());
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If you close the window, the program will terminate
+	    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // If you close the window, the program will terminate
 	    frame.setResizable(false);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -148,6 +148,7 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 	}
 	
+	JButton stationButton = new JButton("Station");
 	
 	public void closeFrame() {
 		
