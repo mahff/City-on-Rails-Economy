@@ -28,10 +28,18 @@ public class ParameterArea {
 		
 		generalInfo = new GeneralInformation(town); 
 	}
+	public ParameterArea(){
+		distInfo = new DistrictInformation(new District(0,0,Color.WHITE)); 
+	}
 	public ParameterArea(District district) {
 		
 		distInfo = new DistrictInformation(district); 
 	}
+	
+	public DistrictInformation getDistrictInformation() {
+		return distInfo;
+	}
+	
 	public static Component summaryParamFrame() {
 		
 		combo.addItem("Resident");
