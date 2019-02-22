@@ -112,53 +112,58 @@ public class MapArea extends JFrame implements ActionListener {
 		
 	public void updateButton(int buttonX, int buttonY) {
 		JComboBox<String> combo = ParameterArea.combo; 
-		districtChoice = String.valueOf(combo.getSelectedItem()) ; 
-		if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
-			distInfo = new DistrictInformation(districts[buttonX][buttonY]); 
-			paramDist = new ParameterArea(districts[buttonX][buttonY]);
-			paramDist.getDistrictInformation().setDistrict(districts[buttonX][buttonY]);
-			System.out.println("["+buttonX+"]["+buttonY+"]");
-			district = districts[buttonX][buttonY]; 
-			distInfo.setDistrict(districts[buttonX][buttonY]); 
-			if(districtChoice == "Station") {
-				if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
-					button[buttonX][buttonY].setForeground(Color.RED); 
-					town.payStationConstruction();		
-					System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
+		districtChoice = String.valueOf(combo.getSelectedItem()) ;
+		if(creatingLine==0) {
+			if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
+				distInfo = new DistrictInformation(districts[buttonX][buttonY]); 
+				paramDist = new ParameterArea(districts[buttonX][buttonY]);
+				paramDist.getDistrictInformation().setDistrict(districts[buttonX][buttonY]);
+				System.out.println("["+buttonX+"]["+buttonY+"]");
+				district = districts[buttonX][buttonY]; 
+				distInfo.setDistrict(districts[buttonX][buttonY]); 
+				if(districtChoice == "Station") {
+					if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
+						button[buttonX][buttonY].setForeground(Color.RED); 
+						town.payStationConstruction();		
+						System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
+						
+					}
+				}
+				paramDist.changeDistrictInfo();
+			}
+					
+			else if(districtChoice != "Station"){
+				if(districtChoice == "Resident" && (button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor())) {
+					districts[buttonX][buttonY] = resident; 
+					button[buttonX][buttonY].setBackground(resident.getColor());
+					town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
+					disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 					
 				}
+				else if(districtChoice == "Business" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new State().getColor()) {
+					districts[buttonX][buttonY] = business; 
+					button[buttonX][buttonY].setBackground(business.getColor());
+					town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
+					disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+					
+				}
+				else if(districtChoice == "State" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
+					districts[buttonX][buttonY] = state;
+					button[buttonX][buttonY].setBackground(state.getColor());
+					town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
+					disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+					town.payDistrictConstruction();
+				} 
+				
+				//System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
+				EventInformation.summary.setText("A new district "+districtChoice +" has been created !");
+				generalInfo = new GeneralInformation(town); 
+				generalInfo.updateGeneralInfo();
+				paramArea.changeInformation(); 
 			}
-			paramDist.changeDistrictInfo();
 		}
-				
-		else if(districtChoice != "Station"){
-			if(districtChoice == "Resident" && (button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor())) {
-				districts[buttonX][buttonY] = resident; 
-				button[buttonX][buttonY].setBackground(resident.getColor());
-				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
-				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
-				
-			}
-			else if(districtChoice == "Business" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new State().getColor()) {
-				districts[buttonX][buttonY] = business; 
-				button[buttonX][buttonY].setBackground(business.getColor());
-				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
-				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
-				
-			}
-			else if(districtChoice == "State" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
-				districts[buttonX][buttonY] = state;
-				button[buttonX][buttonY].setBackground(state.getColor());
-				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
-				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
-				town.payDistrictConstruction();
-			} 
-			
-			//System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
-			EventInformation.summary.setText("A new district "+districtChoice +" has been created !");
-			generalInfo = new GeneralInformation(town); 
-			generalInfo.updateGeneralInfo();
-			paramArea.changeInformation(); 
+		else {
+			//...
 		}
 	}
 	
