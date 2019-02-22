@@ -158,6 +158,7 @@ public class Town {
 				}
 			}
 		}
+		System.out.println("Numb of station" + numberOfStations + "\n");
 		return numberOfStations;
 		
 	}

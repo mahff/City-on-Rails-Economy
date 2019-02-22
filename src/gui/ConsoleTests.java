@@ -112,21 +112,7 @@ public class ConsoleTests {
 		System.out.println(station2.toString());
 		System.out.println(station8.toString());
 		
-		// Creation of a timer to test the real time clock
-				Timer test = new Timer(timerSpeed, new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						// TODO Auto-generated method stub
-						System.out.println("i");
-					}
-		        });
-				
-				
-				// test.setInitialDelay(timerPause);
-				// test.setRepeats(true);
-				// System.out.println("start test");
-				test.start(); 
+		System.out.println(town.getGeneralNumberOfStation());
 				
 		//System.out.println("Pop="+town.getGeneralPopulation()+" Satisf="+town.getGeneralSatisfaction());
 		
