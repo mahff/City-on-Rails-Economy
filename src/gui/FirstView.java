@@ -41,14 +41,25 @@ public class FirstView {
 		picLabel.setBounds(144,13,225,225);
 		
 		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'!", SwingConstants.CENTER);
-		welcome.setBounds(0, 240, 523, 16);
+		welcome.setBounds(0, 262, 523, 16);
 		
 		haveFun = new JLabel("Have fun!", SwingConstants.CENTER);
-		haveFun.setBounds(199, 269, 122, 16);
+		haveFun.setBounds(199, 280, 122, 16);
 		
-    	newGame.setBounds(199, 299, 122, 25);
-    	backup.setBounds(199, 337, 122, 25);
-    	close.setBounds(199, 375, 122, 25);
+    	newGame.setBounds(199, 317, 122, 25);
+    	backup.setBounds(199, 355, 122, 25);
+    	close.setBounds(199, 393, 122, 25);
+        view.setBackground(Color.WHITE);
+        
+        //Colors
+        Color blue = new Color(0, 115, 230);
+        Color cyan = new Color(0, 179, 179);
+        newGame.setForeground(blue);
+        backup.setForeground(blue);
+        close.setForeground(blue);
+        
+        welcome.setForeground(cyan);
+        haveFun.setForeground(cyan);
     	
         // JPanel bounds
         view.setBounds(32, 29, 523, 447);
@@ -65,6 +76,7 @@ public class FirstView {
         // JFrame properties
         frame.getContentPane().setLayout(null);
         frame.getContentPane().add(view);
+        frame.getContentPane().setBackground(Color.WHITE);
         frame.setSize(592, 549);
         frame.setBackground(Color.BLACK);
         frame.setTitle("RailCity - Menu");
