@@ -222,31 +222,31 @@ public class Town {
 	}
 	
 	public void payStationConstruction(){
-		if(funds>=getStationConstructionPrice())
+		if(funds+20000>=getStationConstructionPrice())
 			funds -= getStationConstructionPrice();
 		else; //...
 	}
 	
 	public void payDistrictConstruction(){
-		if(funds>=getDistrictConstructionPrice())
+		if(funds+20000>=getDistrictConstructionPrice())
 			funds -= getDistrictConstructionPrice();
 		else; //...
 	}
 	
 	public void payLineSegmentConstruction(){
-		if(funds>=getLineSegmentConstructionPrice())
+		if(funds+20000>=getLineSegmentConstructionPrice())
 			funds -= getLineSegmentConstructionPrice();
 		else; //...
 	}
 	
 	public void payStationDestruction(){
-		if(funds>=getStationDestructionPrice())
+		if(funds+20000>=getStationDestructionPrice())
 			funds -= getStationDestructionPrice();
 		else; //...
 	}
 	
 	public void payLineSegmentDestruction(){
-		if(funds>=getLineSegmentDestructionPrice())
+		if(funds+20000>=getLineSegmentDestructionPrice())
 			funds -= getLineSegmentDestructionPrice();
 		else; //...
 	}
