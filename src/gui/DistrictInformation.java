@@ -11,15 +11,13 @@ public class DistrictInformation {
 	private JLabel summary = new JLabel();
 	private District district;
 	
-	
 	public DistrictInformation(District district) {
 		setDistrict(district);
 	}
 	
 	
 	public Component updateGeneralInfo() {
-		String content = "Current District Statistics:\n";
-		
+		String content = "<html><center>Current District Statistics: <br/>";
 		//TODO : appel pour nbLines pour recup les stats (dans District)
 		int population = district.getPopulation();
 		int satisfaction = district.getSatisfaction();
@@ -43,11 +41,11 @@ public class DistrictInformation {
 				type = "State";
 			}
 		
-		content += "Population: "+population+"\n"
-				+ "Satisfaction: "+satisfaction+"\n"
-				+ "Number of lines (metro): "+nbLines+"\n"
-				+ "Presence of station (metro): "+isThereStation+"\n"
-				+ "Type: "+type+"\n";
+		content += "Population: "+population+"<br/>"
+				+ "Satisfaction: "+satisfaction+"<br/>"
+				+ "Number of lines (metro): "+nbLines+"<br/>"
+				+ "Presence of station (metro): "+isThereStation+"<br/>"
+				+ "Type: "+type+"</center></html>";
 
 		summary.setText(content);
 		
@@ -55,7 +53,7 @@ public class DistrictInformation {
 	}
 	
 	
-	private void setDistrict(District district) {
+	void setDistrict(District district) {
 		this.district = district;
 	}
 

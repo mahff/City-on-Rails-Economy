@@ -128,7 +128,7 @@ public class ConsoleTests {
 				// System.out.println("start test");
 				test.start(); 
 				
-		System.out.println("Pop="+town.getGeneralPopulation()+" Satisf="+town.getGeneralSatisfaction());
+		//System.out.println("Pop="+town.getGeneralPopulation()+" Satisf="+town.getGeneralSatisfaction());
 		
 	}
 

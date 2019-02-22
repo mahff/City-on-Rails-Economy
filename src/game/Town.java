@@ -115,6 +115,7 @@ public class Town {
 			{
 				District d = getDistrict(i, j);
 				if(d != null) {
+					System.out.println("Get satisf"); 
 					generalSatisfaction += d.getSatisfaction();
 					div++;
 				}
@@ -130,7 +131,7 @@ public class Town {
 			for(int j=0 ; j<this.getLength() ; j++)
 			{
 				District d = getDistrict(i, j);
-				if(d != null&&d.getClass().getName()=="Resident") {
+				if(d != null) {
 					generalPopulation += d.getPopulation();
 				}
 			}

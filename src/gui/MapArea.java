@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,15 +26,21 @@ import game.Town;
 
 public class MapArea extends JFrame implements ActionListener {
 	private String[][] disctrictName = new String[8][8];
-	private District[][] districts;
-	Town town = new Town(6); 
-	ParameterArea paramArea = new ParameterArea(town); 
+	DistrictInformation distInfo; 
+	Business business = new Business(); 
+	private Town town = new Town(6); 
+	Resident resident = new Resident();
+	State state = new State();
 	private EditMenu menu = new EditMenu(); 
 	String districtChoice; 
 	String geneInfo; 
 	EventInformation eventInfo = new EventInformation();
 	GeneralInformation generalInfo; 
+	private District district = new District(0,0,Color.CYAN);
 	private int size = town.getLength(); 
+	ParameterArea paramArea = new ParameterArea(town);
+	ParameterArea paramDist = new ParameterArea(district);
+	private District[][] districts = new District[size][size];
 	JPanel map = new JPanel(new GridLayout(size, size));
 	private  JButton[][] button = new JButton[size][size];
 	private Timer timerTest;
@@ -44,7 +49,7 @@ public class MapArea extends JFrame implements ActionListener {
 	private int daysTestValue;
 	
 	public MapArea(){
-		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paramArea.summaryParamFrame(), createMap());
+		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ParameterArea.summaryParamFrame(), createMap());
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
 		sp.setDividerLocation(300);
 		sp2.setDividerLocation(490);
@@ -105,9 +110,7 @@ public class MapArea extends JFrame implements ActionListener {
 	    
 	    return map; 
 	}
-
-
-		public void actionPerformed(ActionEvent ae) {
+	public void actionPerformed(ActionEvent ae) {
 	        String action = ae.getActionCommand();
 	        for(int i=0; i<size; i++) {
 	        	for(int j=0; j<size;j++) {
@@ -123,72 +126,57 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 		
 	public void updateButton(int buttonX, int buttonY) {
-		
-		JComboBox<String> combo = paramArea.combo; 
+		distInfo = new DistrictInformation(districts[buttonX][buttonY]); 
+		JComboBox<String> combo = ParameterArea.combo; 
 		districtChoice = String.valueOf(combo.getSelectedItem()) ; 
 		if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
 			System.out.println("["+buttonX+"]["+buttonY+"]");
-			ParameterArea.summary.setText("["+buttonX+"]["+buttonY+"]");
+			district = districts[buttonX][buttonY]; 
+			distInfo.setDistrict(districts[buttonX][buttonY]); 
+			distInfo.updateGeneralInfo();
 			if(districtChoice == "Station") {
 				if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
 					button[buttonX][buttonY].setForeground(Color.RED); 
 					town.payStationConstruction();
+					
 					System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
-					EventInformation.summary.setText("A new station has been created !");
+					
 				}
 			}
+			paramDist.changeDistrictInfo();
+			paramArea.changeDistrictInfo();
 		}
 				
 		else if(districtChoice != "Station"){
 			
 			if(districtChoice == "Resident" && (button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor())) {
-				Resident resident = new Resident(); 
+				districts[buttonX][buttonY] = resident; 
 				button[buttonX][buttonY].setBackground(resident.getColor());
-				town.setDistrict(buttonX, buttonY, resident);
+				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
 				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 				
 			}
 			else if(districtChoice == "Business" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new State().getColor()) {
-				Business business = new Business(); 
+				districts[buttonX][buttonY] = business; 
 				button[buttonX][buttonY].setBackground(business.getColor());
-				town.setDistrict(buttonX, buttonY, business);
+				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
 				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 				
 			}
 			else if(districtChoice == "State" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
-				button[buttonX][buttonY].setBackground(new State().getColor());
+				districts[buttonX][buttonY] = state;
+				button[buttonX][buttonY].setBackground(state.getColor());
+				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
 				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 				town.payDistrictConstruction();
 			} 
 			
-			System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
+			//System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
 			EventInformation.summary.setText("A new district "+districtChoice +" has been created !");
 			generalInfo = new GeneralInformation(town); 
-			System.out.println("town pop="+town.getGeneralPopulation()); 
 			generalInfo.updateGeneralInfo();
+			paramArea.changeInformation(); 
 		}
-	}
-	
-	public String getNumberOfDisctrict() {
-		int state = 0; 
-		int resident =0; 
-		int business = 0; 
-		
-		for (int i = 0; i < size; i++) {
-	    	for(int j=0; j< size; j++) {
-	    		if(button[i][j].getBackground() == Color.YELLOW) 
-	    			state ++; 
-	    		else if(button[i][j].getBackground() == Color.BLUE) business++;
-	    		else if(button[i][j].getBackground() == Color.GREEN) resident++; 
-	    	}
-	    		
-	    }
-		geneInfo = "<html>"+state+" State district </br>";
-		geneInfo+=resident+" Resident Disctrict </br>";
-		geneInfo+= business+" Business district "+" Information "+town.getGeneralPopulation()
-				+ "</html>";
-		paramArea.changeInformation(); 
-		return geneInfo; 
 	}
 	
 	
