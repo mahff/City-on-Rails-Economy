@@ -81,7 +81,6 @@ public class FirstView {
         frame.getContentPane().add(view);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setSize(592, 549);
-        frame.setBackground(Color.BLACK);
         frame.setTitle("RailCity - Menu");
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
