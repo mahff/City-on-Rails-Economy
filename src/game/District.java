@@ -102,7 +102,12 @@ public class District {
 	 * @return the number of lines going by the district.
 	 */
 	public int getNumberOfLines() {
-		return this.station.getLines().size();
+		int numberOfLines = 0;
+		if ( this.station != null ) {
+			numberOfLines = this.station.getLines().size();
+		}
+		
+		return numberOfLines;
 	}
 
 	/* (non-Javadoc)
