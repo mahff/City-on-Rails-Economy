@@ -19,6 +19,7 @@ public class FirstView {
     BufferedImage icon;
 	JLabel picLabel;
 	JLabel welcome;
+	JLabel haveFun;
 	ImageIcon logo; 
     
     // Buttons
@@ -39,12 +40,15 @@ public class FirstView {
 		picLabel = new JLabel(logo);
 		picLabel.setBounds(144,13,225,225);
 		
-		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'! Have fun!", SwingConstants.CENTER);
+		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'!", SwingConstants.CENTER);
 		welcome.setBounds(0, 240, 523, 16);
 		
-    	newGame.setBounds(199, 269, 122, 25);
-    	backup.setBounds(199, 307, 122, 25);
-    	close.setBounds(199, 345, 122, 25);
+		haveFun = new JLabel("Have fun!", SwingConstants.CENTER);
+		haveFun.setBounds(199, 269, 122, 16);
+		
+    	newGame.setBounds(199, 299, 122, 25);
+    	backup.setBounds(199, 337, 122, 25);
+    	close.setBounds(199, 375, 122, 25);
     	
         // JPanel bounds
         view.setBounds(32, 29, 523, 447);
@@ -53,6 +57,7 @@ public class FirstView {
         // Adding to JFrame
         view.add(picLabel); 
         view.add(welcome);
+        view.add(haveFun);
         view.add(newGame);
         view.add(backup); 
         view.add(close); 
