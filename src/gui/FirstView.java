@@ -40,14 +40,14 @@ public class FirstView {
 		picLabel.setBounds(144,13,225,225);
 		
 		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'! Have fun!", SwingConstants.CENTER);
-		welcome.setBounds(28, 240, 455, 16);
+		welcome.setBounds(0, 240, 523, 16);
 		
-    	newGame.setBounds(213, 269, 95, 25);
-    	backup.setBounds(213, 307, 95, 25);
-    	close.setBounds(213, 345, 95, 25);
+    	newGame.setBounds(199, 269, 122, 25);
+    	backup.setBounds(199, 307, 122, 25);
+    	close.setBounds(199, 345, 122, 25);
     	
         // JPanel bounds
-        view.setBounds(32, 29, 508, 447);
+        view.setBounds(32, 29, 523, 447);
         view.setLayout(null);
         
         // Adding to JFrame
