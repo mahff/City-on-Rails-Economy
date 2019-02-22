@@ -25,12 +25,12 @@ import game.Town;
 
 
 public class MapArea extends JFrame implements ActionListener {
-	private String[][] disctrictName = new String[8][8];
-	DistrictInformation distInfo; 
-	Business business = new Business(); 
-	private Town town = new Town(6); 
+	private String[][] disctrictName = new String[8][8]; 
+	private Town town = new Town(6);
+	Business business = new Business();
 	Resident resident = new Resident();
 	State state = new State();
+	DistrictInformation distInfo; 
 	private EditMenu menu = new EditMenu(); 
 	String districtChoice; 
 	String geneInfo; 
