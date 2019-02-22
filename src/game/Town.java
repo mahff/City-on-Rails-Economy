@@ -230,7 +230,7 @@ public class Town {
 	public void payDistrictConstruction(){
 		if(funds+20000>=getDistrictConstructionPrice())
 			funds -= getDistrictConstructionPrice();
-		else System.out.println("You don't have enough with "+funds); //...
+		else  System.out.println("You don't have enough with "+funds); //...
 	}
 	
 	public void payLineSegmentConstruction(){
