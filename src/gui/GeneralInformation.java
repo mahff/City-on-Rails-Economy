@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.util.Date;
 
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 import game.Town;
 
@@ -21,11 +20,10 @@ public class GeneralInformation {
 	public Component updateGeneralInfo() {
 		String content = "<html><center>City Statistics: <br/>";
 		
-		//TODO : appel aux fonctions pour recup les stats (dans TOWN)
 		int generalPopulation = town.getGeneralPopulation();
 		int generalSatisfaction = town.getGeneralSatisfaction();
-		int generalNbLines = 0;
-		int generalNbStations = 0;
+		int generalNbLines = town.getGeneralNumberOfLines();
+		int generalNbStations = town.getGeneralNumberOfStation();
 		int funds = town.getFunds();
 		Date date = town.getTime();
 		
