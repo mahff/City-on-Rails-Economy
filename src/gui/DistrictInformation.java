@@ -49,6 +49,7 @@ public class DistrictInformation {
 				+ "Type: "+type+"</center></html>";
 
 		summary.setText(content);
+		System.out.println(content);
 		
 		//Style
 		Color cyan = new Color(0, 179, 179);
