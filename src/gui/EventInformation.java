@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class EventInformation { //TODO : MapArea.java L:158 > EventInformation.listModel.add(0, "A new district "+districtChoice +" has been created !");
+public class EventInformation {
 	static JList<String> list;
 	static DefaultListModel<String> listModel;
 	static JScrollPane scrollPane;
