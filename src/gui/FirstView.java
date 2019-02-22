@@ -42,9 +42,9 @@ public class FirstView {
 		welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'! Have fun!", SwingConstants.CENTER);
 		welcome.setBounds(12, 240, 499, 16);
 		
-    	newGame.setBounds(213, 269, 95, 25);
-    	backup.setBounds(213, 307, 95, 25);
-    	close.setBounds(213, 345, 95, 25);
+    	newGame.setBounds(199, 269, 122, 25);
+    	backup.setBounds(199, 307, 122, 25);
+    	close.setBounds(199, 345, 122, 25);
     	
         // JPanel bounds
         view.setBounds(32, 29, 523, 447);
