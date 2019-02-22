@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.Date;
 import javax.swing.JLabel;
 
+import core.TimerEngine;
+import core.VariableRepository;
 import game.Town;
 
 public class GeneralInformation {
@@ -25,14 +27,15 @@ public class GeneralInformation {
 		int generalNbLines = town.getGeneralNumberOfLines();
 		int generalNbStations = town.getGeneralNumberOfStation();
 		int funds = town.getFunds();
-		Date date = town.getTime();
+		int testDisplay = TimerEngine.getInstance().getDaysTestValue();	//Test affichage de l'heure dans l'IHM
+		// Date date = .TimerEngine();
 		
 		content += "Population: "+generalPopulation+"<br/>"
 				+ "Satisfaction: "+generalSatisfaction+"<br/>"
 				+ "Number of lines (metro): "+generalNbLines+"<br/>"
 				+ "Number of stations (metro): "+generalNbStations+"<br/>"
 				+ "Money: "+funds+" MyLiu<br/>"
-				+ "Date: "+date+"</center></html>";
+				+ "Date: "+testDisplay+"</center></html>";
 
 		summary.setText(content);
 		
