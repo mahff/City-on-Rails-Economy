@@ -51,15 +51,18 @@ public class FirstView {
     	close.setBounds(199, 393, 122, 25);
         view.setBackground(Color.WHITE);
         
-        //Colors
+        //Style
         Color blue = new Color(0, 115, 230);
         Color cyan = new Color(0, 179, 179);
+        Font font = new Font("Tahoma", Font.BOLD, 13);
         newGame.setForeground(blue);
         backup.setForeground(blue);
         close.setForeground(blue);
         
         welcome.setForeground(cyan);
         haveFun.setForeground(cyan);
+        welcome.setFont(font);
+        haveFun.setFont(font);
     	
         // JPanel bounds
         view.setBounds(32, 29, 523, 447);
@@ -129,7 +132,4 @@ public class FirstView {
     public void Backup(File save) {
     	
     }
-    
-    
-	
 }

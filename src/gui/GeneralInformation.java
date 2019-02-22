@@ -1,20 +1,18 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import java.awt.*;
 import java.util.Date;
-
 import javax.swing.JLabel;
 
 import game.Town;
 
 public class GeneralInformation {
-	private JLabel summary = new JLabel();
+	private JLabel summary;
 	private Town town;
 	
 	
 	public GeneralInformation(Town town) {
+		summary = new JLabel();
 		setTown(town);
 	}
 	
@@ -51,5 +49,4 @@ public class GeneralInformation {
 	private void setTown(Town town) {
 		this.town = town;
 	}
-
 }
