@@ -39,13 +39,13 @@ public class MapArea extends JFrame implements ActionListener {
 	private District district = new District(0,0,Color.CYAN);
 	private int size = town.getLength(); 
 	ParameterArea paramArea = new ParameterArea(town);
-	ParameterArea paramDist = new ParameterArea(district);
+	ParameterArea paramDist = new ParameterArea();
 	private District[][] districts = new District[size][size];
 	JPanel map = new JPanel(new GridLayout(size, size));
 	private  JButton[][] button = new JButton[size][size];
 	
 	public MapArea(){
-		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ParameterArea.summaryParamFrame(), createMap());
+		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paramArea.summaryParamFrame(), createMap());
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
 		sp.setDividerLocation(300);
 		sp2.setDividerLocation(490);
@@ -97,14 +97,15 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 		
 	public void updateButton(int buttonX, int buttonY) {
-		distInfo = new DistrictInformation(districts[buttonX][buttonY]); 
 		JComboBox<String> combo = ParameterArea.combo; 
 		districtChoice = String.valueOf(combo.getSelectedItem()) ; 
 		if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
+			distInfo = new DistrictInformation(districts[buttonX][buttonY]); 
+			paramDist = new ParameterArea(districts[buttonX][buttonY]);
+			paramDist.getDistrictInformation().setDistrict(districts[buttonX][buttonY]);
 			System.out.println("["+buttonX+"]["+buttonY+"]");
 			district = districts[buttonX][buttonY]; 
 			distInfo.setDistrict(districts[buttonX][buttonY]); 
-			distInfo.updateGeneralInfo();
 			if(districtChoice == "Station") {
 				if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
 					button[buttonX][buttonY].setForeground(Color.RED); 
@@ -114,7 +115,6 @@ public class MapArea extends JFrame implements ActionListener {
 				}
 			}
 			paramDist.changeDistrictInfo();
-			paramArea.changeDistrictInfo();
 		}
 				
 		else if(districtChoice != "Station"){

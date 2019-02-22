@@ -48,6 +48,7 @@ public class DistrictInformation {
 				+ "Type: "+type+"</center></html>";
 
 		summary.setText(content);
+		System.out.println(content);
 		
 		return summary; 
 	}
