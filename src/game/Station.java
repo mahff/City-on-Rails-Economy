@@ -23,7 +23,6 @@ public class Station {
 		
 		this.setName("Station " + numberOfStations);
 		VariableRepository.getInstance().register("NumberOfStations", numberOfStations++);
-		
 	}
 	public int getCapacity() {
 		return capacity;
