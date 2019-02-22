@@ -137,8 +137,7 @@ public class MapArea extends JFrame implements ActionListener {
 			if(districtChoice == "Station") {
 				if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
 					button[buttonX][buttonY].setForeground(Color.RED); 
-					town.payStationConstruction();
-					
+					town.payStationConstruction();			
 					System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
 					
 				}
@@ -148,7 +147,6 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 				
 		else if(districtChoice != "Station"){
-			
 			if(districtChoice == "Resident" && (button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor())) {
 				districts[buttonX][buttonY] = resident; 
 				button[buttonX][buttonY].setBackground(resident.getColor());

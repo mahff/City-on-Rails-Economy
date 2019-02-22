@@ -224,31 +224,31 @@ public class Town {
 	public void payStationConstruction(){
 		if(funds+20000>=getStationConstructionPrice())
 			funds -= getStationConstructionPrice();
-		else; //...
+		else System.out.println("You don't have enough with "+funds); //...
 	}
 	
 	public void payDistrictConstruction(){
 		if(funds+20000>=getDistrictConstructionPrice())
 			funds -= getDistrictConstructionPrice();
-		else; //...
+		else System.out.println("You don't have enough with "+funds); //...
 	}
 	
 	public void payLineSegmentConstruction(){
 		if(funds+20000>=getLineSegmentConstructionPrice())
 			funds -= getLineSegmentConstructionPrice();
-		else; //...
+		else System.out.println("You don't have enough with "+funds); //...
 	}
 	
 	public void payStationDestruction(){
 		if(funds+20000>=getStationDestructionPrice())
 			funds -= getStationDestructionPrice();
-		else; //...
+		else System.out.println("You don't have enough with "+funds); //...
 	}
 	
 	public void payLineSegmentDestruction(){
-		if(funds+20000>=getLineSegmentDestructionPrice())
+		if(funds+20000 >=getLineSegmentDestructionPrice())
 			funds -= getLineSegmentDestructionPrice();
-		else; //...
+		else System.out.println("You don't have enough with "+funds); //...
 	}
 	
 	public void payStateDistrictMaintainance(){
