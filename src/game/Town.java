@@ -5,6 +5,8 @@ package game;
 
 import java.util.Date;
 
+import core.VariableRepository;
+
 /**
  * @author Anne-Sophie
  *
@@ -18,6 +20,9 @@ public class Town {
 	
 	
 	public Town (int length) {
+		VariableRepository.getInstance().register("NumberOfDistricts", 0);
+		VariableRepository.getInstance().register("NumberOfLines", 0);
+		VariableRepository.getInstance().register("NumberOfStations", 0);
 		funds = 70000;
 		this.setLength(length);
 		int dim = this.getLength();
@@ -158,9 +163,8 @@ public class Town {
 	}
 	
 	public int getGeneralNumberOfLines() {
-
-		return 0;
-		
+		int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
+		return numberOfDistricts;
 	}
 	//-------------------------------------------------------
 	

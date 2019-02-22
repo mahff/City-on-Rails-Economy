@@ -79,6 +79,7 @@ public class VariableRepository {
 	 * Used as a debugging tool to see the content of the HashMap of the Variable Repository.
 	 */
 	public void printHashMap() {
+		System.out.println("test print testestestest");
 		for (String name: variables.keySet()){
 
             String key =name.toString();

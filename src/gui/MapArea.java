@@ -65,10 +65,6 @@ public class MapArea extends JFrame implements ActionListener {
 			}
 		});
 		
-		VariableRepository.getInstance().register("NumberOfDistricts", 0);
-		VariableRepository.getInstance().register("NumberOfLines", 0);
-		VariableRepository.getInstance().register("NumberOfStations", 0);
-		
 	}
 	public Component createMap() {
 		// Creates the buttons in the array
