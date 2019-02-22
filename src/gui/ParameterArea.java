@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import game.District;
@@ -17,6 +18,9 @@ public class ParameterArea {
 	static JComboBox<String> combo = new JComboBox<String>();
 	static JLabel summary = new JLabel();
 	static JButton button = new JButton("Choose");
+	static JPanel lines = new JPanel();
+	static JButton stationButton = new JButton("Station");
+	static JButton lineButton = new JButton("Line");
 	static GeneralInformation generalInfo; 
 	private static DistrictInformation distInfo;
 	
@@ -42,9 +46,17 @@ public class ParameterArea {
 		combo.addItem("Business");
 		combo.addItem("State");
 		combo.addItem("Station");
-		JSplitPane sumSug = new JSplitPane(JSplitPane.VERTICAL_SPLIT, combo, distInfo.updateGeneralInfo());
-		JSplitPane splitMap = new JSplitPane(JSplitPane.VERTICAL_SPLIT,  sumSug, generalInfo.updateGeneralInfo());
-		splitMap.setDividerLocation(150);
+		lines.add(stationButton);
+		lines.add(lineButton);
+		
+		JSplitPane sumSug = new JSplitPane(JSplitPane.VERTICAL_SPLIT, combo, lines);
+		JSplitPane linelab = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sumSug, distInfo.updateGeneralInfo());
+		JSplitPane splitMap = new JSplitPane(JSplitPane.VERTICAL_SPLIT,  linelab, generalInfo.updateGeneralInfo());	
+		splitMap.setEnabled(false);
+		linelab.setEnabled(false);
+		sumSug.setEnabled(false);
+		splitMap.setDividerLocation(250);
+		linelab.setDividerLocation(150);
 		sumSug.setDividerLocation(25);
 
 		return splitMap;

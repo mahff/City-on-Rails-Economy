@@ -25,6 +25,7 @@ import game.Town;
 
 
 public class MapArea extends JFrame implements ActionListener {
+	private int creatingLine;
 	private String[][] disctrictName = new String[8][8]; 
 	private Town town = new Town(6);
 	Business business = new Business();
@@ -45,6 +46,7 @@ public class MapArea extends JFrame implements ActionListener {
 	private  JButton[][] button = new JButton[size][size];
 	
 	public MapArea(){
+		creatingLine = 0;
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paramArea.summaryParamFrame(), createMap());
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
 		sp.setDividerLocation(300);
@@ -57,7 +59,7 @@ public class MapArea extends JFrame implements ActionListener {
 		frame.setSize(800,600);
 		frame.setVisible(true);
 		frame.setJMenuBar(menu.getMenu());
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If you close the window, the program will terminate
+	    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // If you close the window, the program will terminate
 	    frame.setResizable(false);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -95,6 +97,18 @@ public class MapArea extends JFrame implements ActionListener {
 	        	}
 	        }
 		}
+	
+	public void generateLine(){
+		JButton lineButton = paramArea.lineButton;
+		if(creatingLine==0) {
+			lineButton.setText("Complete Line Creation");
+			creatingLine = 1;
+		}
+		else {
+			lineButton.setText("Create Line: "+town.getLineSegmentConstructionPrice()+"Mylius per section");
+			creatingLine = 0;
+		}
+	}
 		
 	public void updateButton(int buttonX, int buttonY) {
 		JComboBox<String> combo = ParameterArea.combo; 
@@ -148,6 +162,7 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 	}
 	
+	JButton stationButton = new JButton("Station");
 	
 	public void closeFrame() {
 		
