@@ -53,9 +53,9 @@ public class ParameterArea {
 		splitMap.setEnabled(false);
 		linelab.setEnabled(false);
 		sumSug.setEnabled(false);
-		splitMap.setDividerLocation(250);
-		linelab.setDividerLocation(150);
-		sumSug.setDividerLocation(25);
+		splitMap.setDividerLocation(320);
+		linelab.setDividerLocation(170);
+		sumSug.setDividerLocation(27);
 
 		return splitMap;
 	}

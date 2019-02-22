@@ -18,7 +18,7 @@ public class DistrictInformation {
 	
 	
 	public Component updateGeneralInfo() {
-		String content = "<html><center><u>Current District Statistics:</u><br/>";
+		String content = "<html><center><u>Current District Statistics:</u></center><br/>";
 		
 		int population = district.getPopulation();
 		int satisfaction = district.getSatisfaction();
@@ -46,7 +46,7 @@ public class DistrictInformation {
 				+ "Satisfaction: "+satisfaction+"<br/>"
 				+ "Number of lines (metro): "+nbLines+"<br/>"
 				+ "Presence of station (metro): "+isThereStation+"<br/>"
-				+ "Type: "+type+"</center></html>";
+				+ "Type: "+type+"</html>";
 
 		summary.setText(content);
 		System.out.println(content);

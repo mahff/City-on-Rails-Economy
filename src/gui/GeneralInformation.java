@@ -1,11 +1,9 @@
 package gui;
 
 import java.awt.*;
-import java.util.Date;
 import javax.swing.JLabel;
 
 import core.TimerEngine;
-import core.VariableRepository;
 import game.Town;
 
 public class GeneralInformation {
@@ -20,7 +18,7 @@ public class GeneralInformation {
 	
 	
 	public Component updateGeneralInfo() {
-		String content = "<html><center><u>City Statistics:</u><br/>";
+		String content = "<html><center><u>City Statistics:</u></center><br/>";
 		
 		int generalPopulation = town.getGeneralPopulation();
 		int generalSatisfaction = town.getGeneralSatisfaction();
@@ -35,7 +33,7 @@ public class GeneralInformation {
 				+ "Number of lines (metro): "+generalNbLines+"<br/>"
 				+ "Number of stations (metro): "+generalNbStations+"<br/>"
 				+ "Money: "+funds+" MyLiu<br/>"
-				+ "Date: "+testDisplay+"</center></html>";
+				+ "Date: "+testDisplay+"</html>";
 
 		summary.setText(content);
 		
