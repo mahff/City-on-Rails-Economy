@@ -89,6 +89,9 @@ public class MapArea extends JFrame implements ActionListener {
 	        if(action.equals("Create Line")) {
 	        	generateLine();
 	        }
+	        else if(action.equals("Complete Line Creation")){
+	        	endLineGeneration();
+	        }
 	        else {
 	        	for(int i=0; i<size; i++) {
 		        	for(int j=0; j<size;j++) {
@@ -105,16 +108,15 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 	
 	public void generateLine(){
-		System.out.println("YOLO");
 		JButton lineButton = ParameterArea.lineButton;
-		if(creatingLine==0) {
-			lineButton.setText("Complete Line Creation");
-			creatingLine = 1;
-		}
-		else {
-			lineButton.setText("Create Line");
-			creatingLine = 0;
-		}
+		lineButton.setText("Complete Line Creation");
+		creatingLine = 1;
+	}
+	
+	public void endLineGeneration() {
+		JButton lineButton = ParameterArea.lineButton;
+		lineButton.setText("Create Line");
+		creatingLine = 0;
 	}
 		
 	public void updateButton(int buttonX, int buttonY) {
