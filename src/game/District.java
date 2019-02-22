@@ -13,13 +13,13 @@ public class District {
 
 	
 	public District(int population, int satisfaction, Color color) {
-		int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfDistricts");
+		//int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfDistricts");
 		this.setPopulation(population);
 		this.setSatisfaction(satisfaction);
 		this.setColor(color);
 		
-		this.setName("District " + numberOfDistricts);
-		VariableRepository.getInstance().register("NumberOfDistricts", numberOfDistricts++);
+		//this.setName("District " + numberOfDistricts);
+		//VariableRepository.getInstance().register("NumberOfDistricts", numberOfDistricts++);
 	}
 
 	/**
