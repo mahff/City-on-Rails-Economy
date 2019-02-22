@@ -18,10 +18,10 @@ public class DistrictInformation {
 	
 	public Component updateGeneralInfo() {
 		String content = "<html><center>Current District Statistics: <br/>";
-		//TODO : appel pour nbLines pour recup les stats (dans District)
+		
 		int population = district.getPopulation();
 		int satisfaction = district.getSatisfaction();
-		int nbLines = 0;
+		int nbLines = district.getNumberOfLines();
 		boolean isThereStation = false;
 		
 		Color color = district.getColor();
