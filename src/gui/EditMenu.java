@@ -30,6 +30,14 @@ public class EditMenu extends JFrame{
 		menuItemQuit = new JMenuItem("Close",
                 KeyEvent.VK_T);
 		
+		//Colors
+		Color blue = new Color(0, 115, 230);
+		menu.setForeground(blue);
+		menuItemSave.setForeground(blue);
+		menuItemLoad.setForeground(blue);
+		menuItemQuit.setForeground(blue);
+		
+		
 		menu.add(menuItemQuit);
 		menuBar.add(menu);
 		

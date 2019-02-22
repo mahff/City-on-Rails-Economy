@@ -1,6 +1,8 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.util.Date;
 
 import javax.swing.JLabel;
@@ -18,7 +20,7 @@ public class GeneralInformation {
 	
 	
 	public Component updateGeneralInfo() {
-		String content = "<html><center>City Statistics: <br/>";
+		String content = "<html><center><u>City Statistics:</u><br/>";
 		
 		int generalPopulation = town.getGeneralPopulation();
 		int generalSatisfaction = town.getGeneralSatisfaction();
@@ -35,6 +37,12 @@ public class GeneralInformation {
 				+ "Date: "+date+"</center></html>";
 
 		summary.setText(content);
+		
+		//Style
+		Color cyan = new Color(0, 179, 179);
+		Font font = new Font("Tahoma", Font.BOLD, 15);
+		summary.setForeground(cyan);
+		summary.setFont(font);
 		
 		return summary; 
 	}

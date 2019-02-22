@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 
@@ -17,7 +18,7 @@ public class DistrictInformation {
 	
 	
 	public Component updateGeneralInfo() {
-		String content = "<html><center>Current District Statistics: <br/>";
+		String content = "<html><center><u>Current District Statistics:</u><br/>";
 		
 		int population = district.getPopulation();
 		int satisfaction = district.getSatisfaction();
@@ -48,6 +49,12 @@ public class DistrictInformation {
 				+ "Type: "+type+"</center></html>";
 
 		summary.setText(content);
+		
+		//Style
+		Color cyan = new Color(0, 179, 179);
+		Font font = new Font("Tahoma", Font.BOLD, 15);
+		summary.setForeground(cyan);
+		summary.setFont(font);
 		
 		return summary; 
 	}
