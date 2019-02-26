@@ -22,9 +22,9 @@ public class EventInformation {
 	
         
 		//Style
-		Color cyan = new Color(0, 179, 179);
+        Color blue = new Color(0, 115, 230);
 		Font font = new Font("Tahoma", Font.PLAIN, 14);
-		list.setForeground(cyan);
+		list.setForeground(blue);
 		list.setFont(font);
 		
         return scrollPane;

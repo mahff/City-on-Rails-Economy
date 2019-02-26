@@ -32,6 +32,7 @@ public class ParameterArea {
 		return distInfo;
 	}
 	
+	
 	public static Component summaryParamFrame() {
 		combo.addItem("Resident");
 		combo.addItem("Business");
@@ -42,8 +43,13 @@ public class ParameterArea {
 		
 		//Style
 		Color blue = new Color(0, 115, 230);
-		stationButton.setForeground(blue);
-		lineButton.setForeground(blue);
+		Color purple = new Color(191, 200, 210);
+		
+		stationButton.setBackground(blue);
+		lineButton.setBackground(blue);
+		
+		stationButton.setForeground(Color.WHITE);
+		lineButton.setForeground(Color.WHITE);
 		combo.setForeground(blue);
 		
 		
@@ -56,13 +62,20 @@ public class ParameterArea {
 		splitMap.setDividerLocation(320);
 		linelab.setDividerLocation(170);
 		sumSug.setDividerLocation(27);    
+		
+		lines.setBackground(purple);
+		linelab.setBackground(purple);
+		splitMap.setBackground(purple);
 
 		return splitMap;
 	}
 	
+	
 	public void changeInformation() {
 		generalInfo.updateGeneralInfo(); 
 	}
+	
+	
 	public void changeDistrictInfo() {
 		distInfo.updateGeneralInfo();
 	}

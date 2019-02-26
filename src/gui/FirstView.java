@@ -17,6 +17,7 @@ public class FirstView {
     ImageIcon logo; 
     
 	JLabel picLabel;
+	JLabel backgroundLabel;
 	JLabel welcome;
 	JLabel haveFun;
 	
@@ -41,13 +42,6 @@ public class FirstView {
     	
     	
     	//Image
-    	try {
-            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("city.png")))));
-        } 
-    	catch (IOException e) {
-            e.printStackTrace();
-        }
-    	
 		try {
 			icon = ImageIO.read(new File("rail.png"));
 		} 
@@ -60,7 +54,7 @@ public class FirstView {
 		
         
         //Sizes
-		view.setBounds(32, 29, 523, 447);
+		view.setBounds(181, 36, 523, 447);
 		
 		picLabel.setBounds(144,13,225,225);
 		welcome.setBounds(0, 262, 523, 16);
@@ -78,9 +72,13 @@ public class FirstView {
         
         view.setBackground(Color.WHITE);
         
-        newGame.setForeground(blue);
-        backup.setForeground(blue);
-        close.setForeground(blue);
+        newGame.setBackground(blue);
+        backup.setBackground(blue);
+        close.setBackground(blue);
+        
+        newGame.setForeground(Color.WHITE);
+        backup.setForeground(Color.WHITE);
+        close.setForeground(Color.WHITE);
         
         welcome.setForeground(cyan);
         haveFun.setForeground(cyan);
@@ -101,7 +99,7 @@ public class FirstView {
         frame.getContentPane().setLayout(null);
         frame.getContentPane().add(view);
         frame.getContentPane().setBackground(Color.WHITE);
-        frame.setSize(592, 549);
+        frame.setSize(900, 550);
         frame.setTitle("RailCity - Menu");
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

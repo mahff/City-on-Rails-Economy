@@ -32,10 +32,15 @@ public class EditMenu extends JFrame{
 		
 		//Colors
 		Color blue = new Color(0, 115, 230);
+		
+		menuItemSave.setBackground(blue);
+		menuItemLoad.setBackground(blue);
+		menuItemQuit.setBackground(blue);
+		
 		menu.setForeground(blue);
-		menuItemSave.setForeground(blue);
-		menuItemLoad.setForeground(blue);
-		menuItemQuit.setForeground(blue);
+		menuItemSave.setForeground(Color.WHITE);
+		menuItemLoad.setForeground(Color.WHITE);
+		menuItemQuit.setForeground(Color.WHITE);
 		
 		
 		menu.add(menuItemQuit);
