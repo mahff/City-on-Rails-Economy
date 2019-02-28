@@ -11,8 +11,8 @@ import game.Town;
 
 public class ParameterArea {
 	public static JComboBox<String> combo;
-	private static JPanel lines;
-	private static JButton stationButton;
+	public static JPanel lines;
+	public static JButton stationButton;
 	public static JButton lineButton;
 	private static GeneralInformation generalInfo; 
 	private static DistrictInformation distInfo;
@@ -47,7 +47,6 @@ public class ParameterArea {
 		combo.addItem("Resident");
 		combo.addItem("Business");
 		combo.addItem("State");
-		combo.addItem("Station");
 		lines.add(stationButton);
 		lines.add(lineButton);
 		
