@@ -77,8 +77,8 @@ public class ParameterArea {
 		splitMap.setEnabled(false);
 		linelab.setEnabled(false);
 		sumSug.setEnabled(false);
-		splitMap.setDividerLocation(380);
-		linelab.setDividerLocation(210);
+		splitMap.setDividerLocation(450);
+		linelab.setDividerLocation(260);
 		sumSug.setDividerLocation(27);    
 		
 		lines.setBackground(darkgrey);

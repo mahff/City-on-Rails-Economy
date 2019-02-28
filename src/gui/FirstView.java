@@ -54,21 +54,20 @@ public class FirstView {
 		
         
         //Sizes
-		view.setBounds(181, 36, 523, 447);
+		view.setBounds(130, 36, 630, 447);
 		
-		picLabel.setBounds(144,13,225,225);
-		welcome.setBounds(0, 262, 523, 16);
-		haveFun.setBounds(199, 280, 122, 16);
+		picLabel.setBounds(199,6,225,225);
+		welcome.setBounds(6, 252, 630, 25);
+		haveFun.setBounds(239, 280, 152, 25);
 		
-        newGame.setBounds(199, 317, 122, 25);
-    	backup.setBounds(199, 355, 122, 25);
-    	close.setBounds(199, 393, 122, 25);
+        newGame.setBounds(249, 317, 122, 25);
+    	backup.setBounds(249, 356, 122, 25);
+    	close.setBounds(249, 393, 122, 25);
         
     	
         //Style
         Color blue = new Color(0, 115, 230);
-        Color cyan = new Color(0, 179, 179);
-        Font font = new Font("Tahoma", Font.BOLD, 13);
+        Font font = new Font("Tahoma", Font.BOLD, 16);
         
         view.setBackground(Color.WHITE);
         
@@ -80,8 +79,8 @@ public class FirstView {
         backup.setForeground(Color.WHITE);
         close.setForeground(Color.WHITE);
         
-        welcome.setForeground(cyan);
-        haveFun.setForeground(cyan);
+        welcome.setForeground(Color.WHITE);
+        haveFun.setForeground(Color.WHITE);
         welcome.setFont(font);
         haveFun.setFont(font);
     	
@@ -98,7 +97,7 @@ public class FirstView {
         // JFrame properties
         frame.getContentPane().setLayout(null);
        
-        frame.getContentPane().setBackground(Color.WHITE);
+        frame.getContentPane().setBackground(Color.LIGHT_GRAY);
         frame.setSize(900, 550);
         frame.setTitle("RailCity - Menu");
         frame.setLocationRelativeTo(null);
