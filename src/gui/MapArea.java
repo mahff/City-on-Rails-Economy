@@ -160,7 +160,6 @@ public class MapArea extends JFrame implements ActionListener {
 		if(creatingLine==0) {
 			if(button[buttonX][buttonY].getBackground() != Color.WHITE) {
 				distInfo = new DistrictInformation(districts[buttonX][buttonY]); 
-				paramDist = new ParameterArea(districts[buttonX][buttonY]);
 				paramDist.getDistrictInformation().setDistrict(districts[buttonX][buttonY]);
 				System.out.println("["+buttonX+"]["+buttonY+"]");
 				distInfo.setDistrict(districts[buttonX][buttonY]); 

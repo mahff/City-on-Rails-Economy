@@ -36,15 +36,7 @@ public class ParameterArea {
 		distInfo = new DistrictInformation(new District(0,0,Color.WHITE)); 
 	}
 	
-	public ParameterArea(District district) {
-		combo = new JComboBox<String>();
-		lines = new JPanel();
-		stationButton = new JButton("Station");
-		lineButton = new JButton("Create Line");
-		
-		distInfo = new DistrictInformation(district); 
-	}
-	
+
 	
 	public DistrictInformation getDistrictInformation() {
 		return distInfo;
