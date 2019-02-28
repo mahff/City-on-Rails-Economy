@@ -10,12 +10,12 @@ import game.Town;
 
 
 public class ParameterArea {
-	static JComboBox<String> combo;
-	static JPanel lines;
-	static JButton stationButton;
-	static JButton lineButton;
-	static GeneralInformation generalInfo; 
-	static DistrictInformation distInfo;
+	public static JComboBox<String> combo;
+	private static JPanel lines;
+	private static JButton stationButton;
+	public static JButton lineButton;
+	private static GeneralInformation generalInfo; 
+	private static DistrictInformation distInfo;
 	
 	
 	public ParameterArea(Town town) {

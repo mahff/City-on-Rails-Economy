@@ -10,20 +10,19 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class FirstView {
-    JPanel view;
-    JFrame frame;
+	private JPanel view;
+	private JFrame frame;
     
-    BufferedImage icon;
-    ImageIcon logo; 
+	private BufferedImage icon;
+	private ImageIcon logo; 
     
-	JLabel picLabel;
-	JLabel backgroundLabel;
-	JLabel welcome;
-	JLabel haveFun;
+	private JLabel picLabel;
+	private JLabel welcome;
+	private JLabel haveFun;
 	
-    JButton newGame;
-    JButton backup;
-    JButton close;
+	private JButton newGame;
+	private JButton backup;
+	private JButton close;
     
     
     public FirstView() {
@@ -101,13 +100,15 @@ public class FirstView {
         frame.setSize(900, 550);
         frame.setTitle("RailCity - Menu");
         frame.setLocationRelativeTo(null);
+        
         try {
 			frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("city.jpg")))));
-			 frame.getContentPane().add(view);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+			frame.getContentPane().add(view);
+		}
+        catch (IOException e1) {
 			e1.printStackTrace();
 		}
+        
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);

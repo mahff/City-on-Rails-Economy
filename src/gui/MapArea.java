@@ -60,7 +60,6 @@ public class MapArea extends JFrame implements ActionListener {
 		state = new State();
 		
 		creatingLine = 0;
-		new EventInformation();
 		
 		map = new JPanel(new GridLayout(size, size));
 		menu = new EditMenu(); 
@@ -150,6 +149,8 @@ public class MapArea extends JFrame implements ActionListener {
 		JButton lineButton = ParameterArea.lineButton;
 		lineButton.setText("Create Line");
 		creatingLine = 0;
+		
+		EventInformation.addLine();
 	}
 		
 	
@@ -177,6 +178,8 @@ public class MapArea extends JFrame implements ActionListener {
 						town.payStationConstruction();		
 						System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
 					}
+					
+					EventInformation.addStation();
 					
 				}
 				paramDist.changeDistrictInfo();
@@ -209,7 +212,8 @@ public class MapArea extends JFrame implements ActionListener {
 				} 
 				
 				//System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
-				EventInformation.listModel.add(0,"A new district "+districtChoice +" has been created !");
+				EventInformation.addDistrict(districtChoice);
+
 				generalInfo = new GeneralInformation(town); 
 				generalInfo.updateGeneralInfo();
 				paramArea.changeInformation(); 
@@ -222,7 +226,6 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	
 	public void closeFrame() {
-		
 		int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?", "Exit program?", JOptionPane.YES_NO_OPTION );
 		if(confirmed == JOptionPane.YES_OPTION) {
 			System.exit(0);

@@ -10,10 +10,10 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 public class FinalView {
-	JFrame frame;
-	JLabel lblSuccess;
-	JLabel lblInfo;
-	JButton btnOk;
+	private JFrame frame;
+	private JLabel lblSuccess;
+	private JLabel lblInfo;
+	private JButton btnOk;
 	
 	
 	public FinalView(boolean success) {
@@ -66,7 +66,7 @@ public class FinalView {
         frame.setSize(442, 180);
         frame.setTitle("RailCity - End");
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //TODO : do nothing + confirm dialog
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
         

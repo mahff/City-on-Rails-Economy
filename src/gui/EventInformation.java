@@ -6,9 +6,9 @@ import javax.swing.*;
 
 
 public class EventInformation {
-	static JList<String> list;
-	static DefaultListModel<String> listModel;
-	static JScrollPane scrollPane;
+	private static JList<String> list;
+	private static DefaultListModel<String> listModel;
+	private static JScrollPane scrollPane;
 	
 	
 	public static Component setEnventInfo() {
@@ -19,7 +19,7 @@ public class EventInformation {
         list.setLayoutOrientation(JList.VERTICAL);
         scrollPane = new JScrollPane(list);
 		
-        listModel.addElement("Even information");
+        listModel.addElement("Event information");
 	
         
 		//Style
@@ -31,5 +31,18 @@ public class EventInformation {
         return scrollPane;
 	}
 
-
+	
+	public static void addDistrict(String type) {
+		if(type != "null") {
+			listModel.add(0, "A new district "+ type  +" has been created!");
+		}
+	}
+	
+	public static void addStation() {
+		listModel.add(0, "A new station has been created!");
+	}
+	
+	public static void addLine() {
+		listModel.add(0, "A new line has been created!");
+	}
 }

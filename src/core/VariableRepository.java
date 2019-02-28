@@ -3,10 +3,7 @@ package core;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * 
- */
+
 // Here are the keys and the values of the objects stored in this VariableRepository.
 // <"BuildingActionChoice",String> => To store which kind of building we choosed in the menu. In relation with the ButtonNumber Class.
 // <"NumberOfStations", Integer>

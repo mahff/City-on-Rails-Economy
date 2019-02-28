@@ -26,7 +26,6 @@ public class TimerEngine implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		valueToTest++;
 		System.out.println(valueToTest);
 		if ( valueToTest == 15 ) {
