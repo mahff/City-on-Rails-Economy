@@ -1,22 +1,10 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.Timer;
+import javax.swing.*;
 
-import core.VariableRepository;
 import game.Business;
 import game.District;
 import game.Resident;
@@ -25,42 +13,84 @@ import game.Town;
 
 
 public class MapArea extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 1L;
+	
+	
+	private Town town;
+	private int size;
+	private JButton[][] button;
+	
+	private String[][] disctrictName;
+	private District[][] districts;
+	private String districtChoice; 
+	
+	private District district;
+	private Business business;
+	private Resident resident;
+	private State state;
+
+	
+	private DistrictInformation distInfo;
+	private EventInformation eventInfo;
+	private GeneralInformation generalInfo;
+	
+	
+	private JFrame frame;
+	private JSplitPane sp, sp2;
+	private EditMenu menu;
+	private JPanel map;
+	private JButton stationButton;
+	
 	private int creatingLine;
-	private String[][] disctrictName = new String[8][8]; 
-	private Town town = new Town(6);
-	Business business = new Business();
-	Resident resident = new Resident();
-	State state = new State();
-	DistrictInformation distInfo; 
-	private EditMenu menu = new EditMenu(); 
-	String districtChoice; 
-	String geneInfo; 
-	EventInformation eventInfo = new EventInformation();
-	GeneralInformation generalInfo; 
-	private District district = new District(0,0,Color.CYAN);
-	private int size = town.getLength(); 
-	ParameterArea paramArea = new ParameterArea(town);
-	ParameterArea paramDist = new ParameterArea();
-	private District[][] districts = new District[size][size];
-	JPanel map = new JPanel(new GridLayout(size, size));
-	private  JButton[][] button = new JButton[size][size];
+	
+	private ParameterArea paramArea;
+	private ParameterArea paramDist;
+	
 	
 	public MapArea(){
+		frame = new JFrame();
+		town = new Town(7);
+		size = town.getLength();
+		
+		paramArea = new ParameterArea(town);
+		paramDist = new ParameterArea();
+		
+		disctrictName = new String[8][8];
+		districts = new District[size][size];
+		district = new District(0,0,Color.CYAN);
+		business = new Business();
+		resident = new Resident();
+		state = new State();
+		
 		creatingLine = 0;
-		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paramArea.summaryParamFrame(), createMap());
-		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
+		eventInfo = new EventInformation();
+		
+		map = new JPanel(new GridLayout(size, size));
+		menu = new EditMenu(); 
+		button = new JButton[size][size];
+		stationButton = new JButton("Station");
+
+		
+		sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ParameterArea.summaryParamFrame(), createMap());
+		sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
+		
+		
 		sp.setDividerLocation(300);
-		sp2.setDividerLocation(490);
+		sp2.setDividerLocation(570);
 		sp.setEnabled(false); 
 		sp2.setEnabled(false);
-		JFrame frame = new JFrame();
+		
+		
 		frame.setResizable(false);
 		frame.add(sp2);
-		frame.setSize(800,600);
+		frame.setSize(900,700);
 		frame.setVisible(true);
 		frame.setJMenuBar(menu.getMenu());
-	    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // If you close the window, the program will terminate
+		frame.setLocationRelativeTo(null);
+	    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	    frame.setResizable(false);
+	    
+	    
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				closeFrame(); 
@@ -68,6 +98,8 @@ public class MapArea extends JFrame implements ActionListener {
 		});
 		
 	}
+	
+	
 	public Component createMap() {
 		// Creates the buttons in the array
 	    for (int i = 0; i < size; i++) {
@@ -84,28 +116,31 @@ public class MapArea extends JFrame implements ActionListener {
 	    
 	    return map; 
 	}
+	
+	
 	public void actionPerformed(ActionEvent ae) {
-	        String action = ae.getActionCommand();
-	        if(action.equals("Create Line")) {
-	        	generateLine();
+        String action = ae.getActionCommand();
+        if(action.equals("Create Line")) {
+        	generateLine();
+        }
+        else if(action.equals("Complete Line Creation")){
+        	endLineGeneration();
+        }
+        else {
+        	for(int i=0; i<size; i++) {
+	        	for(int j=0; j<size;j++) {
+	        		String data = i+","+j; 
+	        		if (action.equals(data)) {
+	        			String[] parts = data.split(",");
+	        			String part1 = parts[0]; 
+	        			String part2 = parts[1];
+	        	        updateButton(Integer.parseInt(part1), Integer.parseInt(part2));
+	                }
+	        	}
 	        }
-	        else if(action.equals("Complete Line Creation")){
-	        	endLineGeneration();
-	        }
-	        else {
-	        	for(int i=0; i<size; i++) {
-		        	for(int j=0; j<size;j++) {
-		        		String data = i+","+j; 
-		        		if (action.equals(data)) {
-		        			String[] parts = data.split(",");
-		        			String part1 = parts[0]; 
-		        			String part2 = parts[1];
-		        	        updateButton(Integer.parseInt(part1), Integer.parseInt(part2));
-		                }
-		        	}
-		        }
-	        }
-		}
+        }
+	}
+	
 	
 	public void generateLine(){
 		JButton lineButton = ParameterArea.lineButton;
@@ -113,12 +148,14 @@ public class MapArea extends JFrame implements ActionListener {
 		creatingLine = 1;
 	}
 	
+	
 	public void endLineGeneration() {
 		JButton lineButton = ParameterArea.lineButton;
 		lineButton.setText("Create Line");
 		creatingLine = 0;
 	}
 		
+	
 	public void updateButton(int buttonX, int buttonY) {
 		JComboBox<String> combo = ParameterArea.combo; 
 		districtChoice = String.valueOf(combo.getSelectedItem()) ;
@@ -176,7 +213,6 @@ public class MapArea extends JFrame implements ActionListener {
 		}
 	}
 	
-	JButton stationButton = new JButton("Station");
 	
 	public void closeFrame() {
 		

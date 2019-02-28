@@ -18,7 +18,9 @@ public class DistrictInformation {
 	
 	
 	public Component updateGeneralInfo() {
-		String content = "<html><center><u>Current District Statistics:</u></center><br/>";
+		String content = "<html>"
+				+ "<style> html{ padding-left: 17px; }</style>"
+				+ "<center><u>Current District Statistics:</u></center><br/>";
 		
 		int population = district.getPopulation();
 		int satisfaction = district.getSatisfaction();

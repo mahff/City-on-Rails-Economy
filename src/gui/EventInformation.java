@@ -10,6 +10,7 @@ public class EventInformation {
 	static DefaultListModel<String> listModel;
 	static JScrollPane scrollPane;
 	
+	
 	public static Component setEnventInfo() {
 		listModel = new DefaultListModel<String>();
 		list = new JList<String>(listModel);

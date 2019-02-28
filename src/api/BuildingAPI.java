@@ -1,8 +1,6 @@
 package api;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -54,7 +52,7 @@ public class BuildingAPI {
 	public void updateTownStations(Line lineToAdd) {
 		ArrayList<Station> stations = lineToAdd.getStations();
 		// With Station-class lines attribute (ArrayList) and Line-Class stations attribute (ArrayList)
-		Iterator i = stations.iterator();
+		Iterator<Station> i = stations.iterator();
 		
 		while (i.hasNext()) {
 			Station toUpdate = (Station) i.next();

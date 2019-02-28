@@ -8,13 +8,18 @@ public class EditMenu extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	
-	JMenuBar menuBar = new JMenuBar();
+	JMenuBar menuBar;
 	JMenuItem menuItemSave, menuItemLoad, menuItemQuit;
-	public JMenu menu = new JMenu(); 
+	JMenu menu;
+	
 	
 	public EditMenu() throws HeadlessException {
 		super();
+		
+		menuBar = new JMenuBar();
+		menu = new JMenu();
 	}
+	
 	
 	public JMenuBar getMenu() {
 		menu = new JMenu("File");

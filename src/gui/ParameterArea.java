@@ -10,23 +10,41 @@ import game.Town;
 
 
 public class ParameterArea {
-	static JComboBox<String> combo = new JComboBox<String>();
-	static JPanel lines = new JPanel();
-	static JButton stationButton = new JButton("Station");
-	static JButton lineButton = new JButton("Create Line");
+	static JComboBox<String> combo;
+	static JPanel lines;
+	static JButton stationButton;
+	static JButton lineButton;
 	static GeneralInformation generalInfo; 
 	static DistrictInformation distInfo;
 	
 	
 	public ParameterArea(Town town) {
+		combo = new JComboBox<String>();
+		lines = new JPanel();
+		stationButton = new JButton("Station");
+		lineButton = new JButton("Create Line");
+		
 		generalInfo = new GeneralInformation(town); 
 	}
+
 	public ParameterArea(){
+		combo = new JComboBox<String>();
+		lines = new JPanel();
+		stationButton = new JButton("Station");
+		lineButton = new JButton("Create Line");
+		
 		distInfo = new DistrictInformation(new District(0,0,Color.WHITE)); 
 	}
+	
 	public ParameterArea(District district) {
+		combo = new JComboBox<String>();
+		lines = new JPanel();
+		stationButton = new JButton("Station");
+		lineButton = new JButton("Create Line");
+		
 		distInfo = new DistrictInformation(district); 
 	}
+	
 	
 	public DistrictInformation getDistrictInformation() {
 		return distInfo;
@@ -43,7 +61,7 @@ public class ParameterArea {
 		
 		//Style
 		Color blue = new Color(0, 115, 230);
-		Color purple = new Color(191, 200, 210);
+		Color darkgrey = new Color(195, 203, 213);
 		
 		stationButton.setBackground(blue);
 		lineButton.setBackground(blue);
@@ -59,13 +77,13 @@ public class ParameterArea {
 		splitMap.setEnabled(false);
 		linelab.setEnabled(false);
 		sumSug.setEnabled(false);
-		splitMap.setDividerLocation(320);
-		linelab.setDividerLocation(170);
+		splitMap.setDividerLocation(380);
+		linelab.setDividerLocation(210);
 		sumSug.setDividerLocation(27);    
 		
-		lines.setBackground(purple);
-		linelab.setBackground(purple);
-		splitMap.setBackground(purple);
+		lines.setBackground(darkgrey);
+		linelab.setBackground(darkgrey);
+		splitMap.setBackground(darkgrey);
 
 		return splitMap;
 	}

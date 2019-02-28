@@ -15,10 +15,12 @@ public class GeneralInformation {
 		summary = new JLabel();
 		setTown(town);
 	}
-	
+
 	
 	public Component updateGeneralInfo() {
-		String content = "<html><center><u>City Statistics:</u></center><br/>";
+		String content = "<html>"
+				+ "<style> html{ padding-left: 30px; }</style>"
+				+ "<center><u>City Statistics:</u></center><br/>";
 		
 		int generalPopulation = town.getGeneralPopulation();
 		int generalSatisfaction = town.getGeneralSatisfaction();

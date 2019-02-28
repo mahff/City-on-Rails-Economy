@@ -24,7 +24,7 @@ public class FirstView {
     JButton newGame;
     JButton backup;
     JButton close;
-
+    
     
     public FirstView() {
     	//Initialize
