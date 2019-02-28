@@ -46,13 +46,13 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public MapArea(){
 		frame = new JFrame();
-		town = new Town(10);
+		town = new Town(8);
 		size = town.getLength();
 		
 		paramArea = new ParameterArea(town);
 		paramDist = new ParameterArea();
 		
-		disctrictName = new String[8][8];
+		disctrictName = new String[size][size];
 		districts = new District[size][size];
 		new District(0,0,Color.CYAN);
 		business = new Business();
