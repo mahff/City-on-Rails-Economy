@@ -2,7 +2,9 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import game.Business;
@@ -24,14 +26,12 @@ public class MapArea extends JFrame implements ActionListener {
 	private District[][] districts;
 	private String districtChoice; 
 	
-	private District district;
 	private Business business;
 	private Resident resident;
 	private State state;
 
 	
 	private DistrictInformation distInfo;
-	private EventInformation eventInfo;
 	private GeneralInformation generalInfo;
 	
 	
@@ -49,7 +49,7 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public MapArea(){
 		frame = new JFrame();
-		town = new Town(7);
+		town = new Town(10);
 		size = town.getLength();
 		
 		paramArea = new ParameterArea(town);
@@ -57,13 +57,13 @@ public class MapArea extends JFrame implements ActionListener {
 		
 		disctrictName = new String[8][8];
 		districts = new District[size][size];
-		district = new District(0,0,Color.CYAN);
+		new District(0,0,Color.CYAN);
 		business = new Business();
 		resident = new Resident();
 		state = new State();
 		
 		creatingLine = 0;
-		eventInfo = new EventInformation();
+		new EventInformation();
 		
 		map = new JPanel(new GridLayout(size, size));
 		menu = new EditMenu(); 
@@ -74,16 +74,15 @@ public class MapArea extends JFrame implements ActionListener {
 		sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ParameterArea.summaryParamFrame(), createMap());
 		sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
 		
-		
 		sp.setDividerLocation(300);
-		sp2.setDividerLocation(570);
+		sp2.setDividerLocation(650);
 		sp.setEnabled(false); 
 		sp2.setEnabled(false);
 		
 		
 		frame.setResizable(false);
 		frame.add(sp2);
-		frame.setSize(900,700);
+		frame.setSize(900,750);
 		frame.setVisible(true);
 		frame.setJMenuBar(menu.getMenu());
 		frame.setLocationRelativeTo(null);
@@ -105,10 +104,12 @@ public class MapArea extends JFrame implements ActionListener {
 	    for (int i = 0; i < size; i++) {
 	    	for(int j=0; j< size; j++) {
 	    		button[i][j] = new JButton(i+","+j);
-	            button[i][j].setForeground(Color.BLACK);
+	            button[i][j].setForeground(Color.WHITE);
 	            button[i][j].setBackground(Color.WHITE);
 	            button[i][j].setBorderPainted(true);
 	            button[i][j].addActionListener(this);
+	            button[i][j].setIcon(new ImageIcon("grass.png"));
+	            button[i][j].setSize(64, 64);
 	            ParameterArea.lineButton.addActionListener(this);
 	            map.add(button[i][j]); 
 	    	}
@@ -141,7 +142,6 @@ public class MapArea extends JFrame implements ActionListener {
         }
 	}
 	
-	
 	public void generateLine(){
 		JButton lineButton = ParameterArea.lineButton;
 		lineButton.setText("Complete Line Creation");
@@ -165,15 +165,22 @@ public class MapArea extends JFrame implements ActionListener {
 				paramDist = new ParameterArea(districts[buttonX][buttonY]);
 				paramDist.getDistrictInformation().setDistrict(districts[buttonX][buttonY]);
 				System.out.println("["+buttonX+"]["+buttonY+"]");
-				district = districts[buttonX][buttonY]; 
 				distInfo.setDistrict(districts[buttonX][buttonY]); 
 				if(districtChoice == "Station") {
-					if(button[buttonX][buttonY].getBackground() == new Resident().getColor() || button[buttonX][buttonY].getBackground() == new Business().getColor() || button[buttonX][buttonY].getBackground() == new State().getColor()) {
-						button[buttonX][buttonY].setForeground(Color.RED); 
+					if(button[buttonX][buttonY].getBackground() == new Resident().getColor()) {
+						button[buttonX][buttonY].setIcon(new ImageIcon("resident_metro.png"));
 						town.payStationConstruction();		
 						System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
-						
+					}else if(button[buttonX][buttonY].getBackground() == new Business().getColor() ) {
+						button[buttonX][buttonY].setIcon(new ImageIcon("business_metro.png"));
+						town.payStationConstruction();		
+						System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
+					}else {
+						button[buttonX][buttonY].setIcon(new ImageIcon("state_metro.png"));
+						town.payStationConstruction();		
+						System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
 					}
+					
 				}
 				paramDist.changeDistrictInfo();
 			}
@@ -182,6 +189,7 @@ public class MapArea extends JFrame implements ActionListener {
 				if(districtChoice == "Resident" && (button[buttonX][buttonY].getBackground() != new State().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor())) {
 					districts[buttonX][buttonY] = resident; 
 					button[buttonX][buttonY].setBackground(resident.getColor());
+					button[buttonX][buttonY].setIcon(new ImageIcon("resident.png"));
 					town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
 					disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 					
@@ -189,6 +197,7 @@ public class MapArea extends JFrame implements ActionListener {
 				else if(districtChoice == "Business" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new State().getColor()) {
 					districts[buttonX][buttonY] = business; 
 					button[buttonX][buttonY].setBackground(business.getColor());
+					button[buttonX][buttonY].setIcon(new ImageIcon("business.png"));
 					town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
 					disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 					
@@ -196,6 +205,7 @@ public class MapArea extends JFrame implements ActionListener {
 				else if(districtChoice == "State" && button[buttonX][buttonY].getBackground() != new Resident().getColor() && button[buttonX][buttonY].getBackground() != new Business().getColor()) {
 					districts[buttonX][buttonY] = state;
 					button[buttonX][buttonY].setBackground(state.getColor());
+					button[buttonX][buttonY].setIcon(new ImageIcon("state.png"));
 					town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
 					disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 					town.payDistrictConstruction();

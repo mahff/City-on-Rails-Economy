@@ -43,7 +43,7 @@ public class FirstView {
     	
     	//Image
 		try {
-			icon = ImageIO.read(new File("rail.png"));
+			icon = ImageIO.read(new File("railtransparent.png"));
 		} 
 		catch (IOException e1) {
 			e1.printStackTrace();
@@ -93,15 +93,22 @@ public class FirstView {
         view.add(newGame);
         view.add(backup); 
         view.add(close); 
-        
+        view.setBackground(new Color(0,0,0,0));
         
         // JFrame properties
         frame.getContentPane().setLayout(null);
-        frame.getContentPane().add(view);
+       
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setSize(900, 550);
         frame.setTitle("RailCity - Menu");
         frame.setLocationRelativeTo(null);
+        try {
+			frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("city.jpg")))));
+			 frame.getContentPane().add(view);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -124,6 +131,12 @@ public class FirstView {
 
     
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel ("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();
+		}
     	FirstView test = new FirstView(); 
     	test.initializeMap();
     }
@@ -135,7 +148,6 @@ public class FirstView {
     	    public void actionPerformed(ActionEvent e) {
     	        System.out.println("Going to Map!"+e);
     	        frame.dispose();
-    	        
     	        new MapArea(); 
     	    }
     	});
