@@ -41,12 +41,12 @@ public class FinalView {
 		
 		//Style
         Color blue = new Color(0, 115, 230);
-        Color cyan = new Color(0, 179, 179);
+        Color purple = new Color(51, 102, 204);
         Font font = new Font("Tahoma", Font.BOLD, 12);
         
         btnOk.setForeground(Color.WHITE);
-        lblSuccess.setForeground(cyan);
-        lblInfo.setForeground(cyan);
+        lblSuccess.setForeground(purple);
+        lblInfo.setForeground(purple);
         
         btnOk.setBackground(blue);
         

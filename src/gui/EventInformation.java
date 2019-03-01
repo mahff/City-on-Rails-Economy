@@ -1,8 +1,11 @@
 package gui;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
+
+import game.Station;
 
 
 public class EventInformation {
@@ -24,7 +27,7 @@ public class EventInformation {
         
 		//Style
         Color blue = new Color(0, 115, 230);
-		Font font = new Font("Tahoma", Font.PLAIN, 14);
+		Font font = new Font("Tahoma", Font.BOLD, 14);
 		list.setForeground(blue);
 		list.setFont(font);
 		
@@ -42,7 +45,13 @@ public class EventInformation {
 		listModel.add(0, "A new station has been created!");
 	}
 	
-	public static void addLine() {
-		listModel.add(0, "A new line has been created!");
+	public static void addLine(ArrayList<Station> stations) { //TODO afficher la liste des stations sur lesquelles passe la ligne créée, pour l'affichage
+		String stationsList = "";
+		
+		for(Station station : stations) {
+			stationsList += station.toString() + "/";
+		}
+		
+		listModel.add(0, "A new line has been created (" + stationsList + ")!");
 	}
 }

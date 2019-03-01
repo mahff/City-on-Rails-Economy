@@ -66,8 +66,7 @@ public class FirstView {
     	
         //Style
         Color blue = new Color(0, 115, 230);
-        Color cyan = new Color(0, 179, 179);
-        Color gray = new Color(20, 20, 20);
+        Color purple = new Color(51, 102, 204);
         Font font = new Font("Tahoma", Font.BOLD, 16);
         
         view.setBackground(Color.WHITE);
@@ -80,8 +79,8 @@ public class FirstView {
         backup.setForeground(Color.WHITE);
         close.setForeground(Color.WHITE);
         
-        welcome.setForeground(gray);
-        haveFun.setForeground(gray);
+        welcome.setForeground(purple);
+        haveFun.setForeground(purple);
         welcome.setFont(font);
         haveFun.setFont(font);
     	

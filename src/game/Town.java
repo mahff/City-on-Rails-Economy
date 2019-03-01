@@ -100,7 +100,7 @@ public class Town {
 	}
 	
 	public int endGame() {
-		if(this.getFunds()<=-20000 || this.getGeneralSatisfaction()<=5) {
+		if(this.getFunds()<=-20000 || (this.getGeneralSatisfaction()<=5 && this.getGeneralPopulation() > 100)) {
 			//defaite
 			return -1;
 		}

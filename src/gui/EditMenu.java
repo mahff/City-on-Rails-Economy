@@ -34,13 +34,18 @@ public class EditMenu extends JFrame{
                 KeyEvent.VK_T);
 		
 		//Colors
-		Color cyan = new Color(0, 179, 179);
-		Color gray = new Color(20, 20, 20);
+		Color lightPurple = new Color(77, 166, 255);
+		Font font = new Font("Tahoma", Font.BOLD, 12);
 		
-		menu.setForeground(gray);
-		menuItemSave.setForeground(gray);
-		menuItemLoad.setForeground(gray);
-		menuItemQuit.setForeground(gray);
+		menu.setForeground(lightPurple);
+		menuItemSave.setForeground(lightPurple);
+		menuItemLoad.setForeground(lightPurple);
+		menuItemQuit.setForeground(lightPurple);
+		
+		menu.setFont(font);
+		menuItemSave.setFont(font);
+		menuItemLoad.setFont(font);
+		menuItemQuit.setFont(font);
 		
 		
 		menu.add(menuItemQuit);

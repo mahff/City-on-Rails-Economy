@@ -2,22 +2,12 @@ package gui;
 
 import java.awt.*;
 
-import javax.swing.JLabel;
-
 import game.District;
 
+
 public class DistrictInformation {
-	private JLabel summary;
-	private District district;
 	
-	
-	public DistrictInformation(District district) {
-		summary = new JLabel();
-		setDistrict(district);
-	}
-	
-	
-	public Component updateGeneralInfo() {
+	public static String updateGeneralInfo(District district) {
 		String content = "<html>"
 				+ "<style> html{ padding-left: 60px; }</style>"
 				+ "<center><u>Current District Statistics:</u></center><br/>";
@@ -49,22 +39,8 @@ public class DistrictInformation {
 				+ "Number of lines (metro): "+nbLines+"<br/>"
 				+ "Presence of station (metro): "+isThereStation+"<br/>"
 				+ "Type: "+type+"</html>";
-
-		summary.setText(content);
-		System.out.println(content);
 		
-		//Style
-		Color cyan = new Color(0, 179, 179);
-		Color gray = new Color(20, 20, 20);
-		Font font = new Font("Tahoma", Font.BOLD, 15);
-		summary.setForeground(gray);
-		summary.setFont(font);
-		
-		return summary; 
+		return content;
 	}
 	
-	
-	void setDistrict(District district) {
-		this.district = district;
-	}
 }

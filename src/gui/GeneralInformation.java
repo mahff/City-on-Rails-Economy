@@ -1,49 +1,38 @@
 package gui;
 
-import java.awt.*;
+/*
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import core.TimerEngine;
+*/
+
 import game.Town;
 
-public class GeneralInformation {
-	private JLabel summary;
-	private JLabel clock; 
-	private JPanel generalInfo; 
-	private Town town;
-	Color cyan;
-	Color gray;
-	Font font;
 
+public class GeneralInformation {
+	//TODO clock;
+	
+	/*
+	private JLabel clock;
     Timer timer ;
     int hours;
     int days;
+	*/
 	
-	
+	/*ANCIEN CONSTRUCTEUR
 	public GeneralInformation(Town town) {
-		summary = new JLabel();
 		clock = new JLabel(); 
-		summary.setBorder(new EmptyBorder(25,0,250,0));
-		generalInfo = new JPanel(); 
-		generalInfo.add(summary);
+		generalInfo = new JPanel();
 		generalInfo.add(clock);
-		cyan = new Color(0, 179, 179);
-		gray = new Color(20, 20, 20);
-		font = new Font("Tahoma", Font.BOLD, 15);
 		timer = new Timer();
 		hours =  TimerEngine.getInstance().getDaysTestValue();
-		days = 0; 
-		setTown(town);
+		days = 0;
 		start();
+		
 	}
-
+	*/
 	
-	public Component updateGeneralInfo() {
+	public static String updateGeneralInfo(Town town) {
 		String content = "<html>"
 				+ "<style> html{ padding-left: 30px; }</style>"
 				+ "<center><u>City Statistics:</u></center><br/>";
@@ -59,14 +48,11 @@ public class GeneralInformation {
 				+ "Number of lines (metro): "+generalNbLines+"<br/>"
 				+ "Number of stations (metro): "+generalNbStations+"<br/>"
 				+ "Money: "+funds+" MyLiu </html>";
-		summary.setText(content);
 		
-		summary.setForeground(gray);
-		summary.setFont(font);
-		
-		return generalInfo; 
+		return content;
 	}
 	
+	/*
 	private void reset(){
 		hours = 0; 
         days++; 
@@ -79,14 +65,11 @@ public class GeneralInformation {
                     reset();
                 }
                 clock.setText( String.format("%d : %02d", days , hours ));
-                clock.setForeground(gray);
+                clock.setForeground(purple);
                 clock.setFont(font);
                 hours++; 
             }
         }, 0, 1000 );
     }
-	
-	private void setTown(Town town) {
-		this.town = town;
-	}
+	*/
 }
