@@ -162,9 +162,10 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public void updateButton(int buttonX, int buttonY) {
 		System.out.println("["+buttonX+"]["+buttonY+"]");
+		
 		boolean isBuild = false;
 		
-		if(creatingLine==0) {
+		if(creatingLine==0) {//Création d'un quartier
 			districtChoice = String.valueOf(combo.getSelectedItem());
 			
 			District currentDistrict = town.getDistrict(buttonX, buttonY);
@@ -176,6 +177,11 @@ public class MapArea extends JFrame implements ActionListener {
 				currentDistrictColor = currentDistrict.getColor();
 			}
 			
+			//Default colors for districts
+			Color stateColor = State.stateColor;
+			Color businessColor = Business.businessColor;
+			Color residentColor = Resident.residentColor;
+			
 			
 			if(currentDistrictColor != Color.WHITE) {
 				distInfo = new DistrictInformation(districts[buttonX][buttonY]); 
@@ -185,30 +191,25 @@ public class MapArea extends JFrame implements ActionListener {
 				paramDist.changeDistrictInfo();
 			}
 					
-			else if(districtChoice == "Resident" && (currentDistrictColor != State.stateColor && currentDistrictColor != Business.businessColor)) {
+			else if(districtChoice == "Resident" && (currentDistrictColor != stateColor && currentDistrictColor != businessColor)) {
 				districts[buttonX][buttonY] = new Resident(); 
-				button[buttonX][buttonY].setBackground(Resident.residentColor);
+				button[buttonX][buttonY].setBackground(residentColor);
 				button[buttonX][buttonY].setIcon(new ImageIcon("resident.png"));
-				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
-				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 				
 				isBuild = true;
 			}
-			else if(districtChoice == "Business" && currentDistrictColor != Resident.residentColor && currentDistrictColor != State.stateColor) {
+			else if(districtChoice == "Business" && currentDistrictColor != residentColor && currentDistrictColor != stateColor) {
 				districts[buttonX][buttonY] = new Business(); 
-				button[buttonX][buttonY].setBackground(Business.businessColor);
+				button[buttonX][buttonY].setBackground(businessColor);
 				button[buttonX][buttonY].setIcon(new ImageIcon("business.png"));
-				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
-				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
 				
 				isBuild = true;
 			}
-			else if(districtChoice == "State" && currentDistrictColor != Resident.residentColor && currentDistrictColor != Business.businessColor) {
+			else if(districtChoice == "State" && currentDistrictColor != residentColor && currentDistrictColor != businessColor) {
 				districts[buttonX][buttonY] = new State();
-				button[buttonX][buttonY].setBackground(State.stateColor);
+				button[buttonX][buttonY].setBackground(stateColor);
 				button[buttonX][buttonY].setIcon(new ImageIcon("state.png"));
-				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
-				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+				
 				town.payDistrictConstruction();
 				
 				isBuild = true;
@@ -216,6 +217,9 @@ public class MapArea extends JFrame implements ActionListener {
 			
 			//System.out.println("Localisation : X"+buttonX+" Y"+buttonY+town.getDistrict(buttonX, buttonY));
 			if(isBuild) {
+				town.setDistrict(buttonX, buttonY, districts[buttonX][buttonY]);
+				disctrictName[buttonX][buttonY] = "["+buttonX+"]["+buttonY+"]";
+				
 				EventInformation.addDistrict(districtChoice);
 			}
 
@@ -224,7 +228,7 @@ public class MapArea extends JFrame implements ActionListener {
 			paramArea.changeInformation(); 
 		
 		}
-		else {//...
+		else {//Creation d'une station
 			JPanel stationButton = ParameterArea.lines; 
 			
 			Station currentStationCreation = new Station(30, false, 0, new Moving(0, new Date(), new Date()));
