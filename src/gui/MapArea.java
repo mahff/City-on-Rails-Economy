@@ -180,16 +180,18 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	
 	public void endLineGeneration() {
-		Line newLine = new Line(stations,2,new Date(23400));
-		for(Station station: stations) {
-			station.addLines(newLine);
+		if(stations.size()>0) {
+			Line newLine = new Line(stations,2,new Date(23400));
+			for(Station station: stations) {
+				station.addLines(newLine);
+			}
+			System.out.println("Added new Line!");
+			stations.clear();
 		}
-		System.out.println("Added new Line!");
 		JButton lineButton = ParameterArea.lineButton;
 		lineButton.setText("Line");
 		creatingLine = 0;
 		combo.setEnabled(true);
-		stations.clear();
 	}
 		
 	
