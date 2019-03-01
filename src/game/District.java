@@ -16,6 +16,7 @@ public class District {
 		this.setPopulation(population);
 		this.setSatisfaction(satisfaction);
 		this.setColor(color);
+		this.setStation(null);
 		
 		this.setName("District " + numberOfDistricts);
 		VariableRepository.getInstance().register("NumberOfDistricts", numberOfDistricts++);
