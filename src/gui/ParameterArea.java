@@ -53,7 +53,7 @@ public class ParameterArea {
 	
 	public static Component summaryParamFrame() {
 		combo.addItem("Choose the district type...");
-		combo.addItem("Resident");
+		combo.addItem("Residential");
 		combo.addItem("Business");
 		combo.addItem("State");
 		

@@ -227,7 +227,7 @@ public class MapArea extends JFrame implements ActionListener {
 				paramDist.changeDistrictInfo();
 			}
 					
-			else if(districtChoice == "Resident" && (currentDistrictColor != stateColor && currentDistrictColor != businessColor)) {
+			else if(districtChoice == "Residential" && (currentDistrictColor != stateColor && currentDistrictColor != businessColor)) {
 				districts[buttonX][buttonY] = new Resident(); 
 				button[buttonX][buttonY].setBackground(residentColor);
 				button[buttonX][buttonY].setIcon(new ImageIcon("resident.png"));
