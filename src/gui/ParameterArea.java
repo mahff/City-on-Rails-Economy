@@ -14,6 +14,9 @@ public class ParameterArea {
 	public static JPanel lines;
 	public static JButton stationButton;
 	public static JButton lineButton;
+	public static JButton destroyStation;
+	public static JButton destroyLine;
+	public static JLabel description;
 	private static GeneralInformation generalInfo; 
 	private static DistrictInformation distInfo;
 	
@@ -23,8 +26,10 @@ public class ParameterArea {
 		lines = new JPanel();
 		stationButton = new JButton("Station");
 		lineButton = new JButton("Line"); 
+		destroyStation = new JButton("Destroy Station");
+		destroyLine = new JButton("Destroy Line");
 		
-		generalInfo = new GeneralInformation(town); 
+		generalInfo = new GeneralInformation(town);
 	}
 
 	public ParameterArea(){
@@ -32,6 +37,8 @@ public class ParameterArea {
 		lines = new JPanel();
 		stationButton = new JButton("Station");
 		lineButton = new JButton("Line");
+		destroyStation = new JButton("Destroy Station");
+		destroyLine = new JButton("Destroy Line");
 		
 		distInfo = new DistrictInformation(new District(0,0,Color.WHITE)); 
 	}
@@ -44,11 +51,18 @@ public class ParameterArea {
 	
 	
 	public static Component summaryParamFrame() {
+		combo.addItem("Choosing the type of neighborhood to create...");
 		combo.addItem("Resident");
 		combo.addItem("Business");
 		combo.addItem("State");
+		
+		description = new JLabel("Actions on the metro network :");
+        lines.add(description); 
+
 		lines.add(stationButton);
 		lines.add(lineButton);
+		lines.add(destroyStation);
+		lines.add(destroyLine);
 		
 		//Style
 		Color blue = new Color(0, 115, 230);
