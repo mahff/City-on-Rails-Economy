@@ -76,9 +76,10 @@ public class ParameterArea {
 		Color blue = new Color(0, 115, 230);
 		Color darkgrey = new Color(195, 203, 213);
 		Color cyan = new Color(0, 179, 179);
+		Color gray = new Color(20, 20, 20);
 		Font font = new Font("Tahoma", Font.BOLD, 15);
 		
-		description.setForeground(cyan);
+		description.setForeground(gray);
 		description.setFont(font);
 		
 		stationButton.setBackground(blue);
