@@ -52,7 +52,7 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public MapArea(){
 		frame = new JFrame();
-		town = new Town(8);
+		town = new Town(11);
 		size = town.getLength();
 		
 		paramArea = new ParameterArea(town);
@@ -76,15 +76,15 @@ public class MapArea extends JFrame implements ActionListener {
 		sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ParameterArea.summaryParamFrame(), createMap());
 		sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
 		
-		sp.setDividerLocation(300);
-		sp2.setDividerLocation(650);
+		sp.setDividerLocation(300*4/3);
+		sp2.setDividerLocation(650*4/3);
 		sp.setEnabled(false); 
 		sp2.setEnabled(false);
 		
 		
 		frame.setResizable(false);
 		frame.add(sp2);
-		frame.setSize(900,750);
+		frame.setSize(900*4/3,750*4/3);
 		frame.setVisible(true);
 		frame.setJMenuBar(menu.getMenu());
 		frame.setLocationRelativeTo(null);
@@ -111,7 +111,7 @@ public class MapArea extends JFrame implements ActionListener {
 	            button[i][j].setBorderPainted(true);
 	            button[i][j].addActionListener(this);
 	            button[i][j].setIcon(new ImageIcon("grass.png"));
-	            button[i][j].setSize(64, 64);
+	            button[i][j].setSize(64*4/3, 64*4/3);
 	            ParameterArea.stationButton.addActionListener(this);
 	            map.add(button[i][j]); 
 	    	}
