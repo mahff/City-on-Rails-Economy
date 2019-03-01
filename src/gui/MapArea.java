@@ -187,6 +187,7 @@ public class MapArea extends JFrame implements ActionListener {
 			}
 			System.out.println("Added new Line!");
 			stations.clear();
+			EventInformation.addLine();
 		}
 		JButton lineButton = ParameterArea.lineButton;
 		lineButton.setText("Line");
