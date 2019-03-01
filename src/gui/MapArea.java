@@ -288,10 +288,7 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	
 	public void closeFrame() {
-		int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?", "Exit program?", JOptionPane.YES_NO_OPTION );
-		if(confirmed == JOptionPane.YES_OPTION) {
-			System.exit(0);
-		}
+		System.exit(0);
 	}
 
 }
