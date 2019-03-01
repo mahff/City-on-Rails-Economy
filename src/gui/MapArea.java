@@ -157,7 +157,6 @@ public class MapArea extends JFrame implements ActionListener {
 		combo.setEnabled(false);
 	}
 	
-	
 	public void endStationGeneration() {
 		JButton stationButton = ParameterArea.stationButton;
 		stationButton.setText("Station");
