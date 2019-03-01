@@ -66,6 +66,7 @@ public class FirstView {
     	
         //Style
         Color blue = new Color(0, 115, 230);
+        Color cyan = new Color(0, 179, 179);
         Font font = new Font("Tahoma", Font.BOLD, 16);
         
         view.setBackground(Color.WHITE);
@@ -78,8 +79,8 @@ public class FirstView {
         backup.setForeground(Color.WHITE);
         close.setForeground(Color.WHITE);
         
-        welcome.setForeground(Color.WHITE);
-        haveFun.setForeground(Color.WHITE);
+        welcome.setForeground(cyan);
+        haveFun.setForeground(cyan);
         welcome.setFont(font);
         haveFun.setFont(font);
     	
@@ -91,7 +92,7 @@ public class FirstView {
         view.add(newGame);
         view.add(backup); 
         view.add(close); 
-        view.setBackground(new Color(0,0,0,0));
+        view.setBackground(new Color(255, 255, 255, 120));
         
         // JFrame properties
         frame.getContentPane().setLayout(null);
