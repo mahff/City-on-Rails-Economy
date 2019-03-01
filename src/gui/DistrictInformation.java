@@ -55,8 +55,9 @@ public class DistrictInformation {
 		
 		//Style
 		Color cyan = new Color(0, 179, 179);
+		Color gray = new Color(20, 20, 20);
 		Font font = new Font("Tahoma", Font.BOLD, 15);
-		summary.setForeground(cyan);
+		summary.setForeground(gray);
 		summary.setFont(font);
 		
 		return summary; 
