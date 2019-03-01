@@ -66,7 +66,7 @@ public class MapArea extends JFrame implements ActionListener {
 		
 		disctrictName = new String[size][size];
 		districts = new District[size][size];
-		new District(0,0,Color.CYAN);
+		new District(0,0,Color.BLACK);
 		/*business = new Business();
 		resident = new Resident();
 		state = new State();
