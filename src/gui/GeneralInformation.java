@@ -1,11 +1,6 @@
 package gui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,10 +16,12 @@ public class GeneralInformation {
 	private JLabel clock; 
 	private JPanel generalInfo; 
 	private Town town;
-	SimpleDateFormat sdf;
-	private int currentSecond;
-    private Calendar calendar;
+	Color cyan;
+	Font font;
+
     Timer timer ;
+    int hours;
+    int days;
 	
 	
 	public GeneralInformation(Town town) {
@@ -34,8 +31,10 @@ public class GeneralInformation {
 		generalInfo = new JPanel(); 
 		generalInfo.add(summary);
 		generalInfo.add(clock);
+		cyan = new Color(0, 179, 179);
+		font = new Font("Tahoma", Font.BOLD, 15);
 		timer = new Timer();
-		sdf  = new SimpleDateFormat("hh:mm");
+		hours =  TimerEngine.getInstance().getDaysTestValue();
 		setTown(town);
 		start();
 	}
@@ -52,9 +51,6 @@ public class GeneralInformation {
 		int generalNbStations = town.getGeneralNumberOfStation();
 		int funds = town.getFunds();
 		
-		int testDisplay = TimerEngine.getInstance().getDaysTestValue();	//Test affichage de l'heure dans l'IHM
-		// Date date = .TimerEngine();
-		
 		content += "Population: "+generalPopulation+"<br/>"
 				+ "Satisfaction: "+generalSatisfaction+"<br/>"
 				+ "Number of lines (metro): "+generalNbLines+"<br/>"
@@ -62,9 +58,6 @@ public class GeneralInformation {
 				+ "Money: "+funds+" MyLiu </html>";
 		summary.setText(content);
 		
-		//Style
-		Color cyan = new Color(0, 179, 179);
-		Font font = new Font("Tahoma", Font.BOLD, 15);
 		summary.setForeground(cyan);
 		summary.setFont(font);
 		
@@ -72,19 +65,19 @@ public class GeneralInformation {
 	}
 	
 	private void reset(){
-        calendar = Calendar.getInstance();
-        currentSecond = calendar.get(Calendar.SECOND);
+        days++; 
     }
     public void start(){
         reset();
-        //int testDisplay = TimerEngine.getInstance().getDaysTestValue();	//Test affichage de l'heure dans l'IHM
         timer.scheduleAtFixedRate( new TimerTask(){
             public void run(){
-                if( currentSecond == 60 ) {
+                if( hours == 15 ) {
                     reset();
                 }
-                clock.setText( String.format("%s:%02d", sdf.format(calendar.getTime()), currentSecond ));
-                currentSecond++;
+                clock.setText( String.format("%d : %02d", days , hours ));
+                clock.setForeground(cyan);
+                clock.setFont(font);
+                hours++; 
             }
         }, 0, 1000 );
     }
