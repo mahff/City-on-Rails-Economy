@@ -2,12 +2,14 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.*;
 
 import game.Business;
 import game.District;
+import game.Line;
 import game.Moving;
 import game.Resident;
 import game.State;
@@ -287,7 +289,14 @@ public class MapArea extends JFrame implements ActionListener {
 			}
 		}
 		else{
-			//...
+			ArrayList<Station> stations = new ArrayList<Station>();
+			if(town.getDistrict(buttonX,buttonY).getStation()!=null) {
+				stations.add(town.getDistrict(buttonX,buttonY).getStation());
+			}
+			Line newLine = new Line(stations,2,new Date(23400));
+			for(Station station: stations) {
+				station.addLines(newLine);
+			}
 		}
 	}
 	
