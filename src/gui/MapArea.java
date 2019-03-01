@@ -124,9 +124,15 @@ public class MapArea extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
         if(action.equals("Station")) {
-        	generateLine();
+        	generateStation();
         }
         else if(action.equals("Complete Station Creation")){
+        	endStationGeneration();
+        }
+        else if(action.equals("Line")) {
+        	generateLine();
+        }
+        else if(action.equals("Complete Line Creation")){
         	endLineGeneration();
         }
         else {
@@ -144,7 +150,7 @@ public class MapArea extends JFrame implements ActionListener {
         }
 	}
 	
-	public void generateLine(){
+	public void generateStation(){
 		JButton stationButton = ParameterArea.stationButton;
 		stationButton.setText("Complete Station Creation");
 		creatingLine = 1;
@@ -152,9 +158,24 @@ public class MapArea extends JFrame implements ActionListener {
 	}
 	
 	
-	public void endLineGeneration() {
+	public void endStationGeneration() {
 		JButton stationButton = ParameterArea.stationButton;
 		stationButton.setText("Station");
+		creatingLine = 0;
+		combo.setEnabled(true);
+	}
+	
+	public void generateLine(){
+		JButton lineButton = ParameterArea.lineButton;
+		stationButton.setText("Complete Line Creation");
+		creatingLine = 1;
+		combo.setEnabled(false);
+	}
+	
+	
+	public void endLineGeneration() {
+		JButton lineButton = ParameterArea.lineButton;
+		stationButton.setText("Line");
 		creatingLine = 0;
 		combo.setEnabled(true);
 	}
@@ -165,7 +186,7 @@ public class MapArea extends JFrame implements ActionListener {
 		
 		boolean isBuild = false;
 		
-		if(creatingLine==0) {//Création d'un quartier
+		if(creatingLine==0) {//Crï¿½ation d'un quartier
 			districtChoice = String.valueOf(combo.getSelectedItem());
 			
 			District currentDistrict = town.getDistrict(buttonX, buttonY);
