@@ -133,7 +133,7 @@ public class MapArea extends JFrame implements ActionListener {
         	generateLine();
         }
         else if(action.equals("Complete Line Creation")){
-        	endLineGeneration();
+        	endLineGeneration(); 
         }
         else {
         	for(int i=0; i<size; i++) {
