@@ -68,6 +68,7 @@ public class GeneralInformation {
         days++; 
     }
     public void start(){
+    	hours = 0;
         reset();
         timer.scheduleAtFixedRate( new TimerTask(){
             public void run(){

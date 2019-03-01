@@ -34,7 +34,7 @@ public class EventInformation {
 	
 	public static void addDistrict(String type) {
 		if(type != "null") {
-			listModel.add(0, "A new district "+ type  +" has been created!");
+			listModel.add(0, "A new "+ type  +" district has been created!");
 		}
 	}
 	
