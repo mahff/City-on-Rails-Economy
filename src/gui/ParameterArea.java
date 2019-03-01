@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.*;
 
@@ -51,28 +52,44 @@ public class ParameterArea {
 	
 	
 	public static Component summaryParamFrame() {
-		combo.addItem("Choosing the type of neighborhood to create...");
+		combo.addItem("Choose the district type...");
 		combo.addItem("Resident");
 		combo.addItem("Business");
 		combo.addItem("State");
 		
 		description = new JLabel("Actions on the metro network :");
-        lines.add(description); 
-
+        lines.setLayout(null);
+		lines.add(description); 
 		lines.add(stationButton);
 		lines.add(lineButton);
 		lines.add(destroyStation);
 		lines.add(destroyLine);
 		
+		description.setBounds(85,20,250,25);	//horizontal,vertical
+		stationButton.setBounds(60,60,122,25);
+		lineButton.setBounds(210,60,122,25);
+		destroyStation.setBounds(60,110,122,25);
+		destroyLine.setBounds(210,110,122,25);
+		
+		
 		//Style
 		Color blue = new Color(0, 115, 230);
 		Color darkgrey = new Color(195, 203, 213);
+		Color cyan = new Color(0, 179, 179);
+		Font font = new Font("Tahoma", Font.BOLD, 15);
+		
+		description.setForeground(cyan);
+		description.setFont(font);
 		
 		stationButton.setBackground(blue);
 		lineButton.setBackground(blue);
+		destroyStation.setBackground(blue);
+		destroyLine.setBackground(blue);
 		
 		stationButton.setForeground(Color.WHITE);
 		lineButton.setForeground(Color.WHITE);
+		destroyStation.setForeground(Color.WHITE);
+		destroyLine.setForeground(Color.WHITE);
 		combo.setForeground(blue);
 		
 		
