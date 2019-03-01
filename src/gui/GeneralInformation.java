@@ -61,7 +61,7 @@ public class GeneralInformation {
 				+ "Money: "+funds+" MyLiu </html>";
 		summary.setText(content);
 		
-		summary.setForeground(cyan);
+		summary.setForeground(gray);
 		summary.setFont(font);
 		
 		return generalInfo; 
@@ -79,7 +79,7 @@ public class GeneralInformation {
                     reset();
                 }
                 clock.setText( String.format("%d : %02d", days , hours ));
-                clock.setForeground(cyan);
+                clock.setForeground(gray);
                 clock.setFont(font);
                 hours++; 
             }
