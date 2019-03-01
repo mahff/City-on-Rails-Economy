@@ -22,7 +22,7 @@ public class ParameterArea {
 		combo = new JComboBox<String>();
 		lines = new JPanel();
 		stationButton = new JButton("Station");
-		lineButton = new JButton("Line");
+		lineButton = new JButton("Line"); 
 		
 		generalInfo = new GeneralInformation(town); 
 	}
