@@ -43,6 +43,7 @@ public class MapArea extends JFrame implements ActionListener {
 	private JButton stationButton;
 	
 	private int creatingLine;
+	private int creatingStation;
 	
 	private ParameterArea paramArea;
 	private ParameterArea paramDist;
@@ -124,7 +125,6 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
-        System.out.println(action);
         if(action.equals("Station")) {
         	generateStation();
         }
@@ -155,14 +155,14 @@ public class MapArea extends JFrame implements ActionListener {
 	public void generateStation(){
 		JButton stationButton = ParameterArea.stationButton;
 		stationButton.setText("Complete Station Creation");
-		creatingLine = 1;
+		creatingStation = 1;
 		combo.setEnabled(false);
 	}
 	
 	public void endStationGeneration() {
 		JButton stationButton = ParameterArea.stationButton;
 		stationButton.setText("Station");
-		creatingLine = 0;
+		creatingStation = 0;
 		combo.setEnabled(true);
 	}
 	
@@ -187,7 +187,7 @@ public class MapArea extends JFrame implements ActionListener {
 		
 		boolean isBuild = false;
 		
-		if(creatingLine==0) {//Cr�ation d'un quartier
+		if(creatingLine==0&&creatingStation==0) {//Cr�ation d'un quartier
 			districtChoice = String.valueOf(combo.getSelectedItem());
 			
 			District currentDistrict = town.getDistrict(buttonX, buttonY);
@@ -250,7 +250,7 @@ public class MapArea extends JFrame implements ActionListener {
 			paramArea.changeInformation(); 
 		
 		}
-		else {//Creation d'une station
+		else if(creatingStation==1){//Creation d'une station
 			JPanel stationButton = ParameterArea.lines; 
 			
 			Station currentStationCreation = new Station(30, false, 0, new Moving(0, new Date(), new Date()));
@@ -285,6 +285,9 @@ public class MapArea extends JFrame implements ActionListener {
 					System.out.println("Localisation : X"+buttonX+" Y"+buttonY+currentDistrict);
 				}
 			}
+		}
+		else{
+			//...
 		}
 	}
 	
