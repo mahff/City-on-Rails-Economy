@@ -42,6 +42,7 @@ public class MapArea extends JFrame implements ActionListener {
 	private JSplitPane sp, sp2;
 	private EditMenu menu;
 	private JPanel map;
+	private ArrayList<Station> stations;
 	private JButton stationButton;
 	
 	private int creatingLine;
@@ -60,6 +61,8 @@ public class MapArea extends JFrame implements ActionListener {
 		
 		paramArea = new ParameterArea(town);
 		paramDist = new ParameterArea();
+		
+		stations = new ArrayList<Station>();
 		
 		disctrictName = new String[size][size];
 		districts = new District[size][size];
@@ -177,10 +180,16 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	
 	public void endLineGeneration() {
+		Line newLine = new Line(stations,2,new Date(23400));
+		for(Station station: stations) {
+			station.addLines(newLine);
+		}
+		System.out.println("Added new Line!");
 		JButton lineButton = ParameterArea.lineButton;
 		lineButton.setText("Line");
 		creatingLine = 0;
 		combo.setEnabled(true);
+		stations.clear();
 	}
 		
 	
@@ -289,13 +298,8 @@ public class MapArea extends JFrame implements ActionListener {
 			}
 		}
 		else{
-			ArrayList<Station> stations = new ArrayList<Station>();
 			if(town.getDistrict(buttonX,buttonY).getStation()!=null) {
 				stations.add(town.getDistrict(buttonX,buttonY).getStation());
-			}
-			Line newLine = new Line(stations,2,new Date(23400));
-			for(Station station: stations) {
-				station.addLines(newLine);
 			}
 		}
 	}
