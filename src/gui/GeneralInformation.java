@@ -27,7 +27,7 @@ public class GeneralInformation {
 	public GeneralInformation(Town town) {
 		summary = new JLabel();
 		clock = new JLabel(); 
-		summary.setBorder(new EmptyBorder(0,0,250,0));
+		summary.setBorder(new EmptyBorder(25,0,250,0));
 		generalInfo = new JPanel(); 
 		generalInfo.add(summary);
 		generalInfo.add(clock);
@@ -35,6 +35,7 @@ public class GeneralInformation {
 		font = new Font("Tahoma", Font.BOLD, 15);
 		timer = new Timer();
 		hours =  TimerEngine.getInstance().getDaysTestValue();
+		days = 0; 
 		setTown(town);
 		start();
 	}
@@ -65,10 +66,10 @@ public class GeneralInformation {
 	}
 	
 	private void reset(){
+		hours = 0; 
         days++; 
     }
     public void start(){
-    	hours = 0;
         reset();
         timer.scheduleAtFixedRate( new TimerTask(){
             public void run(){
