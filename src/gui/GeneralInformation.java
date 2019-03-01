@@ -17,6 +17,7 @@ public class GeneralInformation {
 	private JPanel generalInfo; 
 	private Town town;
 	Color cyan;
+	Color gray;
 	Font font;
 
     Timer timer ;
@@ -32,6 +33,7 @@ public class GeneralInformation {
 		generalInfo.add(summary);
 		generalInfo.add(clock);
 		cyan = new Color(0, 179, 179);
+		gray = new Color(20, 20, 20);
 		font = new Font("Tahoma", Font.BOLD, 15);
 		timer = new Timer();
 		hours =  TimerEngine.getInstance().getDaysTestValue();
