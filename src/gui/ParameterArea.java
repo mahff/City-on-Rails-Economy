@@ -31,7 +31,7 @@ public class ParameterArea {
 		combo = new JComboBox<String>();
 		lines = new JPanel();
 		stationButton = new JButton("Station");
-		lineButton = new JButton("Create Line");
+		lineButton = new JButton("Line");
 		
 		distInfo = new DistrictInformation(new District(0,0,Color.WHITE)); 
 	}

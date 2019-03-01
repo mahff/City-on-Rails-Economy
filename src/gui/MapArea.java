@@ -113,6 +113,7 @@ public class MapArea extends JFrame implements ActionListener {
 	            button[i][j].setIcon(new ImageIcon("grass.png"));
 	            button[i][j].setSize(64*4/3, 64*4/3);
 	            ParameterArea.stationButton.addActionListener(this);
+	            ParameterArea.lineButton.addActionListener(this);
 	            map.add(button[i][j]); 
 	    	}
 	    }
@@ -123,6 +124,7 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
+        System.out.println(action);
         if(action.equals("Station")) {
         	generateStation();
         }
@@ -166,7 +168,7 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public void generateLine(){
 		JButton lineButton = ParameterArea.lineButton;
-		stationButton.setText("Complete Line Creation");
+		lineButton.setText("Complete Line Creation");
 		creatingLine = 1;
 		combo.setEnabled(false);
 	}
@@ -174,7 +176,7 @@ public class MapArea extends JFrame implements ActionListener {
 	
 	public void endLineGeneration() {
 		JButton lineButton = ParameterArea.lineButton;
-		stationButton.setText("Line");
+		lineButton.setText("Line");
 		creatingLine = 0;
 		combo.setEnabled(true);
 	}
