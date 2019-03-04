@@ -61,7 +61,6 @@ public class BuildingAPI {
 		}
 	};
 	
-	
 	/*
 	public HashMap<String, Station> getStationsFromGUI() {
 		return null;

@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.event.*;
 
 import javax.swing.*;
@@ -36,7 +37,7 @@ public class MapArea{
 		
 		
 		frame.setResizable(false);
-		frame.add(sp2);
+		frame.add(sp2, BorderLayout.LINE_START);
 		frame.setSize(900*4/3,750*4/3);
 		frame.setVisible(true);
 		frame.setJMenuBar(menu.getMenu());
