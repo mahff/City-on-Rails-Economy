@@ -3,18 +3,15 @@
  */
 package game;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import core.VariableRepository;
 
-/**
- * @author Anne-Sophie
- *
- */
+
 public class Town {
 	private int length;
 	private District[][] map;
-	
 	private Date time;
 	private int funds;
 	
@@ -23,6 +20,8 @@ public class Town {
 		VariableRepository.getInstance().register("NumberOfDistricts", 0);
 		VariableRepository.getInstance().register("NumberOfLines", 0);
 		VariableRepository.getInstance().register("NumberOfStations", 0);
+		
+		
 		funds = 70000;
 		this.setLength(length);
 		int dim = this.getLength();
@@ -37,51 +36,84 @@ public class Town {
 	}
 
 	
+	/**
+	 * @return the length
+	 */
 	public int getLength() {
 		return length;
 	}
-
+	/**
+	 * @param length the length to set
+	 */
 	public void setLength(int length) {
 		this.length = length;
 	}
 
+
+	/**
+	 * @return the map
+	 */
 	public District[][] getMap() {
 		return map;
 	}
-
+	/**
+	 * @param map the map to set
+	 */
 	public void setMap(District[][] map) {
 		this.map = map;
 	}
-	
+
 	/**
-	 * @param positionX
-	 * @param positionY
-	 * @return the value of the grid at the given position
+	 * @return the time
 	 */
-	public District getDistrict(int positionX, int positionY) 
-	{
-		return map[positionX][positionY];
-	}
-
-	
-	public void setDistrict(int positionX, int positionY, District district) 
-	{
-		this.map[positionX][positionY] = district;
-	}
-	
-
 	public Date getTime() {
 		return time;
 	}
-
+	/**
+	 * @param time the time to set
+	 */
 	public void setTime(Date time) {
 		this.time = time;
 	}
-
+	
+	/**
+	 * @return the funds
+	 */
 	public int getFunds() {
 		return funds;
 	}
+	/**
+	 * @param funds the funds to set
+	 */
+	public void setFunds(int funds) {
+		this.funds = funds;
+	}
+
+
 	
+
+	/**
+	 * 
+	 * @param positionX
+	 * @param positionY
+	 * @return the district of the map at the given position
+	 */
+	public District getDistrict(int positionX, int positionY) {
+		return map[positionX][positionY];
+	}
+
+	/**
+	 * 
+	 * @param positionX
+	 * @param positionY
+	 * @param district
+	 */
+	public void setDistrict(int positionX, int positionY, District district) {
+		this.map[positionX][positionY] = district;
+	}
+	
+	
+/*************************************************************************************************/
 	
 	/** 
 	 * Print the current map 
@@ -99,6 +131,7 @@ public class Town {
 		}
 	}
 	
+	
 	public int endGame() {
 		if(this.getFunds()<=-20000 || (this.getGeneralSatisfaction()<=5 && this.getGeneralPopulation() > 100)) {
 			//defaite
@@ -110,6 +143,19 @@ public class Town {
 		}
 		return 0; //continuer
 	}
+	
+	
+	public void removeLine(Line line) {
+		//TODO retirer la ligne dans les statistiques
+		ArrayList<Station> stations = line.getStations();
+		
+		for(Station station : stations) {
+			station.removeLine(line);
+		}
+	}
+	
+/*************************************************************************************************/
+				/*City statitics*/
 	
 	public int getGeneralSatisfaction() {
 		int generalSatisfaction = 0;
@@ -129,6 +175,7 @@ public class Town {
 		return generalSatisfaction/div;
 	}
 	
+	
 	public int getGeneralPopulation() {
 		int generalPopulation = 0;
 		for(int i=0 ; i<this.getLength() ; i++)
@@ -143,6 +190,7 @@ public class Town {
 		}
 		return generalPopulation;
 	}
+	
 	
 	public int getGeneralNumberOfStation() {
 		District[][] arrayToIterateThrough = this.getMap();
@@ -163,11 +211,14 @@ public class Town {
 		
 	}
 	
+	
 	public int getGeneralNumberOfLines() {
 		int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
 		return numberOfDistricts;
 	}
-	//-------------------------------------------------------
+
+/*************************************************************************************************/
+				/*Funds management*/
 	
 	public int getStationConstructionPrice() {
 		if(funds>=500000) return 100000;
@@ -176,6 +227,7 @@ public class Town {
 		else return 50000;
 	}
 	
+	
 	public int getDistrictConstructionPrice() {
 		if(funds>=500000) return 60000;
 		else if(funds>=250000) return 40000;
@@ -183,12 +235,14 @@ public class Town {
 		else return 30000;
 	}
 	
+	
 	public int getLineSegmentConstructionPrice() {
 		if(funds>=500000) return 40000;
 		else if(funds>=250000) return 30000;
 		else if(funds>=175000) return 250000;
 		else return 20000;
 	}
+	
 	
 	public int getStationDestructionPrice() {
 		if(funds>=500000) return 30000;
@@ -198,12 +252,14 @@ public class Town {
 		else return 15000;
 	}
 	
+	
 	public int getLineSegmentDestructionPrice() {
 		if(funds>=500000) return 10000;
 		else if(funds>=250000) return 7000;
 		else if(funds>=175000) return 6000;
 		else return 5000;
 	}
+	
 	
 	public int getStateDistrictMaintainancePrice() {
 		if(funds>=500000) return 7000;
@@ -212,12 +268,14 @@ public class Town {
 		else return 3500;
 	}
 	
+	
 	public int getLineMaintainancePrice() {
 		if(funds>=500000) return 2500;
 		else if(funds>=250000) return 2000;
 		else if(funds>=175000) return 1500;
 		else return 1000;
 	}
+	
 	
 	public int getStationMaintainancePrice() {
 		if(funds>=500000) return 3500;
@@ -226,11 +284,14 @@ public class Town {
 		else return 1500;
 	}
 	
+	
+	
 	public void payStationConstruction(){
 		if(funds+20000>=getStationConstructionPrice())
 			funds -= getStationConstructionPrice();
 		else System.out.println("You don't have enough with "+funds); //...
 	}
+
 	
 	public void payDistrictConstruction(){
 		if(funds+20000>=getDistrictConstructionPrice())
@@ -238,11 +299,13 @@ public class Town {
 		else  System.out.println("You don't have enough with "+funds); //...
 	}
 	
+	
 	public void payLineSegmentConstruction(){
 		if(funds+20000>=getLineSegmentConstructionPrice())
 			funds -= getLineSegmentConstructionPrice();
 		else System.out.println("You don't have enough with "+funds); //...
 	}
+	
 	
 	public void payStationDestruction(){
 		if(funds+20000>=getStationDestructionPrice())
@@ -250,23 +313,28 @@ public class Town {
 		else System.out.println("You don't have enough with "+funds); //...
 	}
 	
+	
 	public void payLineSegmentDestruction(){
 		if(funds+20000 >=getLineSegmentDestructionPrice())
 			funds -= getLineSegmentDestructionPrice();
 		else System.out.println("You don't have enough with "+funds); //...
 	}
 	
+	
 	public void payStateDistrictMaintainance(){
 		funds -= getStateDistrictMaintainancePrice();
 	}
+	
 	
 	public void payLineMaintainance(){
 		funds -= getLineMaintainancePrice();
 	}
 	
+	
 	public void payStationMaintainance(){
 		funds -= getStationMaintainancePrice();
 	}
+	
 	
 	public void collectResidentialTaxes(){
 		 int amount = 0;
@@ -285,6 +353,7 @@ public class Town {
 		 //...
 	}
 	
+	
 	public void collectBusinessTaxes(){
 		int amount = 0;
 		 for(District districts[] : map) {
@@ -301,5 +370,8 @@ public class Town {
 		 funds += amount;
 		 //...
 	}
+	
+/*************************************************************************************************/
+	
 	
 }

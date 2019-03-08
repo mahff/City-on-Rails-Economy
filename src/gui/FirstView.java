@@ -19,6 +19,9 @@ public class FirstView {
 	private JLabel picLabel;
 	private JLabel welcome;
 	private JLabel haveFun;
+	private JLabel lblCredits;
+	private JLabel lblCredits2;
+	private JLabel lblCredits3;
 	
 	private JButton newGame;
 	private JButton backup;
@@ -38,7 +41,9 @@ public class FirstView {
     	
     	welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'!", SwingConstants.CENTER);
     	haveFun = new JLabel("Have fun!", SwingConstants.CENTER);
-    	
+    	lblCredits = new JLabel("Crée par :", SwingConstants.CENTER);
+    	lblCredits2 = new JLabel("Amhiyen Mahfoud & Bisch Solène & Constant Alexis &", SwingConstants.CENTER);
+    	lblCredits3 = new JLabel("Gilles Anne-Sophie & Ottaviano Aurélien & Siharath Amaury", SwingConstants.CENTER);
     	
     	//Image
 		try {
@@ -53,21 +58,25 @@ public class FirstView {
 		
         
         //Sizes
-		view.setBounds(130, 36, 630, 447);
+		view.setBounds(130, 36, 630, 497);
 		
 		picLabel.setBounds(199,6,225,225);
 		welcome.setBounds(6, 252, 630, 25);
 		haveFun.setBounds(239, 280, 152, 25);
+		lblCredits.setBounds(239, 418, 152, 25);
+		lblCredits2.setBounds(6, 442, 618, 25);
+		lblCredits3.setBounds(6, 466, 618, 25);
 		
-        newGame.setBounds(249, 317, 122, 25);
+        newGame.setBounds(249, 319, 122, 25);
     	backup.setBounds(249, 356, 122, 25);
     	close.setBounds(249, 393, 122, 25);
-        
     	
+
         //Style
         Color blue = new Color(0, 115, 230);
         Color purple = new Color(51, 102, 204);
         Font font = new Font("Tahoma", Font.BOLD, 16);
+        Font fontCredits = new Font("Tahoma", Font.BOLD | Font.ITALIC, 16);
         
         view.setBackground(Color.WHITE);
         
@@ -81,8 +90,14 @@ public class FirstView {
         
         welcome.setForeground(purple);
         haveFun.setForeground(purple);
+        lblCredits.setForeground(purple);
+        lblCredits2.setForeground(purple);
+        lblCredits3.setForeground(purple);
         welcome.setFont(font);
         haveFun.setFont(font);
+        lblCredits.setFont(fontCredits);
+        lblCredits2.setFont(fontCredits);
+        lblCredits3.setFont(fontCredits);
     	
         
         // Adding to JFrame
@@ -92,13 +107,16 @@ public class FirstView {
         view.add(newGame);
         view.add(backup); 
         view.add(close); 
+        view.add(lblCredits);
+        view.add(lblCredits2);
+        view.add(lblCredits3);
         view.setBackground(new Color(255, 255, 255, 120));
         
         // JFrame properties
         frame.getContentPane().setLayout(null);
        
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
-        frame.setSize(900, 550);
+        frame.setSize(900, 600);
         frame.setTitle("RailCity - Menu");
         frame.setLocationRelativeTo(null);
         

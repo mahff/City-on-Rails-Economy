@@ -1,30 +1,15 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.SwingUtilities;
+import java.awt.*;
+import javax.swing.*;
 
 import game.Town;
-import java.awt.BorderLayout;
-import java.awt.Canvas;
+
 
 public class MapAreaTest extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
+	
 	private Town town;
 	/*
 	private BufferedImage img;

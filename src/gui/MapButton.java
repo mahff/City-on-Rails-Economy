@@ -189,7 +189,7 @@ public class MapButton {
 			Line newLine = new Line(stationsListForLineCreation, 20, new Date());
 			
 			for(Station station : stationsListForLineCreation) {
-				station.addLines(newLine);
+				station.addLine(newLine);
 			}
 			
 			stationsListForLineCreation.clear();

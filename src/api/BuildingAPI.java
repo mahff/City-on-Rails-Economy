@@ -42,7 +42,7 @@ public class BuildingAPI {
 				District toPut;
 				toPut = townInstance.getDistrict(i, j);
 				String districtCoordinates = i +"-"+ j;
-				toReturn.put(districtCoordinates, toPut.station);
+				toReturn.put(districtCoordinates, toPut.getStation()); // changement de toPut.station (rendu private)
 			}
 		}
 		
@@ -56,7 +56,7 @@ public class BuildingAPI {
 		
 		while (i.hasNext()) {
 			Station toUpdate = (Station) i.next();
-			toUpdate.addLines(lineToAdd);
+			toUpdate.addLine(lineToAdd);
 			// System.out.println(i.next());
 		}
 	};
