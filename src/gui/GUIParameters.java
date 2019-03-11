@@ -10,6 +10,8 @@ public class GUIParameters {
 	public static final int WINDOW_HEIGHT = BASIC * 750 * 4 / 3;
 
 	public static final int SCALE = BASIC * 70;
+	
+	public static final int SCALE_MIDDLE = (BASIC * 70) / 2;
 
 	// public static final int RADIUS = BASIC * 40;
 

@@ -16,7 +16,7 @@ public class Line {
 	public Line(ArrayList<Station> stations, int intervalSubway, Date departureHour) {
 		int numberOfLines = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
 		
-		this.stations = new ArrayList<Station>();
+		// this.stations = new ArrayList<Station>();
 		
 		this.setStations(stations);
 		this.setIntervalSubway(intervalSubway);

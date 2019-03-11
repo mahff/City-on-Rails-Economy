@@ -14,15 +14,20 @@ public class Town {
 	private District[][] map;
 	private Date time;
 	private int funds;
-	
+	private ArrayList<Line> townLines;
 	
 	public Town (int length) {
 		VariableRepository.getInstance().register("NumberOfDistricts", 0);
 		VariableRepository.getInstance().register("NumberOfLines", 0);
 		VariableRepository.getInstance().register("NumberOfStations", 0);
 		
+		setTownLines(new ArrayList<Line>());
+		// Initial Value
+		// funds = 70000;
 		
-		funds = 70000;
+		// Value for testing purpose
+		funds = 700000;
+		
 		this.setLength(length);
 		int dim = this.getLength();
 		
@@ -369,6 +374,16 @@ public class Town {
 		 }
 		 funds += amount;
 		 //...
+	}
+
+
+	public ArrayList<Line> getTownLines() {
+		return townLines;
+	}
+
+
+	public void setTownLines(ArrayList<Line> townLines) {
+		this.townLines = townLines;
 	}
 	
 /*************************************************************************************************/

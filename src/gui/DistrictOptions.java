@@ -199,7 +199,8 @@ public class DistrictOptions {
 		districtType.setEnabled(true);
 		toggleElements(true, createLine);
 		
-		MapButton.printLine();
+		// MapButton.printLine();
+		InnerCanvas.createLine();
 	}
 	
 	

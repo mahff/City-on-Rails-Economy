@@ -1,7 +1,10 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import game.Line;
 
 
 // Here are the keys and the values of the objects stored in this VariableRepository.
@@ -9,6 +12,7 @@ import java.util.Map;
 // <"NumberOfStations", Integer>
 // <"NumberOfLines", Integer>
 // <"NumberOfDistricts", Integer>
+// <"stationArrayListForLineBuilding", new ArrayList<Line>> => To store a list of stations that will be used to build a new line
 public class VariableRepository {
 	private Map<String, Object> variables = new HashMap<String, Object>();
 	private static VariableRepository instance = new VariableRepository();
