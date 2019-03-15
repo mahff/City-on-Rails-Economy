@@ -2,68 +2,48 @@ package core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TimerTask;
 
 import javax.swing.Timer;
 
 public class TimerEngine implements ActionListener{
 	
 	private static TimerEngine instance = new TimerEngine();
-	private Timer timerTest;
+	private Timer timer;
 	// Amaury - Temporary variables for testing purpose
-	private int valueToTest;
-	private int daysTestValue;
+	private int days;
+	private int hours;
 	
 	public TimerEngine () {
-		// Amaury - Temporary affectations
-		this.valueToTest = 0;
-		this.daysTestValue = 0;
-		
-		// Amaury - Temporary timer. A real one should be implemented soon.
-		this.timerTest = new Timer(1000, this);
-		
-		this.timerTest.start();
+		hours = 0;
+		days = 0;
+		this.timer = new Timer(1000, this);
+		this.timer.start();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		valueToTest++;
-		System.out.println(valueToTest);
-		if ( valueToTest == 15 ) {
-			valueToTest=0;
-			daysTestValue+=1;
-			System.out.println(getDaysTestValue()+" jours sont passés.\n");
+		hours++;
+		System.out.println(hours);
+		if ( hours == 24 ) {
+			hours=0;
+			days+=1;
+			System.out.println(days+" jours sont passÃ©s.\n");
 		}
 	}
+    public void start(){
+        //...
+    }
 	
 	public static TimerEngine getInstance() {
 		return instance;
 	}
 
 	public Timer getTimerTest() {
-		return timerTest;
+		return timer;
 	}
 
 	public void setTimerTest(Timer timerTest) {
-		this.timerTest = timerTest;
+		this.timer = timerTest;
 	}
-
-	public int getValueToTest() {
-		return valueToTest;
-	}
-
-	public void setValueToTest(int valueToTest) {
-		this.valueToTest = valueToTest;
-	}
-
-	public int getDaysTestValue() {
-		System.out.println("TEst days : " + this.daysTestValue +".\n");
-		return daysTestValue;
-	}
-
-	public void setDaysTestValue(int daysTestValue) {
-		this.daysTestValue = daysTestValue;
-	}
-
-	
-	
 }

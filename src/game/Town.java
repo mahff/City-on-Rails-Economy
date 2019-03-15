@@ -6,10 +6,12 @@ package game;
 import java.util.ArrayList;
 import java.util.Date;
 
+import core.TimerEngine;
 import core.VariableRepository;
 
 
 public class Town {
+	TimerEngine timer = new TimerEngine();
 	private int length;
 	private District[][] map;
 	private Date time;
