@@ -64,7 +64,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			this.businessStationImage = ImageIO.read(new File("business_metro.png"));
 			this.stateStationImage = ImageIO.read(new File("state_metro.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -82,7 +81,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
         try {
 			paintGrass();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -430,14 +428,12 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     
     @Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
     	// StateMachine.getInstance().setState(State.BUILDING);
 		collisionDetection();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -475,19 +471,16 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		this.mousePosition = arg0.getPoint();
 		// System.out.println("MOUSE MOVE");
 		// this.drawMouseCursor(arg0);
