@@ -7,13 +7,16 @@ import javax.swing.*;
 
 import game.Station;
 
-
 public class EventInformation {
 	private static JList<String> list;
 	private static DefaultListModel<String> listModel;
 	private static JScrollPane scrollPane;
 	
 	
+	/**
+	 * Return the event information
+	 * @return scrollPane
+	 */
 	public static Component setEnventInfo() {
 		listModel = new DefaultListModel<String>();
 		list = new JList<String>(listModel);
@@ -23,8 +26,7 @@ public class EventInformation {
         scrollPane = new JScrollPane(list);
 		
         listModel.addElement("Event information");
-	
-        
+
 		//Style
         Color blue = new Color(0, 115, 230);
 		Font font = new Font("Tahoma", Font.BOLD, 14);
@@ -35,17 +37,31 @@ public class EventInformation {
 	}
 
 	
+	/**
+	 * Add a line of text in the event information when adding a district
+	 * @param type
+	 */
 	public static void addDistrict(String type) {
 		if(type != "null") {
 			listModel.add(0, "A new "+ type  +" district has been created!");
 		}
 	}
 	
+	
+	/**
+	 * Add a line of text in the event information when adding a station
+	 */
 	public static void addStation() {
 		listModel.add(0, "A new station has been created!");
 	}
 	
-	public static void addLine(ArrayList<Station> stations) { //TODO afficher la liste des stations sur lesquelles passe la ligne créée, pour l'affichage
+	
+	//TODO afficher la liste des stations sur lesquelles passe la ligne créée, pour l'affichage
+	/**
+	 * Add a line of text in the event information when adding a line
+	 * @param stations
+	 */
+	public static void addLine(ArrayList<Station> stations) {
 		String stationsList = "";
 		
 		for(Station station : stations) {

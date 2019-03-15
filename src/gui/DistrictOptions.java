@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-
 public class DistrictOptions {
 	private static JPanel districtPanel;
 	
@@ -23,6 +22,10 @@ public class DistrictOptions {
 	private static int isCreatingStation = 0, isCreatingLine = 0, isDestroyingStation = 0, isDestroyingLine = 0;
 	
 	
+	/**
+	 * Return the combo box to choose the district type to create
+	 * @return districtType
+	 */
 	public static JComboBox<String> getComboBox() {
 		districtType = new JComboBox<String>();
 		
@@ -43,14 +46,16 @@ public class DistrictOptions {
     	    }
     	});
 		
-		
 		return districtType;
 	}
 	
 	
+	/**
+	 * Return the the districts action buttons
+	 * @return districtPanel
+	 */
 	public static JPanel getButtons() {
 		districtPanel = new JPanel();
-
 
 		description = new JLabel("Actions on the metro network :");
 		
@@ -59,7 +64,7 @@ public class DistrictOptions {
 		destroyStation = new JButton("Destroy Station");
 		destroyLine = new JButton("Destroy Line");
 		
-		description.setBounds(85,20,250,25);	//horizontal,vertical
+		description.setBounds(85,20,250,25);
 		createStation.setBounds(60,60,122,25);
 		createLine.setBounds(210,60,122,25);
 		destroyStation.setBounds(60,110,122,25);
@@ -146,12 +151,15 @@ public class DistrictOptions {
     	});
 		
 		
-		
 		return districtPanel;
 	}
 	
 	
-	
+	/**
+	 * Toggle on/off buttons when one is already selected
+	 * @param enable
+	 * @param buttonEnable
+	 */
 	private static void toggleElements(boolean enable, JButton buttonEnable) {
 		createStation.setEnabled(enable);
 		createLine.setEnabled(enable);
@@ -164,6 +172,9 @@ public class DistrictOptions {
 	}
 	
 	
+	/**
+	 * Change the buttons when creating a station
+	 */
 	private static void createStation(){
 		createStation.setText("Complete Station Creation");
 		createStation.setBounds(5,60,200,25);
@@ -173,6 +184,10 @@ public class DistrictOptions {
 		toggleElements(false, createStation);
 	}
 	
+	
+	/**
+	 * Change the buttons when station creation is done
+	 */
 	private static void endCreationStation() {
 		createStation.setText("Create Station");
 		createStation.setBounds(60,60,122,25);
@@ -182,6 +197,10 @@ public class DistrictOptions {
 		toggleElements(true, createStation);
 	}
 	
+	
+	/**
+	 * Change the buttons when creating a line
+	 */
 	private static void createLine(){
 		createLine.setText("Complete Line Creation");
 		createLine.setBounds(187,60,200,25);
@@ -191,6 +210,10 @@ public class DistrictOptions {
 		toggleElements(false, createLine);
 	}
 	
+	
+	/**
+	 * Change the buttons when line creation is done
+	 */
 	private static void endCreationLine() {
 		createLine.setText("Create Line");
 		createLine.setBounds(210,60,122,25);
@@ -204,7 +227,10 @@ public class DistrictOptions {
 	}
 	
 	
-	
+	/**
+	 * Return a boolean to know if it's possible to build a district
+	 * @return true or false
+	 */
 	public static boolean canBuildDistrict() {
 		if(isCreatingStation == 0 && isCreatingLine == 0 && isDestroyingStation == 0 && isDestroyingLine == 0) {
 			return true;
@@ -212,6 +238,11 @@ public class DistrictOptions {
 		return false;
 	}
 	
+	
+	/**
+	 * Return a boolean to know if it's possible to build a station
+	 * @return true or false
+	 */
 	public static boolean canBuildStation() {
 		if(isCreatingStation == 1 && isCreatingLine == 0 && isDestroyingStation == 0 && isDestroyingLine == 0) {
 			return true;
@@ -219,6 +250,11 @@ public class DistrictOptions {
 		return false;
 	}
 	
+	
+	/**
+	 * Return a boolean to know if it's possible to build a line
+	 * @return true or false
+	 */
 	public static boolean canBuildLine() {
 		if(isCreatingStation == 0 && isCreatingLine == 1 && isDestroyingStation == 0 && isDestroyingLine == 0) {
 			return true;
@@ -226,6 +262,11 @@ public class DistrictOptions {
 		return false;
 	}
 	
+	
+	/**
+	 * Return the selected item in the combo box
+	 * @return selected item in combo box
+	 */
 	public static String getSelectedType() {
 		return String.valueOf(districtType.getSelectedItem());
 	}

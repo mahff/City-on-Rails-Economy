@@ -87,8 +87,11 @@ public class FinalView {
 	}
 	
 	
+	/**
+	 * Close the frame with a confirm dialog
+	 */
 	public void closeFrame() {
-    	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program?",JOptionPane.YES_NO_OPTION);
+    	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to end this game?", "End game?",JOptionPane.YES_NO_OPTION);
 	    if (confirmed == JOptionPane.YES_OPTION) {
 	    		frame.dispose();
 	    		new FirstView();

@@ -3,13 +3,10 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.util.TimerTask;
-
 import javax.swing.*;
 
 import game.District;
 import game.Town;
-
 
 public class ParameterArea {
 	public static JComboBox<String> districtType;
@@ -46,6 +43,10 @@ public class ParameterArea {
 	}
 	
 	
+	/**
+	 * Return the aside of the GUI
+	 * @return splitMap
+	 */
 	public Component summaryParamFrame() {
 		districtType = DistrictOptions.getComboBox();
 		districtPanel = DistrictOptions.getButtons();
@@ -73,14 +74,21 @@ public class ParameterArea {
 	}
 	
 	
+	/**
+	 * Update the general information of the city
+	 * @param town
+	 */
 	public void changeGeneralInformation(Town town) {
 		generalInfo.setText(GeneralInformation.updateGeneralInfo(town));
 	}
 	
 	
+	/**
+	 * Update the district information of the given district
+	 * @param district
+	 */
 	public void changeDistrictInformation(District district) {
 		districtInfo.setText(DistrictInformation.updateGeneralInfo(district));
 	}
 
-	
 }

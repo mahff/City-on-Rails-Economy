@@ -18,6 +18,10 @@ public class EditMenu extends JFrame{
 	}
 	
 	
+	/**
+	 * Return the menu to print
+	 * @return menuBar
+	 */
 	public JMenuBar getMenu() {
 		menu = new JMenu("File");
 		menuBar = new JMenuBar();
@@ -65,6 +69,9 @@ public class EditMenu extends JFrame{
 	}
 	
 
+	/**
+	 * Close the frame with a confirm dialog
+	 */
 	public void closeFrame() {
     	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program?",JOptionPane.YES_NO_OPTION);
 	    if (confirmed == JOptionPane.YES_OPTION) {

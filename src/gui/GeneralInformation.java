@@ -5,12 +5,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import core.TimerEngine;
 */
-
 import game.Town;
 
-
 public class GeneralInformation {
-	//TODO clock;
+	//TODO clock + CODE FANTOME
 	
 	/*
 	private JLabel clock;
@@ -32,6 +30,12 @@ public class GeneralInformation {
 	}
 	*/
 	
+	
+	/**
+	 * Return the statistics of the city
+	 * @param town
+	 * @return content
+	 */
 	public static String updateGeneralInfo(Town town) {
 		String content = "<html>"
 				+ "<style> html{ padding-left: 30px; }</style>"

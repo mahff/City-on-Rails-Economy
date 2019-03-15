@@ -28,6 +28,8 @@ public class FirstView {
 	private JButton close;
     
     
+	//TODO COMMENTAIRES
+	
     public FirstView() {
     	//Initialize
     	view = new JPanel();
