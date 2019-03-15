@@ -29,11 +29,18 @@ public class Business extends District{
 	}
 	
 	
+	/**
+	 * Add a worker to the business district
+	 */
 	public void addWorker() {
 		this.currentWorkers++;
 	}
 	
 	
+	/**
+	 * Remove the given number of workers to the business district
+	 * @param number
+	 */
 	public void removeWorker(int number) {
 		int currentNumber = this.currentWorkers;
 		if(currentNumber-number >= 0) {

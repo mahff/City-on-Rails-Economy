@@ -117,13 +117,22 @@ public class Station {
 	}
 	
 	
+/*************************************************************************************************/
 	
 	
+	/**
+	 * Add a line to the station
+	 * @param line
+	 */
 	public void addLine(Line line) {
 		this.lines.add(line);
 	} 
 	
 	
+	/**
+	 * Remove a line from the station
+	 * @param line
+	 */
 	public void removeLine(Line line) {
 		for(int i=0 ; i<lines.size() ; i++) {
 			if(lines.get(i).equals(line)) {
@@ -133,6 +142,9 @@ public class Station {
 	}
 	
 	
+	/**
+	 * Add a passenger which wait at the station
+	 */
 	public void addPassenger() {
 		int currentPassengers = this.getNumberPassenger();
 		this.setNumberPassenger(currentPassengers++);
@@ -145,6 +157,10 @@ public class Station {
 	}
 	
 	
+	/**
+	 * Remove the given number of passengers which wait at the station
+	 * @param number
+	 */
 	public void removePassenger(int number) {
 		int currentNumber = this.numberPassenger;
 		if(currentNumber-number >= 0) {

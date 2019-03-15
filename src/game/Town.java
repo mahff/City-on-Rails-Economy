@@ -9,7 +9,6 @@ import java.util.Date;
 import core.TimerEngine;
 import core.VariableRepository;
 
-
 public class Town {
 	TimerEngine timer = new TimerEngine();
 	private int length;
@@ -18,14 +17,13 @@ public class Town {
 	private int funds;
 	private ArrayList<Line> townLines;
 	
+	
 	public Town (int length) {
 		VariableRepository.getInstance().register("NumberOfDistricts", 0);
 		VariableRepository.getInstance().register("NumberOfLines", 0);
 		VariableRepository.getInstance().register("NumberOfStations", 0);
 		
 		setTownLines(new ArrayList<Line>());
-		// Initial Value
-		// funds = 70000;
 		
 		// Value for testing purpose
 		funds = 700000;
@@ -55,7 +53,6 @@ public class Town {
 	public void setLength(int length) {
 		this.length = length;
 	}
-
 
 	/**
 	 * @return the map
@@ -95,12 +92,26 @@ public class Town {
 	public void setFunds(int funds) {
 		this.funds = funds;
 	}
-
-
 	
-
 	/**
-	 * 
+	 * @return the townLines
+	 */
+	public ArrayList<Line> getTownLines() {
+		return townLines;
+	}
+	/**
+	 * @param townLines the townLines to set
+	 */
+	public void setTownLines(ArrayList<Line> townLines) {
+		this.townLines = townLines;
+	}
+
+
+/*************************************************************************************************/
+	
+	
+	/**
+	 * Get the district at the given position
 	 * @param positionX
 	 * @param positionY
 	 * @return the district of the map at the given position
@@ -109,8 +120,9 @@ public class Town {
 		return map[positionX][positionY];
 	}
 
+	
 	/**
-	 * 
+	 * Set the district at the given position
 	 * @param positionX
 	 * @param positionY
 	 * @param district
@@ -122,9 +134,10 @@ public class Town {
 	
 /*************************************************************************************************/
 	
-	/** 
+	
+	/*
 	 * Print the current map 
-	 * */
+	 */
 	public void printMap() 
 	{
 		System.out.println("\nMAP :\n");
@@ -139,21 +152,27 @@ public class Town {
 	}
 	
 	
+	/**
+	 * Test if it's the end of the game, return 0 to contiue, -1 to end with a defeat and 1 to end with a victory
+	 * @return -1, 1 or 0
+	 */
 	public int endGame() {
 		if(this.getFunds()<=-20000 || (this.getGeneralSatisfaction()<=5 && this.getGeneralPopulation() > 100)) {
-			//defaite
 			return -1;
 		}
 		else if(this.getGeneralSatisfaction()>=100) {
-			//victoire
 			return 1;
 		}
-		return 0; //continuer
+		return 0;
 	}
 	
-	
+
+	//TODO retirer la ligne dans les statistiques
+	/**
+	 * Remove a line from the city (all stations)
+	 * @param line
+	 */
 	public void removeLine(Line line) {
-		//TODO retirer la ligne dans les statistiques
 		ArrayList<Station> stations = line.getStations();
 		
 		for(Station station : stations) {
@@ -161,8 +180,10 @@ public class Town {
 		}
 	}
 	
+	
 /*************************************************************************************************/
 				/*City statitics*/
+//TODO COMMENTAIRES
 	
 	public int getGeneralSatisfaction() {
 		int generalSatisfaction = 0;
@@ -223,8 +244,10 @@ public class Town {
 		return numberOfDistricts;
 	}
 
+	
 /*************************************************************************************************/
 				/*Funds management*/
+	
 	
 	public int getStationConstructionPrice() {
 		if(funds>=500000) return 100000;
@@ -376,18 +399,5 @@ public class Town {
 		 funds += amount;
 		 //...
 	}
-
-
-	public ArrayList<Line> getTownLines() {
-		return townLines;
-	}
-
-
-	public void setTownLines(ArrayList<Line> townLines) {
-		this.townLines = townLines;
-	}
-	
-/*************************************************************************************************/
-	
 	
 }

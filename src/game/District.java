@@ -39,6 +39,7 @@ public class District {
 	public void setPopulation(int population) {
 		this.population = population;
 	}
+	
 	/**
 	 * @return the station
 	 */
@@ -102,6 +103,7 @@ public class District {
 	}
 	
 	
+/*************************************************************************************************/
 	
 	
 	/**
@@ -117,14 +119,17 @@ public class District {
 	}
 	
 	
+	//TODO retirer la station dans les statistiques
+	/**
+	 * Remove the station and the lines that cross it
+	 */
 	public void removeStation() {
-		//TODO retirer la station dans les statistiques
 		//supprimer les lignes
 		Station station = this.getStation();
 		ArrayList<Line> lines = station.getLines();
 		ArrayList<Station> stationsToModify = new ArrayList<Station>();
 		
-		//r�cup toutes les station poss�dant la ligne (toutes les lignes)
+		//recup toutes les station possedant la ligne (toutes les lignes)
 		for(Line line : lines) {
 			stationsToModify.addAll(line.getStations());
 		}

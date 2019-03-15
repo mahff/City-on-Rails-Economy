@@ -80,8 +80,6 @@ public class Line {
 	}
 	
 
-
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -92,7 +90,9 @@ public class Line {
 	}
 	
 	
+/*************************************************************************************************/
 	
+	//TODO CODE FANTOME ???
 	
 	// TODO Amaury - Maybe change to Boolean ? 
 	// public Line buildLine(HashMap<String, Station> stationsParam) {

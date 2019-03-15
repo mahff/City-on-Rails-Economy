@@ -4,9 +4,13 @@ import java.awt.*;
 
 import game.District;
 
-
 public class DistrictInformation {
 	
+	/**
+	 * Return the statistics of the given district
+	 * @param district
+	 * @return content
+	 */
 	public static String updateGeneralInfo(District district) {
 		String content = "<html>"
 				+ "<style> html{ padding-left: 60px; }</style>"
