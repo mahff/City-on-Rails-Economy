@@ -35,7 +35,7 @@ public class DistrictInformation {
 			}
 		
 		content += "Population: "+population+"<br/>"
-				+ "Satisfaction: "+satisfaction+"<br/>"
+				+ "District satisfaction: "+satisfaction+"<br/>"
 				+ "Number of lines (metro): "+nbLines+"<br/>"
 				+ "Presence of station (metro): "+isThereStation+"<br/>"
 				+ "Type: "+type+"</html>";

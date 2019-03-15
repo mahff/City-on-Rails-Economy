@@ -44,7 +44,7 @@ public class GeneralInformation {
 		int funds = town.getFunds();
 		
 		content += "Population: "+generalPopulation+"<br/>"
-				+ "Satisfaction: "+generalSatisfaction+"<br/>"
+				+ "General satisfaction: "+generalSatisfaction+"<br/>"
 				+ "Number of lines (metro): "+generalNbLines+"<br/>"
 				+ "Number of stations (metro): "+generalNbStations+"<br/>"
 				+ "Money: "+funds+" MyLiu </html>";

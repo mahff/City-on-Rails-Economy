@@ -171,7 +171,6 @@ public class Town {
 			{
 				District d = getDistrict(i, j);
 				if(d != null) {
-					System.out.println("Get satisf"); 
 					generalSatisfaction += d.getSatisfaction();
 					div++;
 				}

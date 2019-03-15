@@ -41,9 +41,9 @@ public class FirstView {
     	
     	welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'!", SwingConstants.CENTER);
     	haveFun = new JLabel("Have fun!", SwingConstants.CENTER);
-    	lblCredits = new JLabel("Crée par :", SwingConstants.CENTER);
-    	lblCredits2 = new JLabel("Amhiyen Mahfoud & Bisch Solène & Constant Alexis &", SwingConstants.CENTER);
-    	lblCredits3 = new JLabel("Gilles Anne-Sophie & Ottaviano Aurélien & Siharath Amaury", SwingConstants.CENTER);
+    	lblCredits = new JLabel("Created by :", SwingConstants.CENTER);
+    	lblCredits2 = new JLabel("Amhiyen Mahfoud & Bisch SolÃ¨ne & Constant Alexis &", SwingConstants.CENTER);
+    	lblCredits3 = new JLabel("Gilles Anne-Sophie & Ottaviano AurÃ©lien & Siharath Amaury", SwingConstants.CENTER);
     	
     	//Image
 		try {
@@ -131,20 +131,10 @@ public class FirstView {
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
-	    
-        
-        // listeners
-        close.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				closeFrame();
+        frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
 			}
-    	});
-        
-		frame.addWindowListener(new WindowAdapter() {
-			  public void windowClosing(WindowEvent e) {
-				   closeFrame();
-			  }
 		});
     }
 
@@ -167,7 +157,16 @@ public class FirstView {
     	    public void actionPerformed(ActionEvent e) {
     	        System.out.println("Going to Map!"+e);
     	        frame.dispose();
-    	        new MapArea(); 
+    	        EventQueue.invokeLater(new Runnable() {
+    				public void run() {
+    					try {
+    						RailsTestAmo window = new RailsTestAmo();
+    						window.frame.setVisible(true);
+    					} catch (Exception e) {
+    						e.printStackTrace();
+    					}
+    				}
+    			});
     	    }
     	});
     }

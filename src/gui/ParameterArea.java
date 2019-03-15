@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.TimerTask;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ import game.Town;
 public class ParameterArea {
 	public static JComboBox<String> districtType;
 	public static JPanel districtPanel;
-	private static JLabel generalInfo; 
+	static JLabel generalInfo; 
 	private static JLabel districtInfo;
 	
 	
@@ -80,5 +81,6 @@ public class ParameterArea {
 	public void changeDistrictInformation(District district) {
 		districtInfo.setText(DistrictInformation.updateGeneralInfo(district));
 	}
+
 	
 }

@@ -1,47 +1,22 @@
 package gui;
 
 import java.awt.CardLayout;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import game.Town;
+public class RailsTestAmo extends JFrame  {
 
-public class RailsTestAmo extends JFrame implements ActionListener {
-
-	private JFrame frame;
+	JFrame frame;
 	private JPanel card1;
 	private JPanel card2;
 	private JPanel cards;
-	private JButton testButton;
 	private CardLayout cardsLayout;
-	private JTextField txtJopokjomj;
 	private EditMenu menu;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RailsTestAmo window = new RailsTestAmo();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
 	public RailsTestAmo() {
 		initialize();
 	}
@@ -74,21 +49,23 @@ public class RailsTestAmo extends JFrame implements ActionListener {
 		cards = new JPanel(cardsLayout);
 		cards.add(card1, "Panel1");
 		
-		testButton = new JButton("Test");
-		testButton.setBounds(181, 107, 57, 25);
-		testButton.addActionListener(this);
-		card1.add(testButton);
 		cards.add(card2, "Panel2");
 		
-		
-		frame.add(cards);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		frame.setJMenuBar(menu.getMenu());
 		cardsLayout.next(cards);
+		frame.add(cards);
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				closeFrame(); 
+			}
+		});
 	}
+	public void closeFrame() {
+		int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program?",JOptionPane.YES_NO_OPTION);
+	    if (confirmed == JOptionPane.YES_OPTION) {
+	    		System.exit(0);
+	    }
+	}
+	
 
 }
