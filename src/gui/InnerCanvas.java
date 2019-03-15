@@ -305,9 +305,15 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     			lastPoint = actualPoint;
     			actualPoint = point;
     			
+    			Color c = Color.getHSBColor(0.0f, 1.0f, 1.0f);
+    			
     			if ( actualPoint != null && lastPoint != null ) {
-    				this.g.setColor(Color.RED);
-					this.g.drawLine((int) lastPoint.getX() + guiScaleMiddle, (int) lastPoint.getY() + guiScaleMiddle, (int) actualPoint.getX() + guiScaleMiddle, (int) actualPoint.getY() + guiScaleMiddle);
+    				int i;
+    				for(i=0; i<20; i++) {
+    					c = Color.getHSBColor(i*0.15f, 1.0f, 1.0f);
+    					this.g.setColor(c);
+    					this.g.drawLine((int) lastPoint.getX() + guiScaleMiddle, (int) lastPoint.getY() + guiScaleMiddle, (int) actualPoint.getX() + guiScaleMiddle, (int) actualPoint.getY() + guiScaleMiddle);
+    				}
     			}
     			// =========================
     			/*
