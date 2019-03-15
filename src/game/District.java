@@ -124,7 +124,7 @@ public class District {
 		ArrayList<Line> lines = station.getLines();
 		ArrayList<Station> stationsToModify = new ArrayList<Station>();
 		
-		//récup toutes les station possédant la ligne (toutes les lignes)
+		//rï¿½cup toutes les station possï¿½dant la ligne (toutes les lignes)
 		for(Line line : lines) {
 			stationsToModify.addAll(line.getStations());
 		}

@@ -131,5 +131,31 @@ public class Station {
 			}
 		}
 	}
+	
+	
+	public void addPassenger() {
+		int currentPassengers = this.getNumberPassenger();
+		this.setNumberPassenger(currentPassengers++);
+		
+		int newNumber = this.getNumberPassenger();
+		int capacity = this.getCapacity();
+		if(newNumber >= capacity) {
+			this.setOverload(true);
+		}
+	}
+	
+	
+	public void removePassenger(int number) {
+		int currentNumber = this.numberPassenger;
+		if(currentNumber-number >= 0) {
+			this.numberPassenger = currentNumber-number;
+		}
+		
+		int newNumber = this.getNumberPassenger();
+		int capacity = this.getCapacity();
+		if(newNumber < capacity) {
+			this.setOverload(false);
+		}
+	}
 
 }
