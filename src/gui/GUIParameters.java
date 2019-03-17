@@ -1,13 +1,11 @@
 package gui;
 
-import javax.swing.text.Position;
-
 public class GUIParameters {
-	public static final int WINDOW_WIDTH = 900 * 4/3;
+	public static final int WINDOW_WIDTH = 890 * 4/3;
 
-	public static final int BASIC = WINDOW_WIDTH / (900 * 4/3);
+	public static final int BASIC = WINDOW_WIDTH / (890 * 4/3);
 
-	public static final int WINDOW_HEIGHT = BASIC * 750 * 4 / 3;
+	public static final int WINDOW_HEIGHT = BASIC * 680 * 4 / 3;
 
 	public static final int SCALE = BASIC * 70;
 	

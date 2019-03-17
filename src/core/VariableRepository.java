@@ -1,10 +1,8 @@
 package core;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import game.Line;
 
 
 // Here are the keys and the values of the objects stored in this VariableRepository.

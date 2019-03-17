@@ -1,33 +1,25 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+
 import java.util.ArrayList;
 import java.util.Date;
+
 import javax.swing.Timer;
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
-import game.State;
-import game.Station;
+
+import game.*;
 import core.VariableRepository;
-import game.Business;
-import game.District;
-import game.Line;
-import game.Moving;
-import game.Resident;
-import game.Town;
 
 public class InnerCanvas extends JComponent implements MouseListener, MouseMotionListener,ActionListener {
+	private static final long serialVersionUID = 1L;
+	
+	
 	private Point mousePosition;
 	ParameterArea paramarea; 
 	private BufferedImage grassImage;
@@ -42,8 +34,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	private static Town town;
 	private Graphics2D g;
 	// For alpha purpose
-	private static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
+	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
 	Timer timer;
+	
+	
 	public InnerCanvas (Town town) {
 		InnerCanvas.town = town;
 		 
@@ -86,9 +80,11 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 		
         paintTown();
         drawMouseCursor();
+        
         this.buildArrayListLinesPoints();
         drawLines();
 
+        
         // System.out.println(this.town.getTownLines());
         /*
         if ( StateMachine.getInstance().getState() == State.BUILDING ) {
@@ -118,7 +114,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	xPos = (int) xPos / guiScale;
     	yPos = (int) yPos / guiScale;
     	
-    	this.g.setColor(Color.GREEN);
+    	this.g.setColor(new Color(26, 255, 26, 120));
     	this.g.fillRect(xPos*guiScale, yPos * guiScale, guiScale, guiScale);
     	repaint();
     	// repaint();
@@ -132,10 +128,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 		for (int i = 0; i < InnerCanvas.town.getLength(); i++) {
 			for (int j = 0; j < InnerCanvas.town.getLength(); j++) {
 				x = j*guiScale;
-				y= i*guiScale;
+				y = i*guiScale;
 				this.g.drawRect(x, y, guiScale, guiScale);
-				this.g.drawString("["+ String.valueOf(i)+" "+String.valueOf(j) +"]", j*guiScale, i*guiScale);
-				this.g.setColor(Color.LIGHT_GRAY);
+				this.g.drawString("["+ String.valueOf(i)+" "+String.valueOf(j) +"]", j*guiScale+2, i*guiScale+67);
+				this.g.setColor(new Color(195, 203, 213));
 				
 				if (InnerCanvas.town.getDistrict(j, i) != null) {
 					Color color = InnerCanvas.town.getDistrict(j, i).getColor();
@@ -217,20 +213,15 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	
     	if(town.getDistrict((int)xPosss, (int)yPosss) != null) {
     		if (DistrictOptions.canBuildStation()) {
-    			String choice = DistrictOptions.getSelectedType();
     			boolean isBuild = false;
     			
-    	    	// if (choice == "Station") {
-	    		Station newStation = new Station(30, false, 0, new Moving(0, new Date(), new Date()));
-	    		        		
+    			Station newStation = new Station(30, false, 0, new Moving(0, new Date(), new Date()));
+    			
         		District currentDistrict = town.getDistrict((int) xPosss, (int) yPosss);
-        		
-        		// Color currentDistrictColor = currentDistrict.getColor();
     			Station currentDistrictStation = currentDistrict.getStation();
     			
     			if(currentDistrictStation == null) {
     				isBuild = true;
-    				// currentDistrict.setStation(newStation);
     			}
     			
     			if(isBuild) {
@@ -288,10 +279,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     }
     
 	public void drawLines() {
-    	int guiScale = GUIParameters.SCALE;
     	int guiScaleMiddle = GUIParameters.SCALE_MIDDLE;
     	Point lastPoint = null;
     	Point actualPoint = null;
+    	
     	for (ArrayList<Point> pointsArrayList : InnerCanvas.ArrayListOfPointsArrayList) {
     		// System.out.println(pointsArrayList.size());
     		for (Point point : pointsArrayList) {
@@ -310,6 +301,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     				for(i=0; i<20; i++) {
     					c = Color.getHSBColor(i*0.15f, 1.0f, 1.0f);
     					this.g.setColor(c);
+    					this.g.setStroke(new BasicStroke(3.0f));
     					this.g.drawLine((int) lastPoint.getX() + guiScaleMiddle, (int) lastPoint.getY() + guiScaleMiddle, (int) actualPoint.getX() + guiScaleMiddle, (int) actualPoint.getY() + guiScaleMiddle);
     				}
     			}
@@ -331,7 +323,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
         	actualPoint = null;
 			
 		}
-    	
     	repaint();
     }
     
@@ -390,8 +381,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     
     // TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
     public static void createLine() {
-    	ArrayList<Station> tempArrayListForLineBuilding = (ArrayList<Station>) VariableRepository.getInstance().searchByName("stationArrayListForLineBuilding");
+@SuppressWarnings("unchecked")
+		ArrayList<Station> tempArrayListForLineBuilding = (ArrayList<Station>) VariableRepository.getInstance().searchByName("stationArrayListForLineBuilding");
     	
+@SuppressWarnings("unchecked")
     	ArrayList<Station> copy = (ArrayList<Station>) tempArrayListForLineBuilding.clone();
     	
     	// System.out.println(tempArrayListForLineBuilding);

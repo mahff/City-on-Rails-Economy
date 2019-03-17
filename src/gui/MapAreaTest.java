@@ -16,6 +16,7 @@ public class MapAreaTest extends JPanel {
 	private BufferedImage img2;
 	*/
 	private JSplitPane sp, sp2;
+@SuppressWarnings("unused")
 	private EditMenu menu;
 	public static ParameterArea paramDistrict;
 	public static ParameterArea paramCity;
@@ -24,7 +25,7 @@ public class MapAreaTest extends JPanel {
 	
 	public MapAreaTest() {
         setBorder(BorderFactory.createLineBorder(Color.black));
-        this.town = new Town(20);
+        this.town = new Town(11);
         
         canvas = new InnerCanvas(this.town);
     	menu = new EditMenu();
@@ -36,7 +37,7 @@ public class MapAreaTest extends JPanel {
 		sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, EventInformation.setEnventInfo());
 		
 		sp.setDividerLocation(300*4/3);
-		sp2.setDividerLocation(650*4/3);
+		sp2.setDividerLocation(580*4/3);
 		sp.setEnabled(false); 
 		sp2.setEnabled(false);
 		

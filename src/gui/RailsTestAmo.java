@@ -8,7 +8,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class RailsTestAmo extends JFrame  {
-
+	private static final long serialVersionUID = 1L;
+	
+	
 	JFrame frame;
 	private JPanel card1;
 	private JPanel card2;
@@ -54,18 +56,25 @@ public class RailsTestAmo extends JFrame  {
 		frame.setJMenuBar(menu.getMenu());
 		cardsLayout.next(cards);
 		frame.add(cards);
+		
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				closeFrame(); 
 			}
 		});
 	}
+
+
+	/**
+	 * Close the frame with a confirm dialog
+	 */
 	public void closeFrame() {
-		int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program?",JOptionPane.YES_NO_OPTION);
+    	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program?",JOptionPane.YES_NO_OPTION);
 	    if (confirmed == JOptionPane.YES_OPTION) {
 	    		System.exit(0);
 	    }
-	}
-	
+    }
 
 }

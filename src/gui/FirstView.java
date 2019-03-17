@@ -44,8 +44,8 @@ public class FirstView {
     	welcome = new JLabel("Welcome on RailCity, you can start a 'new game', or load a 'back up'!", SwingConstants.CENTER);
     	haveFun = new JLabel("Have fun!", SwingConstants.CENTER);
     	lblCredits = new JLabel("Created by :", SwingConstants.CENTER);
-    	lblCredits2 = new JLabel("Amhiyen Mahfoud & Bisch Solène & Constant Alexis &", SwingConstants.CENTER);
-    	lblCredits3 = new JLabel("Gilles Anne-Sophie & Ottaviano Aurélien & Siharath Amaury", SwingConstants.CENTER);
+    	lblCredits2 = new JLabel("Amhiyen Mahfoud & Bisch Solene & Constant Alexis &", SwingConstants.CENTER);
+    	lblCredits3 = new JLabel("Gilles Anne-Sophie & Ottaviano Aurelien & Siharath Amaury", SwingConstants.CENTER);
     	
     	//Image
 		try {
@@ -79,8 +79,6 @@ public class FirstView {
         Color purple = new Color(51, 102, 204);
         Font font = new Font("Tahoma", Font.BOLD, 16);
         Font fontCredits = new Font("Tahoma", Font.BOLD | Font.ITALIC, 16);
-        
-        view.setBackground(Color.WHITE);
         
         newGame.setBackground(blue);
         backup.setBackground(blue);
@@ -133,11 +131,19 @@ public class FirstView {
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
+        
         frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				System.exit(0);
+				closeFrame();
 			}
 		});
+        
+        close.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				closeFrame();
+			}
+    	});
     }
 
     
