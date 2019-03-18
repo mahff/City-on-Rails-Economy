@@ -117,7 +117,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	this.g.setColor(new Color(26, 255, 26, 120));
     	this.g.fillRect(xPos*guiScale, yPos * guiScale, guiScale, guiScale);
     	repaint();
-    	// repaint();
     }
     
     public void paintTown() {
@@ -189,24 +188,32 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			
     		if (choice == "Residential") {
     			newDistrict = new Resident();
-				
 				isBuild = true;
-        	} else if (choice == "Business") {
+        	} 
+    		else if (choice == "Business") {
         		newDistrict = new Business();
 				isBuild = true;
-        	} else if (choice == "State") {
+        	} 
+    		else if (choice == "State") {
         		newDistrict = new State();
+				boolean canBuild = town.payStateDistrictConstruction();
 				
-				town.payDistrictConstruction();
-				
-				isBuild = true;
+				if(canBuild) {
+					isBuild = true;
+				}
+				else {
+					isBuild = false;
+					EventInformation.notEnoughMoney();
+				}
         	} 
     		
     		if(isBuild) {
 				town.setDistrict((int)xPosss, (int)yPosss, newDistrict);
-				// buttonMap[posX][posY].setIcon(img);
-				// town.payStationConstruction();
-				// EventInformation.addStation();
+
+				if(choice == "Business") {
+					town.changeDensity("business", (int)xPosss, (int)yPosss, true);
+				}
+				
 				EventInformation.addDistrict(choice);
 			}
     	}
@@ -215,7 +222,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     		if (DistrictOptions.canBuildStation()) {
     			boolean isBuild = false;
     			
-    			Station newStation = new Station(30, false, 0, new Moving(0, new Date(), new Date()));
+    			Station newStation = new Station(50, false, 0);
     			
         		District currentDistrict = town.getDistrict((int) xPosss, (int) yPosss);
     			Station currentDistrictStation = currentDistrict.getStation();
@@ -225,11 +232,19 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     			}
     			
     			if(isBuild) {
-					town.getDistrict((int) xPosss, (int) yPosss).setStation(newStation);
-					// buttonMap[posX][posY].setIcon(img);
-					town.payStationConstruction();
+					boolean canBuild = town.payStationConstruction();
 					
-					EventInformation.addStation();
+					if(canBuild) {
+						currentDistrict.setStation(newStation);
+
+						town.changeDensity("station", (int)xPosss, (int)yPosss, true);
+						
+						EventInformation.addStation();
+					}
+					else {
+						EventInformation.notEnoughMoney();
+					}
+					
 				}
     		}
     		

@@ -70,6 +70,8 @@ public class Moving {
 		for(int i=0 ; i<townLength ; i++){
 			for(int j=0 ; j<townLength ; j++){
 				District currentDistrict = town.getDistrict(i, j);
+				int numberOfAngryPeople = 0;
+				int numberOfHappyPeople = 0;
 				
 				if(currentDistrict.getColor() == Resident.residentColor) {
 					int population = currentDistrict.getPopulation();
@@ -114,16 +116,23 @@ public class Moving {
 									
 									currentDistrict.removePeople(1);
 									
-									//TODO réduire la satisfaction
+									
+									numberOfAngryPeople++;
 								}
 								else {
-									//TODO augmenter la satisfaction en fonction de la distance etc
+									numberOfHappyPeople++;
 								}
 							}
 						}
 					}
+					
+					if(numberOfHappyPeople > numberOfAngryPeople) {
+						town.changeDensity("moving", i, j, true);
+					}
+					else {
+						town.changeDensity("moving", i, j, false);
+					}
 				}
-				
 			}
 		}
 	}

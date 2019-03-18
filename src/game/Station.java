@@ -7,13 +7,12 @@ import core.VariableRepository;
 public class Station {
 	private int capacity; 
 	private Boolean overload; 
-	private int numberPassenger; 
-	private Moving moving; 
+	private int numberPassenger;
 	private ArrayList<Line> lines;
 	private String name;
 	
 	
-	public Station(int capacity, Boolean overload, int numberPassenger, Moving moving) {
+	public Station(int capacity, Boolean overload, int numberPassenger) {
 		int numberOfStations = (int) VariableRepository.getInstance().searchByName("NumberOfStations");
 		
 		this.lines = new ArrayList<Line>();
@@ -21,7 +20,6 @@ public class Station {
 		this.setCapacity(capacity);
 		this.setOverload(overload);
 		this.setNumberPassenger(numberPassenger);
-		this.setMoving(moving);
 		
 		this.setName("Station " + numberOfStations);
 		VariableRepository.getInstance().register("NumberOfStations", numberOfStations++);
@@ -68,19 +66,6 @@ public class Station {
 	}
 
 	/**
-	 * @return the moving
-	 */
-	public Moving getMoving() {
-		return moving;
-	}
-	/**
-	 * @param moving the moving to set
-	 */
-	public void setMoving(Moving moving) {
-		this.moving = moving;
-	}
-
-	/**
 	 * @return the lines
 	 */
 	public ArrayList<Line> getLines() {
@@ -112,7 +97,7 @@ public class Station {
 	 */
 	public String toString() {
 		StringBuffer toReturn = new StringBuffer();
-		toReturn.append("Station Informations : \n\tCapacity : " + this.capacity + " \n\t" + "Overload state : " + this.overload + " \n\tNumber of Passengers : " + this.numberPassenger + " \n\tMoving States : " + this.moving + "\n\tLines List :" + this.lines.size() + ".\n");
+		toReturn.append("Station Informations : \n\tCapacity : " + this.capacity + " \n\t" + "Overload state : " + this.overload + " \n\tNumber of Passengers : " + this.numberPassenger + "\n\tLines List :" + this.lines.size() + ".\n");
 		return toReturn.toString();
 	}
 	

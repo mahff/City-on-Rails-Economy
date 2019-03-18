@@ -64,10 +64,18 @@ public class EventInformation {
 	public static void addLine(ArrayList<Station> stations) {
 		String stationsList = "";
 		
-		for(Station station : stations) {
-			stationsList += station.toString() + "/";
+		for(int i=0 ; i<stations.size() ; i++) {
+			stationsList += stations.get(i).getName();
+			if(i != stations.size()-1) {
+				stationsList += " / ";
+			}
 		}
 		
 		listModel.add(0, "A new line has been created (" + stationsList + ")!");
+	}
+	
+	
+	public static void notEnoughMoney() {
+		listModel.add(0, "YOU DON'T HAVE ENOUGH MONEY TO DO THAT!");
 	}
 }

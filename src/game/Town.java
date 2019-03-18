@@ -3,6 +3,7 @@
  */
 package game;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -25,16 +26,14 @@ public class Town {
 		
 		setTownLines(new ArrayList<Line>());
 		
-		// Value for testing purpose
-		funds = 75000;
+		funds = 750000; //TODO 75000 par defaut ? d'apres le CDC
 		
 		this.setLength(length);
-		int dim = this.getLength();
 		
-		map = new District[dim][dim];
+		map = new District[length][length];
 		
-		for(int i=0 ; i<dim ; i++){
-			for(int j=0 ; j<dim ; j++){
+		for(int i=0 ; i<length ; i++){
+			for(int j=0 ; j<length ; j++){
 				setDistrict(i, j, null);
 			}
 		}
@@ -181,20 +180,92 @@ public class Town {
 	}
 	
 	
+	public void changeDensity(String type, int positionX, int positionY, boolean increment) { //increment = true when construction / = false when destruction
+		District currentDistrict = this.getDistrict(positionX, positionY);
+		int satisfaction = currentDistrict.getSatisfaction();
+		
+		if(type == "moving") {
+			if(increment) {
+				satisfaction += 3;
+			}
+			else {
+				satisfaction -= 3;
+			}
+		}
+		else if(type == "station") {
+			if(increment) {
+				satisfaction += 7;
+			}
+			else {
+				satisfaction -= 7;
+			}
+			
+			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
+				for(int j=positionY-1 ; j<=positionY+1 ; j++) {
+					District newCurrentDistrict = this.getDistrict(i, j);
+					int newSatisfaction = newCurrentDistrict.getSatisfaction();
+					
+					if(increment) {
+						newSatisfaction += 4;
+					}
+					else {
+						newSatisfaction -= 4;
+					}
+					
+					newCurrentDistrict.setSatisfaction(newSatisfaction);
+					newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
+				}
+			}
+		}
+		else if(type == "business") {
+			if(increment) {
+				satisfaction += 5;
+			}
+			else {
+				satisfaction -= 5;
+			}
+			
+			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
+				for(int j=positionY-1 ; j<=positionY+1 ; j++) {
+					District newCurrentDistrict = this.getDistrict(i, j);
+					int newSatisfaction = newCurrentDistrict.getSatisfaction();
+					
+					if(increment) {
+						newSatisfaction += 3;
+					}
+					else {
+						newSatisfaction -= 3;
+					}
+					
+					newCurrentDistrict.setSatisfaction(newSatisfaction);
+					newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
+				}
+			}
+		}
+		
+		currentDistrict.setSatisfaction(satisfaction);
+		currentDistrict.calculateDensity(currentDistrict.getColor());
+	}
+	
+	
 /*************************************************************************************************/
 				/*City statitics*/
-//TODO COMMENTAIRES
 	
+	
+	/**
+	 * Return the general satisfaction of the city (average)
+	 * @return generalSatisfaction/div
+	 */
 	public int getGeneralSatisfaction() {
 		int generalSatisfaction = 0;
 		int div = 1;
-		for(int i=0 ; i<this.getLength() ; i++)
-		{
-			for(int j=0 ; j<this.getLength() ; j++)
-			{
-				District d = getDistrict(i, j);
-				if(d != null) {
-					generalSatisfaction += d.getSatisfaction();
+		int length = this.getLength();
+		
+		for(int i=0 ; i<length ; i++){
+			for(int j=0 ; j<length ; j++){
+				District currentDistrict = getDistrict(i, j);
+				if(currentDistrict != null) {
+					generalSatisfaction += currentDistrict.getSatisfaction();
 					div++;
 				}
 			}
@@ -203,15 +274,19 @@ public class Town {
 	}
 	
 	
+	/**
+	 * Return the general population of the city
+	 * @return generalPopulation
+	 */
 	public int getGeneralPopulation() {
 		int generalPopulation = 0;
-		for(int i=0 ; i<this.getLength() ; i++)
-		{
-			for(int j=0 ; j<this.getLength() ; j++)
-			{
-				District d = getDistrict(i, j);
-				if(d != null) {
-					generalPopulation += d.getPopulation();
+		int length = this.getLength();
+		
+		for(int i=0 ; i<length ; i++){
+			for(int j=0 ; j<length ; j++){
+				District currentDistrict = getDistrict(i, j);
+				if(currentDistrict != null) {
+					generalPopulation += currentDistrict.getPopulation();
 				}
 			}
 		}
@@ -219,35 +294,30 @@ public class Town {
 	}
 	
 	
+	/**
+	 * Return the number of stations in the city
+	 * @return numberOfStations
+	 */
 	public int getGeneralNumberOfStation() {
-		District[][] arrayToIterateThrough = this.getMap();
-		int i = 0;
-		int j = 0;
-		int numberOfStations = 0;
-		for (i = 0; i < this.getLength(); i++) {
-			for (j = 0; j < this.getLength(); j++) {
-				if ( arrayToIterateThrough[i][j] != null ) {
-					if ( arrayToIterateThrough[i][j].getStation() != null ) {
-						numberOfStations++;
-					}
-				}
-			}
-		}
-		System.out.println("Numb of station" + numberOfStations + "\n");
-		return numberOfStations;
-		
+		int NumberOfStations = (int) VariableRepository.getInstance().searchByName("NumberOfStations");
+		return NumberOfStations;
 	}
 	
 	
+	/**
+	 * Return the number of lines in the city
+	 * @return numberOfLines
+	 */
 	public int getGeneralNumberOfLines() {
-		int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
-		return numberOfDistricts;
+		int numberOfLines = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
+		return numberOfLines;
 	}
 
 	
 /*************************************************************************************************/
 				/*Funds management*/
 	
+//TODO COMMENTAIRES
 	
 	public int getStationConstructionPrice() {
 		if(funds>=500000) return 100000;
@@ -255,13 +325,32 @@ public class Town {
 		else if(funds>=175000) return 60000;
 		else return 50000;
 	}
+	public int getStationDestructionPrice() {
+		if(funds>=500000) return 30000;
+		else if(funds>=250000) return 25000;		 
+
+		else if(funds>=175000) return 20000;
+		else return 15000;
+	}
+	public int getStationMaintenancePrice() {
+		if(funds>=500000) return 3500;
+		else if(funds>=250000) return 3000;
+		else if(funds>=175000) return 2000;
+		else return 1500;
+	}
 	
 	
-	public int getDistrictConstructionPrice() {
+	public int getStateDistrictConstructionPrice() {
 		if(funds>=500000) return 60000;
 		else if(funds>=250000) return 40000;
 		else if(funds>=175000) return 35000;
 		else return 30000;
+	}
+	public int getStateDistrictMaintenancePrice() {
+		if(funds>=500000) return 7000;
+		else if(funds>=250000) return 5000;
+		else if(funds>=175000) return 4000;
+		else return 3500;
 	}
 	
 	
@@ -271,34 +360,13 @@ public class Town {
 		else if(funds>=175000) return 250000;
 		else return 20000;
 	}
-	
-	
-	public int getStationDestructionPrice() {
-		if(funds>=500000) return 30000;
-		else if(funds>=250000) return 25000;		 
-
-		else if(funds>=175000) return 20000;
-		else return 15000;
-	}
-	
-	
 	public int getLineSegmentDestructionPrice() {
 		if(funds>=500000) return 10000;
 		else if(funds>=250000) return 7000;
 		else if(funds>=175000) return 6000;
 		else return 5000;
 	}
-	
-	
-	public int getStateDistrictMaintainancePrice() {
-		if(funds>=500000) return 7000;
-		else if(funds>=250000) return 5000;
-		else if(funds>=175000) return 4000;
-		else return 3500;
-	}
-	
-	
-	public int getLineMaintainancePrice() {
+	public int getLineMaintenancePrice() {
 		if(funds>=500000) return 2500;
 		else if(funds>=250000) return 2000;
 		else if(funds>=175000) return 1500;
@@ -306,98 +374,117 @@ public class Town {
 	}
 	
 	
-	public int getStationMaintainancePrice() {
-		if(funds>=500000) return 3500;
-		else if(funds>=250000) return 3000;
-		else if(funds>=175000) return 2000;
-		else return 1500;
+	public boolean payStationConstruction(){
+		int price = this.getStationConstructionPrice();
+		if(funds>=price) {
+			funds -= price;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	
-	
-	
-	public void payStationConstruction(){
-		if(funds+20000>=getStationConstructionPrice())
-			funds -= getStationConstructionPrice();
-		else System.out.println("You don't have enough with "+funds); //...
+	public boolean payStationDestruction(){
+		int price = this.getStationDestructionPrice();
+		if(funds>=price) {
+			funds -= price;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	
-	public void payDistrictConstruction(){
-		if(funds+20000>=getDistrictConstructionPrice())
-			funds -= getDistrictConstructionPrice();
-		else  System.out.println("You don't have enough with "+funds); //...
+	public boolean payStateDistrictConstruction(){
+		int price = this.getStateDistrictConstructionPrice();
+		if(funds>=price) {
+			funds -= price;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	
-	public void payLineSegmentConstruction(){
-		if(funds+20000>=getLineSegmentConstructionPrice())
-			funds -= getLineSegmentConstructionPrice();
-		else System.out.println("You don't have enough with "+funds); //...
+	public boolean payLineSegmentConstruction(){
+		int price = this.getLineSegmentConstructionPrice();
+		if(funds>=price) {
+			funds -= price;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public boolean payLineSegmentDestruction(){
+		int price = this.getLineSegmentDestructionPrice();
+		if(funds>=price) {
+			funds -= price;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	
-	public void payStationDestruction(){
-		if(funds+20000>=getStationDestructionPrice())
-			funds -= getStationDestructionPrice();
-		else System.out.println("You don't have enough with "+funds); //...
+//TODO c'est pour chaque élément, c'est pas un prix général O_o ?
+	/**
+	 * Pay the district maintenance
+	 */
+	public void payStateDistrictMaintenance(){
+		funds -= getStateDistrictMaintenancePrice();
+	}
+	/**
+	 * Pay the line maintenance
+	 */
+	public void payLineMaintenance(){
+		funds -= getLineMaintenancePrice();
+	}
+	/**
+	 * Pay the station maintenance
+	 */
+	public void payStationMaintenance(){
+		funds -= getStationMaintenancePrice();
 	}
 	
 	
-	public void payLineSegmentDestruction(){
-		if(funds+20000 >=getLineSegmentDestructionPrice())
-			funds -= getLineSegmentDestructionPrice();
-		else System.out.println("You don't have enough with "+funds); //...
-	}
-	
-	
-	public void payStateDistrictMaintainance(){
-		funds -= getStateDistrictMaintainancePrice();
-	}
-	
-	
-	public void payLineMaintainance(){
-		funds -= getLineMaintainancePrice();
-	}
-	
-	
-	public void payStationMaintainance(){
-		funds -= getStationMaintainancePrice();
-	}
-	
-	
-	public void collectResidentialTaxes(){
-		 int amount = 0;
-		 for(District districts[] : map) {
-			 for(District district : districts){
-				 if(district.getClass().getName()=="Resident") {
-					 int currentAmount = 140*district.getPopulation();
-					 if(district.getSatisfaction()<=10) currentAmount *= 0.95;
-					 else if(district.getSatisfaction()<=5) currentAmount *= 0.7;
-					 else if(district.getSatisfaction()<=3) currentAmount *= 0.6;
-					 amount += currentAmount;
-				 }
-			 }
-		 }
-		 funds += amount;
-		 //...
-	}
-	
-	
-	public void collectBusinessTaxes(){
+	/**
+	 * Collect the taxes of the city
+	 */
+	public void collectTaxes(){
 		int amount = 0;
-		 for(District districts[] : map) {
-			 for(District district : districts){
-				 if(district.getClass().getName()=="Business") {
-					 int currentAmount = 140*district.getPopulation();
-					 if(district.getSatisfaction()<=10) currentAmount *= 0.95;
-					 else if(district.getSatisfaction()<=5) currentAmount *= 0.7;
-					 else if(district.getSatisfaction()<=3) currentAmount *= 0.6;
-					 amount += currentAmount;
-				 }
-			 }
-		 }
-		 funds += amount;
-		 //...
+		int length = this.getLength();
+		
+		for(int i=0 ; i<length ; i++){
+			for(int j=0 ; j<length ; j++){
+				District currentDistrict = getDistrict(i, j);
+				if(currentDistrict != null) {
+					Color currentDistrictColor = currentDistrict.getColor();
+					
+					if(currentDistrictColor == Resident.residentColor || currentDistrictColor == Business.businessColor) {
+						int currentAmount = 140*currentDistrict.getMaxPopulation();
+						int currentSatisfaction = currentDistrict.getSatisfaction();
+						
+						if(currentSatisfaction >= 50) {
+							currentAmount *= 0.95;
+						}
+						else if(currentSatisfaction >= 25) {
+							currentAmount *= 0.7;
+						}
+						else {
+							currentAmount *= 0.6;
+						}
+						
+						amount += currentAmount;
+					}
+				}
+			}
+		}
+		
+		this.funds += amount;
 	}
 	
 }

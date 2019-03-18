@@ -117,7 +117,7 @@ public class MapButton {
 				newDistrict = new State();
 				img = new ImageIcon("state.png");
 				
-				town.payDistrictConstruction();
+				town.payStateDistrictConstruction();
 				
 				isBuild = true;
 			}
@@ -133,7 +133,7 @@ public class MapButton {
 	
 	
 	public void printStation(int posX, int posY) {
-		Station newStation = new Station(30, false, 0, new Moving(0, new Date(), new Date()));
+		Station newStation = new Station(30, false, 0);
 		
 		District currentDistrict = town.getDistrict(posX, posY);
 		

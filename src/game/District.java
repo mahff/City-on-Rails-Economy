@@ -10,7 +10,6 @@ import core.VariableRepository;
 public class District {
 	private int population; //currentPeople
 	private int maxPopulation; //currentMaxPeople (en fonction de la densite)
-	private int totalMaxPeople; //Max sur 1 district avec la densite max = 3 000 (static ?)
 	
 	private Station station;
 	private int satisfaction;
@@ -20,8 +19,6 @@ public class District {
 	
 	public District(int population, int maxPopulation, int satisfaction, Color color) {
 		int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfDistricts");
-		
-		this.setTotalMaxPeople(3000);
 		
 		this.setPopulation(population);
 		this.setMaxPopulation(maxPopulation);
@@ -79,19 +76,6 @@ public class District {
 	 */
 	public void setMaxPopulation(int maxPopulation) {
 		this.maxPopulation = maxPopulation;
-	}
-	
-	/**
-	 * @return the totalMaxPeople
-	 */
-	public int getTotalMaxPeople() {
-		return totalMaxPeople;
-	}
-	/**
-	 * @param totalMaxPeople the totalMaxPeople to set
-	 */
-	public void setTotalMaxPeople(int totalMaxPeople) {
-		this.totalMaxPeople = totalMaxPeople;
 	}
 	
 	/**
@@ -203,6 +187,28 @@ public class District {
 		
 		//supprimer la station du district et donc de la carte
 		this.setStation(null);
+	}
+	
+	
+	public void calculateDensity(Color districtColor) {
+		int satisf = this.getSatisfaction();
+		int pop = 50; //level 1 = 50 pop
+		
+		if(satisf >= 50) {
+			pop = 3000; //level 4 = 3 000 pop
+		}
+		else if(satisf >= 25) {
+			pop = 1000; //level 3 = 1 000 pop
+		}
+		else if(satisf >= 15) {
+			pop = 200; //level 2 = 200 pop
+		}
+		
+		this.setMaxPopulation(pop);
+		
+		if(districtColor == Resident.residentColor) {
+			this.setPopulation(pop);
+		}
 	}
 	
 }
