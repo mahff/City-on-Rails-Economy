@@ -26,7 +26,7 @@ public class Town {
 		setTownLines(new ArrayList<Line>());
 		
 		// Value for testing purpose
-		funds = 700000;
+		funds = 75000;
 		
 		this.setLength(length);
 		int dim = this.getLength();

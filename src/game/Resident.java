@@ -7,6 +7,6 @@ public class Resident extends District{
 	
 	
 	public Resident() {
-		super(50, 10, residentColor);
+		super(50, 50, 10, residentColor);
 	}
 }

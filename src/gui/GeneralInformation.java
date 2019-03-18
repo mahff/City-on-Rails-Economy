@@ -51,7 +51,7 @@ public class GeneralInformation {
 				+ "General satisfaction: "+generalSatisfaction+"<br/>"
 				+ "Number of lines (metro): "+generalNbLines+"<br/>"
 				+ "Number of stations (metro): "+generalNbStations+"<br/>"
-				+ "Money: "+funds+" MyLiu </html>";
+				+ "Money: "+funds+" MyLius </html>";
 		
 		return content;
 	}

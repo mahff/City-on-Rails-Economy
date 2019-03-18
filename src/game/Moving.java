@@ -60,11 +60,11 @@ public class Moving {
 	
 	
 	/**
-	 * Go to work or to state district, calculate time and choose to go or not
+	 * Go to work or state district, calculate time and choose to go or not
 	 * @param town
-	 * @param districtColorToGoTo
+	 * @param toWork
 	 */
-	public void goTo(Town town, Color districtColorToGoTo) {
+	public void goTo(Town town, boolean toWork) {
 		int townLength = town.getLength();
 		
 		for(int i=0 ; i<townLength ; i++){
@@ -75,24 +75,28 @@ public class Moving {
 					int population = currentDistrict.getPopulation();
 					int peopleWhoGoes = -1;
 					
-					if(districtColorToGoTo == Business.businessColor) {
+					if(toWork) {
 						peopleWhoGoes = population;
 					}
-					else if(districtColorToGoTo == State.stateColor) {
-						peopleWhoGoes = (int) (Math.random()%population);
+					else {
+						peopleWhoGoes = (int) Math.random()%population;
 					}
-					
 					
 					for(int p=0 ; p<peopleWhoGoes ; p++) {
 						int cycleForStation = goToNearestStation(town, i, j);
 						int cycleForDistrict = -1;
 						
-						if(districtColorToGoTo == Business.businessColor) {
-							cycleForDistrict = goToNearestDistrictType(town, Business.businessColor, i, j);
+						
+						Color districtColorToGoTo;
+						int random = (int) Math.random()%100+1;
+						if(random <= 50) {
+							districtColorToGoTo = State.stateColor;
 						}
-						else if(districtColorToGoTo == State.stateColor) {
-							cycleForDistrict = goToNearestDistrictType(town, State.stateColor, i, j);
+						else {
+							districtColorToGoTo = Business.businessColor;
 						}
+						
+						cycleForDistrict = goToNearestDistrictType(town, districtColorToGoTo, i, j);
 						
 						
 						if(cycleForStation != -1) {
@@ -108,12 +112,12 @@ public class Moving {
 									Station currentStation = currentDistrict.getStation();
 									currentStation.removePassenger(1);
 									
-									if(districtColorToGoTo == Business.businessColor) {
-										((Business) currentDistrict).removeWorker(1);
-									}
-									else if(districtColorToGoTo == State.stateColor) {
-										((State) currentDistrict).removeVisitor(1);
-									}
+									currentDistrict.removePeople(1);
+									
+									//TODO réduire la satisfaction
+								}
+								else {
+									//TODO augmenter la satisfaction en fonction de la distance etc
 								}
 							}
 						}
@@ -146,22 +150,10 @@ public class Moving {
 						
 						if(currentDistrict.getColor() == districtColor) {
 							int totalPlace = currentDistrict.getPopulation();
-							int currentPeopleNumber = -1;
-							
-							if(districtColor == Business.businessColor) {
-								currentPeopleNumber = ((Business) currentDistrict).getCurrentWorkers();
-							}
-							else if(districtColor == State.stateColor) {
-								currentPeopleNumber = ((State) currentDistrict).getCurrentVisitors();
-							}
+							int currentPeopleNumber = currentDistrict.getPopulation();
 							
 							if(currentPeopleNumber != -1 && currentPeopleNumber <= totalPlace) {
-								if(districtColor == Business.businessColor) {
-									((Business) currentDistrict).addWorker();
-								}
-								else if(districtColor == State.stateColor) {
-									((State) currentDistrict).addVisitor();
-								}
+								currentDistrict.addPerson();
 								
 								return currentCircle;
 							}

@@ -39,7 +39,7 @@ public class ParameterArea {
 		districtInfo.setFont(font);
 		
 		
-		changeDistrictInformation(new District(0,0,Color.WHITE));
+		changeDistrictInformation(new District(0, 0, 0,Color.WHITE));
 	}
 	
 	

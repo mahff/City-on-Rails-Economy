@@ -8,16 +8,23 @@ import java.util.Set;
 import core.VariableRepository;
 
 public class District {
-	private int population;
+	private int population; //currentPeople
+	private int maxPopulation; //currentMaxPeople (en fonction de la densite)
+	private int totalMaxPeople; //Max sur 1 district avec la densite max = 3 000 (static ?)
+	
 	private Station station;
 	private int satisfaction;
 	private Color color;
 	private String name;
 	
 	
-	public District(int population, int satisfaction, Color color) {
+	public District(int population, int maxPopulation, int satisfaction, Color color) {
 		int numberOfDistricts = (int) VariableRepository.getInstance().searchByName("NumberOfDistricts");
+		
+		this.setTotalMaxPeople(3000);
+		
 		this.setPopulation(population);
+		this.setMaxPopulation(maxPopulation);
 		this.setSatisfaction(satisfaction);
 		this.setColor(color);
 		this.setStation(null);
@@ -38,6 +45,53 @@ public class District {
 	 */
 	public void setPopulation(int population) {
 		this.population = population;
+	}
+	
+	/**
+	 * Add a person to the district (Only for Business & State)
+	 */
+	public void addPerson() {
+		int currentPopulation = this.getPopulation();
+		int maxPopulation = this.getMaxPopulation();
+		if(currentPopulation < maxPopulation) {
+			this.population++;
+		}
+	}
+	/**
+	 * Remove the given number of people from the district (Only for Business & State)
+	 * @param number the number to remove
+	 */
+	public void removePeople(int number) {
+		int currentPopulation = this.getPopulation();
+		if(currentPopulation > 0) {
+			this.population = currentPopulation-number;
+		}
+	}
+	
+	/**
+	 * @return the maxPopulation
+	 */
+	public int getMaxPopulation() {
+		return maxPopulation;
+	}
+	/**
+	 * @param maxPopulation the maxPopulation to set
+	 */
+	public void setMaxPopulation(int maxPopulation) {
+		this.maxPopulation = maxPopulation;
+	}
+	
+	/**
+	 * @return the totalMaxPeople
+	 */
+	public int getTotalMaxPeople() {
+		return totalMaxPeople;
+	}
+	/**
+	 * @param totalMaxPeople the totalMaxPeople to set
+	 */
+	public void setTotalMaxPeople(int totalMaxPeople) {
+		this.totalMaxPeople = totalMaxPeople;
 	}
 	
 	/**
@@ -98,7 +152,7 @@ public class District {
 	 */
 	@Override
 	public String toString() {
-		return "District [pop=" + population + ", station=" + station + ", satisfaction=" + satisfaction
+		return "District [station=" + station + ", satisfaction=" + satisfaction
 				+ ", color=" + color + "]";
 	}
 	
