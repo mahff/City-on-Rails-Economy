@@ -60,7 +60,7 @@ public class Moving {
 	
 	
 	/**
-	 * Go to work or state district, calculate time and choose to go or not
+	 * Go to work or state district
 	 * @param town
 	 * @param toWork
 	 */
@@ -103,6 +103,7 @@ public class Moving {
 						
 						if(cycleForStation != -1) {
 							if(cycleForDistrict != -1) {
+								currentDistrict.removePeople(1);
 								
 								//Time in minutes
 								int timeToGoToStation = (int) (cycleForStation*Math.random()%5+1);
@@ -111,17 +112,69 @@ public class Moving {
 								int totalTime = timeToGoToStation + timeToGoToDistrict;
 								
 								if(totalTime > 60) {
-									Station currentStation = currentDistrict.getStation();
-									currentStation.removePassenger(1);
-									
-									currentDistrict.removePeople(1);
-									
-									
 									numberOfAngryPeople++;
 								}
 								else {
 									numberOfHappyPeople++;
 								}
+							}
+							else {
+								numberOfAngryPeople++;
+							}
+						}
+					}
+					
+					if(numberOfHappyPeople > numberOfAngryPeople) {
+						town.changeDensity("moving", i, j, true);
+					}
+					else {
+						town.changeDensity("moving", i, j, false);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * Go back to home
+	 * @param town
+	 */
+	public void goBackHome(Town town) {
+		int townLength = town.getLength();
+		
+		for(int i=0 ; i<townLength ; i++){
+			for(int j=0 ; j<townLength ; j++){
+				District currentDistrict = town.getDistrict(i, j);
+				int numberOfAngryPeople = 0;
+				int numberOfHappyPeople = 0;
+				
+				if(currentDistrict.getColor() != Resident.residentColor) {
+					int population = currentDistrict.getPopulation();
+					
+					for(int p=0 ; p<population ; p++) {
+						int cycleForStation = goToNearestStation(town, i, j);
+						int cycleForDistrict = goToNearestDistrictType(town, Resident.residentColor, i, j);
+						
+						if(cycleForStation != -1) {
+							if(cycleForDistrict != -1) {
+								currentDistrict.removePeople(1);
+								
+								//Time in minutes
+								int timeToGoToStation = (int) (cycleForStation*Math.random()%5+1);
+								int timeToGoToDistrict = (int) (cycleForDistrict*Math.random()%10+1);
+								
+								int totalTime = timeToGoToStation + timeToGoToDistrict;
+								
+								if(totalTime > 60) {
+									numberOfAngryPeople++;
+								}
+								else {
+									numberOfHappyPeople++;
+								}
+							}
+							else {
+								numberOfAngryPeople++;
 							}
 						}
 					}
@@ -158,7 +211,7 @@ public class Moving {
 						District currentDistrict = town.getDistrict(i, j);
 						
 						if(currentDistrict.getColor() == districtColor) {
-							int totalPlace = currentDistrict.getPopulation();
+							int totalPlace = currentDistrict.getMaxPopulation();
 							int currentPeopleNumber = currentDistrict.getPopulation();
 							
 							if(currentPeopleNumber != -1 && currentPeopleNumber <= totalPlace) {
@@ -192,6 +245,7 @@ public class Moving {
 		
 		District myDistrict = town.getDistrict(positionX, positionY);
 		Station myStation = myDistrict.getStation();
+		Station lastStation = myStation;
 		
 		if(myStation != null) {
 			if(myStation.getOverload() == false) {
@@ -200,7 +254,7 @@ public class Moving {
 			}
 		}
 		
-		while(currentCircle<length/2+1) {
+		while(currentCircle <= length/2+1) {
 			for(int i=positionX-currentCircle ; i<=positionX+currentCircle ; i++){
 				for(int j=positionY-currentCircle ; j<=positionY+currentCircle ; j++){
 					
@@ -210,7 +264,12 @@ public class Moving {
 						
 						if(currentStation != null) {
 							if(currentStation.getOverload() == false) {
+								lastStation = currentStation;
 								currentStation.addPassenger();
+								
+								//TODO overload false quand les gens sont montés dans le métro
+								currentStation.setOverload(true);
+								
 								return currentCircle;
 							}
 						}
@@ -221,7 +280,9 @@ public class Moving {
 			currentCircle++;
 		}
 		
-		return -1;
+		lastStation.addPassenger();
+		
+		return currentCircle;
 	}
 	
 }
