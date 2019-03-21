@@ -35,6 +35,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	private Graphics2D g;
 	// For alpha purpose
 	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
+	private static Boolean hasToRefreshLinesPoints;
 	Timer timer;
 	
 	
@@ -63,14 +64,12 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 		
 		
 		VariableRepository.getInstance().register("stationArrayListForLineBuilding", new ArrayList<Station>());
+		hasToRefreshLinesPoints = false;
 	}
 	
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);      
         this.g = (Graphics2D) g;
-        // Graphics2D g2 = (Graphics2D) g;
-        // this.g= this.getGraphics();
-        // Draw Text
         
         try {
 			paintGrass();
@@ -83,16 +82,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
         
         this.buildArrayListLinesPoints();
         drawLines();
-
-        
-        // System.out.println(this.town.getTownLines());
-        /*
-        if ( StateMachine.getInstance().getState() == State.BUILDING ) {
-        	this.collisionDetection();
-        	StateMachine.getInstance().setState(State.IDLE);
-        }
-        */
-        // drawMouseCursor();
     }  
     
     public void paintGrass() throws IOException {
@@ -316,41 +305,59 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
         	actualPoint = null;
 			
 		}
-    	repaint();
+    	
     }
     
 	// TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
     public void buildArrayListLinesPoints() {
     	int guiScale = GUIParameters.SCALE;
     	ArrayList<Line> linesArrayList = town.getTownLines();
-    	ArrayList<Point> actualPointsArrayList = null;
-    
-    	for(Line line : linesArrayList) {
+    	// ArrayList<Point> actualPointsArrayList = null;
+    	
+    	if (hasToRefreshLinesPoints == true) {
+    		InnerCanvas.ArrayListOfPointsArrayList.clear();
+    		for(Line line : linesArrayList) {
+        		
+    			ArrayList<Point> actualPointsArrayList = new ArrayList<Point>();
+        		
+    			for (Station station : line.getStations()) {
+    			
+    				// TODO - Optimize with a while loop, to avoid iterating over the WHOLE town-array while we already found ALL the stations of a line.
+    				for (int i = 0; i < town.getLength(); i++) {
+    					for (int j = 0; j < town.getLength(); j++) {
+    						// System.out.println("testLoop3");
+    						if ( town.getDistrict(j, i) != null && town.getDistrict(j, i).getStation() != null ) {
+    							if (town.getDistrict(j, i).getStation() != null) {
+    								if ( station.equals(town.getDistrict(j, i).getStation())  ) {
+    									actualPointsArrayList.add(new Point(j*guiScale,i*guiScale));
+    								}
+    							}
+    						}
+    					}
+    				}
+    			}
+    			
+    			ArrayList<Point> pointsArrayListToAdd = new ArrayList<Point>(actualPointsArrayList);
+    			InnerCanvas.ArrayListOfPointsArrayList.add(pointsArrayListToAdd);
+    			System.out.println(actualPointsArrayList);
+    			actualPointsArrayList = null;
+				//System.out.println(ArrayListOfPointsArrayList.toString());
+    			
+    			/*
+    			if (!InnerCanvas.ArrayListOfPointsArrayList.contains(actualPointsArrayList)) {
+    				InnerCanvas.ArrayListOfPointsArrayList.add(actualPointsArrayList);
+    				System.out.println(ArrayListOfPointsArrayList.toString());
+    			}
+    			*/
+    			
+    		}
+    		hasToRefreshLinesPoints = false;
     		
-    		actualPointsArrayList = new ArrayList<Point>();
-    		
-			for (Station station : line.getStations()) {
-			
-				// TODO - Optimize with a while loop, to avoid iterating over the WHOLE town-array while we already found ALL the stations of a line.
-				for (int i = 0; i < town.getLength(); i++) {
-					for (int j = 0; j < town.getLength(); j++) {
-						// System.out.println("testLoop3");
-						if ( town.getDistrict(j, i) != null && town.getDistrict(j, i).getStation() != null ) {
-							if (town.getDistrict(j, i).getStation() != null) {
-								if ( station.equals(town.getDistrict(j, i).getStation())  ) {
-									actualPointsArrayList.add(new Point(j*guiScale,i*guiScale));
-								}
-							}
-						}
-					}
-				}
-			}
-			
-			if (!InnerCanvas.ArrayListOfPointsArrayList.contains(actualPointsArrayList)) {
-				InnerCanvas.ArrayListOfPointsArrayList.add(actualPointsArrayList);
-			}
-		}
+    	}
+    	repaint();
+    	
     	// System.out.println(ArrayListOfPointsArrayList.size());
+    	//repaint();
     }
     
     // TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
@@ -374,9 +381,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			town.getTownLines().add(newLine);
 			
 			EventInformation.addLine(tempArrayListForLineBuilding);
+			tempArrayListForLineBuilding.clear();
 			
-			System.out.println("EndBuildingLine");
 			// buildArrayListLinesPoints();
+			hasToRefreshLinesPoints = true;
 		}
     }
     
