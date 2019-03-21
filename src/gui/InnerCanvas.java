@@ -174,11 +174,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	xPosss = (int) xPoss;
     	yPosss = (int) yPoss;
     	
-    	// System.out.println(xPos + " " + yPos + ".\n");
-    	// System.out.println(xPoss + " " + yPoss + ".\n");
-    	// System.out.println(xPosss + " " + yPosss + ".\n");
-    	// System.out.println(this.getParent().getParent());
-    	
     	if(town.getDistrict((int)xPosss, (int)yPosss) == null && DistrictOptions.canBuildDistrict()) {
     		
     		String choice = DistrictOptions.getSelectedType();
@@ -256,8 +251,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     			if(currentDistrict != null && currentDistrict.getStation() != null) {
     				Station currentDistrictStation = currentDistrict.getStation();
     				
-    				tempArrayListForLineBuilding.add(currentDistrictStation);
-    				System.out.println("BuildingLine");
+    				if ( !tempArrayListForLineBuilding.contains(currentDistrictStation) ) {
+    					tempArrayListForLineBuilding.add(currentDistrictStation);
+        				System.out.println("BuildingLine");
+    				}
     			}
     			
     		} 
@@ -299,13 +296,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	Point actualPoint = null;
     	
     	for (ArrayList<Point> pointsArrayList : InnerCanvas.ArrayListOfPointsArrayList) {
-    		// System.out.println(pointsArrayList.size());
     		for (Point point : pointsArrayList) {
-    			/*
-    			if (actualPoint != null) {
-    				lastPoint = actualPoint;
-    			}
-    			*/
     			lastPoint = actualPoint;
     			actualPoint = point;
     			
@@ -320,19 +311,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     					this.g.drawLine((int) lastPoint.getX() + guiScaleMiddle, (int) lastPoint.getY() + guiScaleMiddle, (int) actualPoint.getX() + guiScaleMiddle, (int) actualPoint.getY() + guiScaleMiddle);
     				}
     			}
-    			// =========================
-    			/*
-    			if ( lastPoint == null ) {
-					lastPoint = point;
-				} else if ( actualPoint == null ) {
-					actualPoint = point;
-				} else if ( actualPoint != null && lastPoint != null ) {
-				*/
-					
-					// lastPoint = actualPoint;
-					// actualPoint = null;
-				
-    			
     		}
     		lastPoint = null;
         	actualPoint = null;
@@ -346,22 +324,13 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	int guiScale = GUIParameters.SCALE;
     	ArrayList<Line> linesArrayList = town.getTownLines();
     	ArrayList<Point> actualPointsArrayList = null;
-    	
-    	// System.out.println(town.getTownLines());
-    	/*
-    	Point lastPoint = null;
-    	Point actualPoint = null;
-    	int actualLineIndex = 0;
-    	int totalLineIndex = linesArrayList.size();
-    	*/
-    	
+    
     	for(Line line : linesArrayList) {
-    		// ArrayList<Station> stationsArrayList = line;
-    		// actualLineIndex++;
+    		
     		actualPointsArrayList = new ArrayList<Point>();
-    		// System.out.println("testLoop1");
+    		
 			for (Station station : line.getStations()) {
-				// System.out.println("testLoop2");
+			
 				// TODO - Optimize with a while loop, to avoid iterating over the WHOLE town-array while we already found ALL the stations of a line.
 				for (int i = 0; i < town.getLength(); i++) {
 					for (int j = 0; j < town.getLength(); j++) {
@@ -370,39 +339,27 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 							if (town.getDistrict(j, i).getStation() != null) {
 								if ( station.equals(town.getDistrict(j, i).getStation())  ) {
 									actualPointsArrayList.add(new Point(j*guiScale,i*guiScale));
-									
 								}
-								
 							}
-							/*
-							if ( lastPoint == null ) {
-								lastPoint = new Point(j*guiScale,i*guiScale);
-							} else if ( lastPoint != null ) {
-								actualPoint = new Point(j*guiScale,i*guiScale);
-							} else if ( actualPoint != null && lastPoint != null ) {
-								
-								actualPoint = null;
-								lastPoint = null;
-							}
-							*/
 						}
 					}
 				}
 			}
 			
-			InnerCanvas.ArrayListOfPointsArrayList.add(actualPointsArrayList);
+			if (!InnerCanvas.ArrayListOfPointsArrayList.contains(actualPointsArrayList)) {
+				InnerCanvas.ArrayListOfPointsArrayList.add(actualPointsArrayList);
+			}
 		}
+    	// System.out.println(ArrayListOfPointsArrayList.size());
     }
     
     // TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
     public static void createLine() {
-@SuppressWarnings("unchecked")
+    	@SuppressWarnings("unchecked")
 		ArrayList<Station> tempArrayListForLineBuilding = (ArrayList<Station>) VariableRepository.getInstance().searchByName("stationArrayListForLineBuilding");
     	
-@SuppressWarnings("unchecked")
+    	@SuppressWarnings("unchecked")
     	ArrayList<Station> copy = (ArrayList<Station>) tempArrayListForLineBuilding.clone();
-    	
-    	// System.out.println(tempArrayListForLineBuilding);
     	
     	if (!(DistrictOptions.canBuildLine()) && tempArrayListForLineBuilding.size() > 0 ) {
 			Line newLine = new Line( copy, 20, new Date());
@@ -410,24 +367,13 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			System.out.println(newLine);
 			System.out.println(town.getTownLines());
 			
-			// System.out.println(tempArrayListForLineBuilding);
 			for(Station station : tempArrayListForLineBuilding) {
 				station.addLine(newLine);
 			}
 			
 			town.getTownLines().add(newLine);
-			// System.out.println(newLine);
-			// System.out.println(town.getTownLines());
-			// ArrayListOfPointsArrayList.add(tempArrayListForLineBuilding);
+			
 			EventInformation.addLine(tempArrayListForLineBuilding);
-			// town.payLineSegmentConstruction();
-			
-			// System.out.println(town.getTownLines());
-			
-			
-			// tempArrayListForLineBuilding.clear();
-			
-			
 			
 			System.out.println("EndBuildingLine");
 			// buildArrayListLinesPoints();
@@ -436,7 +382,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     
     @Override
 	public void mouseClicked(MouseEvent arg0) {
-    	// StateMachine.getInstance().setState(State.BUILDING);
 		collisionDetection();
 	}
 
