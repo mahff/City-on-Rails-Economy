@@ -437,34 +437,54 @@ public class Town {
 	/**
 	 * Pay the district maintenance
 	 */
-	public void payStateDistrictMaintenance(){
-		funds -= getStateDistrictMaintainancePrice();
-	}
-	/**
-	 * Pay the line maintenance
-	 */
-	public void payLineMaintenance(){
-		funds -= getLineMaintainancePrice();
-	}
-	/**
-	 * Pay the station maintenance
-	 */
-	public void payStationMaintenance(){
-		funds -= getStationMaintainancePrice();
-	}
-	
 	public void payStateDistrictMaintainance(){
-		funds -= getStateDistrictMaintainancePrice();
+		int quantity = 0;
+		 for(int i=0;i<length;i++) {
+			 for(int j=0;j<length;j++){
+				 if(map[i][j]!=null) {
+					 if(map[i][j].getClass().getName()=="game.State") {
+						 quantity++;
+					 }
+				 }
+			 }
+		 }
+		funds -= quantity*getStateDistrictMaintainancePrice();
 	}
-	
 	
 	public void payLineMaintainance(){
+		int quantity = 0;
+		ArrayList<Line> visited = new ArrayList<Line>();
+		for(int i=0;i<length;i++) {
+			 for(int j=0;j<length;j++){
+				 if(map[i][j]!=null) {
+					 Station station = map[i][j].getStation();
+					 if(station!=null) {
+						 ArrayList<Line> lines = station.getLines();
+						 if(lines!=null) {
+							 for(Line line : lines) {
+								 quantity += line.getStations().size();
+							 }
+						 }
+					 }
+				 }
+			 }
+		 }
 		funds -= getLineMaintainancePrice();
 	}
 	
-	
 	public void payStationMaintainance(){
-		funds -= getStationMaintainancePrice();
+		int quantity = 0;
+		for(int i=0;i<length;i++) {
+			 for(int j=0;j<length;j++){
+				 if(map[i][j]!=null) {
+					 Station station = map[i][j].getStation();
+					 if(station!=null) {
+						 quantity++;
+					 }
+				 }
+			 }
+		 }
+		funds -= quantity*getStationMaintainancePrice();
 	}
 	
 	
