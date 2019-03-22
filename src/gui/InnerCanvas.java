@@ -265,6 +265,28 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     		*/
     	}
     	
+    	//destroy station
+    	if(town.getDistrict((int)xPosss, (int)yPosss) != null && DistrictOptions.canDestroyStation()) {
+    		District currentDistrict = town.getDistrict((int)xPosss, (int)yPosss);
+    		Station currentDistrictStation = currentDistrict.getStation();
+    		if(currentDistrictStation != null) {
+    			
+    			boolean canDestroy = town.payStationDestruction();
+				
+				if(canDestroy) {
+					currentDistrict.removeStation();
+
+					town.changeDensity("station", (int)xPosss, (int)yPosss, false);
+					
+					EventInformation.removeStation();
+				}
+				else {
+					EventInformation.notEnoughMoney();
+				}
+				
+    		}
+    	}
+    	
     	repaint();
     }
     

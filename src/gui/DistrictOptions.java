@@ -19,7 +19,7 @@ public class DistrictOptions {
 	private static JButton destroyStation;
 	private static JButton destroyLine;
 	
-	private static int isCreatingStation = 0, isCreatingLine = 0, isDestroyingStation = 0, isDestroyingLine = 0;
+	private static int isCreatingStation = 0, isCreatingLine = 0, isDestroyingStation = 0;
 	
 	
 	/**
@@ -126,27 +126,26 @@ public class DistrictOptions {
 		destroyStation.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
-    	    	/*
     	    	if(destroyStation.getText() == "Destroy Station") {
     	    		destroyStation();
     	    	}
     	    	else {
     	    		endDestroyStation();
     	    	}
-    	        */
     	    }
     	});
 		destroyLine.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
-    	    	/*
-    	    	if(destroyLine.getText() == "Destroy Line") {
-    	    		destroyLine();
+    	    	String[] lines = {"line 1", "line 2"}; //TODO récupérer les lignes
+    	    	String selected = (String)JOptionPane.showInputDialog(null, "Please select the line to destroy", "Destroy Line", JOptionPane.QUESTION_MESSAGE, null, lines, lines[0]);
+    	    	System.out.println("SELECTED="+selected);
+    	    	
+    	    	if(selected != null) {
+    	    		//TODO trouver ligne correspondante dans town.getTownLines() et appeler town.removeLine()
+        	    	
     	    	}
-    	    	else {
-    	    		endDestroyLine();
-    	    	}
-    	        */
+    	    	
     	    }
     	});
 		
@@ -228,11 +227,37 @@ public class DistrictOptions {
 	
 	
 	/**
+	 * Change the buttons when creating a station
+	 */
+	private static void destroyStation(){
+		destroyStation.setText("Complete Station Deletion");
+		destroyStation.setBounds(5,110,200,25);
+		
+		isDestroyingStation = 1;
+		districtType.setEnabled(false);
+		toggleElements(false, destroyStation);
+	}
+	
+	
+	/**
+	 * Change the buttons when station creation is done
+	 */
+	private static void endDestroyStation() {
+		destroyStation.setText("Destroy Station");
+		destroyStation.setBounds(60,110,122,25);
+		
+		isDestroyingStation = 0;
+		districtType.setEnabled(true);
+		toggleElements(true, destroyStation);
+	}
+	
+	
+	/**
 	 * Return a boolean to know if it's possible to build a district
 	 * @return true or false
 	 */
 	public static boolean canBuildDistrict() {
-		if(isCreatingStation == 0 && isCreatingLine == 0 && isDestroyingStation == 0 && isDestroyingLine == 0) {
+		if(isCreatingStation == 0 && isCreatingLine == 0 && isDestroyingStation == 0) {
 			return true;
 		}
 		return false;
@@ -244,7 +269,7 @@ public class DistrictOptions {
 	 * @return true or false
 	 */
 	public static boolean canBuildStation() {
-		if(isCreatingStation == 1 && isCreatingLine == 0 && isDestroyingStation == 0 && isDestroyingLine == 0) {
+		if(isCreatingStation == 1 && isCreatingLine == 0 && isDestroyingStation == 0) {
 			return true;
 		}
 		return false;
@@ -256,7 +281,19 @@ public class DistrictOptions {
 	 * @return true or false
 	 */
 	public static boolean canBuildLine() {
-		if(isCreatingStation == 0 && isCreatingLine == 1 && isDestroyingStation == 0 && isDestroyingLine == 0) {
+		if(isCreatingStation == 0 && isCreatingLine == 1 && isDestroyingStation == 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	/**
+	 * Return a boolean to know if it's possible to destroy a station
+	 * @return true or false
+	 */
+	public static boolean canDestroyStation() {
+		if(isDestroyingStation == 1) {
 			return true;
 		}
 		return false;

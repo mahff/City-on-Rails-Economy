@@ -61,7 +61,8 @@ public class EventInformation {
 	}
 	
 	
-	//TODO afficher la liste des stations sur lesquelles passe la ligne cr��e, pour l'affichage
+	//TODO afficher la liste des stations sur lesquelles passe la ligne creee, pour l'affichage
+	//TODO affiche toujours "Station 0"
 	/**
 	 * Add a line of text in the event information when adding a line
 	 * @param stations
@@ -77,6 +78,14 @@ public class EventInformation {
 		}
 		
 		listModel.add(0, "A new line has been created (" + stationsList + ")!");
+	}
+	
+	
+	/**
+	 * Add a line of text in the event information when removing a station
+	 */
+	public static void removeStation() {
+		listModel.add(0, "A station has been destroyed!");
 	}
 	
 	

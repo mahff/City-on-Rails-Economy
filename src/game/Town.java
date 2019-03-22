@@ -3,7 +3,6 @@
  */
 package game;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -200,21 +199,22 @@ public class Town {
 			
 			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
 				for(int j=positionY-1 ; j<=positionY+1 ; j++) {
-					District newCurrentDistrict = this.getDistrict(i, j);
-					if(newCurrentDistrict != null ) {
-						int newSatisfaction = newCurrentDistrict.getSatisfaction();
-						System.out.println("new satisfaction = "+newSatisfaction);	 
-						if(increment) {
-							newSatisfaction += 4;
+					if(i>=0 && j>=0 && i<getLength() && j<getLength()) {
+						District newCurrentDistrict = this.getDistrict(i, j);
+						if(newCurrentDistrict != null) {
+							int newSatisfaction = newCurrentDistrict.getSatisfaction();
+							System.out.println("new satisfaction = "+newSatisfaction);	 
+							if(increment) {
+								newSatisfaction += 4;
+							}
+							else {
+								newSatisfaction -= 4;
+							}
+							
+							newCurrentDistrict.setSatisfaction(newSatisfaction);
+							newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 						}
-						else {
-							newSatisfaction -= 4;
-						}
-						
-						newCurrentDistrict.setSatisfaction(newSatisfaction);
-						newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 					}
-					
 				}
 			}
 		}
