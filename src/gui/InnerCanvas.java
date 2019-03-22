@@ -279,6 +279,8 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	repaint();
     }
     
+    private float colorMultiplier=0.0f;
+    
 	public void drawLines() {
     	int guiScaleMiddle = GUIParameters.SCALE_MIDDLE;
     	Point lastPoint = null;
@@ -292,21 +294,18 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     			Color c = Color.getHSBColor(0.0f, 1.0f, 1.0f);
     			
     			if ( actualPoint != null && lastPoint != null ) {
-    				int i;
-    				for(i=0; i<20; i++) {
-    					c = Color.getHSBColor(i*0.15f, 1.0f, 1.0f);
+    					c = Color.getHSBColor(colorMultiplier, 1.0f, 1.0f);
     					this.g.setColor(c);
     					this.g.setStroke(new BasicStroke(3.0f));
     					this.g.drawLine((int) lastPoint.getX() + guiScaleMiddle, (int) lastPoint.getY() + guiScaleMiddle, (int) actualPoint.getX() + guiScaleMiddle, (int) actualPoint.getY() + guiScaleMiddle);
-    				}
+    				
     			}
     		}
     		lastPoint = null;
         	actualPoint = null;
-			
 		}
-    	
     }
+	
     
 	// TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
     public void buildArrayListLinesPoints() {
