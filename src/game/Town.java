@@ -7,11 +7,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 
-import core.TimerEngine;
 import core.VariableRepository;
 
 public class Town {
-	TimerEngine timer = new TimerEngine();
 	private int length;
 	private District[][] map;
 	private Date time;
@@ -337,7 +335,7 @@ public class Town {
 		else if(funds>=175000) return 20000;
 		else return 15000;
 	}
-	public int getStationMaintenancePrice() {
+	public int getStationMaintainancePrice() {
 		if(funds>=500000) return 3500;
 		else if(funds>=250000) return 3000;
 		else if(funds>=175000) return 2000;
@@ -351,7 +349,7 @@ public class Town {
 		else if(funds>=175000) return 35000;
 		else return 30000;
 	}
-	public int getStateDistrictMaintenancePrice() {
+	public int getStateDistrictMaintainancePrice() {
 		if(funds>=500000) return 7000;
 		else if(funds>=250000) return 5000;
 		else if(funds>=175000) return 4000;
@@ -371,7 +369,7 @@ public class Town {
 		else if(funds>=175000) return 6000;
 		else return 5000;
 	}
-	public int getLineMaintenancePrice() {
+	public int getLineMaintainancePrice() {
 		if(funds>=500000) return 2500;
 		else if(funds>=250000) return 2000;
 		else if(funds>=175000) return 1500;
@@ -440,56 +438,73 @@ public class Town {
 	 * Pay the district maintenance
 	 */
 	public void payStateDistrictMaintenance(){
-		funds -= getStateDistrictMaintenancePrice();
+		funds -= getStateDistrictMaintainancePrice();
 	}
 	/**
 	 * Pay the line maintenance
 	 */
 	public void payLineMaintenance(){
-		funds -= getLineMaintenancePrice();
+		funds -= getLineMaintainancePrice();
 	}
 	/**
 	 * Pay the station maintenance
 	 */
 	public void payStationMaintenance(){
-		funds -= getStationMaintenancePrice();
+		funds -= getStationMaintainancePrice();
+	}
+	
+	public void payStateDistrictMaintainance(){
+		funds -= getStateDistrictMaintainancePrice();
 	}
 	
 	
-	/**
-	 * Collect the taxes of the city
-	 */
-	public void collectTaxes(){
+	public void payLineMaintainance(){
+		funds -= getLineMaintainancePrice();
+	}
+	
+	
+	public void payStationMaintainance(){
+		funds -= getStationMaintainancePrice();
+	}
+	
+	
+	public void collectResidentialTaxes(){
+		int amount = 0;
+		 for(int i=0;i<length;i++) {
+			 for(int j=0;j<length;j++){
+				 if(map[i][j]!=null) {
+					 if(map[i][j].getClass().getName()=="game.Resident") {
+						 int currentAmount = 140*map[i][j].getPopulation();
+						 if(map[i][j].getSatisfaction()<=10) currentAmount *= 0.95;
+						 else if(map[i][j].getSatisfaction()<=5) currentAmount *= 0.7;
+						 else if(map[i][j].getSatisfaction()<=3) currentAmount *= 0.6;
+						 amount += currentAmount;
+					 }
+				 }
+			 }
+		 }
+		 funds += amount;
+		 //...
+	}
+	
+	
+	public void collectBusinessTaxes(){
 		int amount = 0;
 		int length = this.getLength();
-		
-		for(int i=0 ; i<length ; i++){
-			for(int j=0 ; j<length ; j++){
-				District currentDistrict = getDistrict(i, j);
-				if(currentDistrict != null) {
-					Color currentDistrictColor = currentDistrict.getColor();
-					
-					if(currentDistrictColor == Resident.residentColor || currentDistrictColor == Business.businessColor) {
-						int currentAmount = 140*currentDistrict.getMaxPopulation();
-						int currentSatisfaction = currentDistrict.getSatisfaction();
-						
-						if(currentSatisfaction >= 50) {
-							currentAmount *= 0.95;
-						}
-						else if(currentSatisfaction >= 25) {
-							currentAmount *= 0.7;
-						}
-						else {
-							currentAmount *= 0.6;
-						}
-						
-						amount += currentAmount;
-					}
-				}
-			}
-		}
-		
-		this.funds += amount;
+		 for(int i=0;i<length;i++) {
+			 for(int j=0;j<length;j++){
+				 if(map[i][j]!=null) {
+					 if(map[i][j].getClass().getName()=="game.Business") {
+						 int currentAmount = 140*map[i][j].getPopulation();
+						 if(map[i][j].getSatisfaction()<=10) currentAmount *= 0.95;
+						 else if(map[i][j].getSatisfaction()<=5) currentAmount *= 0.7;
+						 else if(map[i][j].getSatisfaction()<=3) currentAmount *= 0.6;
+						 amount += currentAmount;
+					 }
+				 }
+			 }
+		 }
+		 funds += amount;
+		 //...
 	}
-	
 }

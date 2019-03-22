@@ -3,6 +3,7 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 
+import core.TimerEngine;
 import game.Town;
 
 
@@ -22,8 +23,10 @@ public class MapAreaTest extends JPanel {
 	public static ParameterArea paramCity;
 	private InnerCanvas canvas;
 	
+	private TimerEngine timer;
 	
 	public MapAreaTest() {
+		timer = new TimerEngine(this);
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.town = new Town(11);
         
@@ -68,6 +71,10 @@ public class MapAreaTest extends JPanel {
 		*/
         // Ugly way of doing this. Need to create a class for drawing
     }
+	
+	public Town getTown() {
+		return town;
+	}
 
     public Dimension getPreferredSize() {
         return new Dimension(GUIParameters.WINDOW_WIDTH,GUIParameters.WINDOW_HEIGHT);

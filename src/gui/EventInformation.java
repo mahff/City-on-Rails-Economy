@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import game.Station;
+import game.Town;
 
 public class EventInformation {
 	private static JList<String> list;
@@ -55,8 +56,12 @@ public class EventInformation {
 		listModel.add(0, "A new station has been created!");
 	}
 	
+	public static void collectTaxes(Town town){
+		listModel.add(0, "We have collected taxes! The municipal treasury holds "+town.getFunds()+" mylius");
+	}
 	
-	//TODO afficher la liste des stations sur lesquelles passe la ligne créée, pour l'affichage
+	
+	//TODO afficher la liste des stations sur lesquelles passe la ligne crï¿½ï¿½e, pour l'affichage
 	/**
 	 * Add a line of text in the event information when adding a line
 	 * @param stations

@@ -5,15 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import gui.EventInformation;
+import gui.FinalView;
+import gui.MapAreaTest;
+
 public class TimerEngine implements ActionListener{
 	
-	private static TimerEngine instance = new TimerEngine();
 	private Timer timer;
+	private MapAreaTest map;
 	// Amaury - Temporary variables for testing purpose
 	private int days;
 	private int hours;
 	
-	public TimerEngine () {
+	public TimerEngine (MapAreaTest mapAreaTest) {
+		this.map = mapAreaTest;
 		hours = 0;
 		days = 0;
 		this.timer = new Timer(1000, this);
@@ -29,14 +34,18 @@ public class TimerEngine implements ActionListener{
 			days+=1;
 			System.out.println(days+" jours sont passés.\n");
 		}
+		if(days%7==0&&hours==0) {
+			map.getTown().collectBusinessTaxes();
+			map.getTown().collectResidentialTaxes();
+			EventInformation.collectTaxes(map.getTown());
+		}
+		if(map.getTown().getFunds()<=-20000) {
+			new FinalView(false);
+		}
 	}
     public void start(){
         //...
     }
-	
-	public static TimerEngine getInstance() {
-		return instance;
-	}
 
 	public Timer getTimerTest() {
 		return timer;
