@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import core.VariableRepository;
+
 public class RailsTestAmo extends JFrame  {
 	private static final long serialVersionUID = 1L;
 	
@@ -64,6 +66,12 @@ public class RailsTestAmo extends JFrame  {
 				closeFrame(); 
 			}
 		});
+		VariableRepository repo = VariableRepository.getInstance();
+		repo.register("mainframe",this);
+	}
+	
+	public JFrame getFrame() {
+		return frame;
 	}
 
 

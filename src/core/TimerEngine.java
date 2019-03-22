@@ -8,6 +8,7 @@ import javax.swing.Timer;
 import gui.EventInformation;
 import gui.FinalView;
 import gui.MapAreaTest;
+import gui.RailsTestAmo;
 
 public class TimerEngine implements ActionListener{
 	
@@ -28,7 +29,6 @@ public class TimerEngine implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		hours++;
-		System.out.println(hours);
 		if ( hours == 6 ) {
 			hours=0;
 			days+=1;
@@ -42,8 +42,11 @@ public class TimerEngine implements ActionListener{
 			map.getTown().payStationMaintainance();
 			map.getTown().payStateDistrictMaintainance();
 		}
-		if(map.getTown().getFunds()<=-20000) {
+		if(map.getTown().getFunds()<=-20000&&hours==0) {
 			new FinalView(false);
+			VariableRepository repo = VariableRepository.getInstance();
+			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
+			rta.getFrame().dispose();
 		}
 	}
     public void start(){
