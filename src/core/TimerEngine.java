@@ -47,6 +47,8 @@ public class TimerEngine implements ActionListener{
 			VariableRepository repo = VariableRepository.getInstance();
 			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
 			rta.getFrame().dispose();
+			//FAUT TROUVER UN MOYEN DE TOUT REINITIALISER
+			timer.stop();
 		}
 	}
     public void start(){
