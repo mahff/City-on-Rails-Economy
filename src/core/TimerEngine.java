@@ -38,6 +38,9 @@ public class TimerEngine implements ActionListener{
 			map.getTown().collectBusinessTaxes();
 			map.getTown().collectResidentialTaxes();
 			EventInformation.collectTaxes(map.getTown());
+			map.getTown().payLineMaintainance();
+			map.getTown().payStationMaintainance();
+			map.getTown().payStateDistrictMaintainance();
 		}
 		if(map.getTown().getFunds()<=-20000) {
 			new FinalView(false);
