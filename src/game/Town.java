@@ -203,17 +203,20 @@ public class Town {
 			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
 				for(int j=positionY-1 ; j<=positionY+1 ; j++) {
 					District newCurrentDistrict = this.getDistrict(i, j);
-					int newSatisfaction = newCurrentDistrict.getSatisfaction();
-					
-					if(increment) {
-						newSatisfaction += 4;
+					if(newCurrentDistrict != null ) {
+						int newSatisfaction = newCurrentDistrict.getSatisfaction();
+						System.out.println("new satisfaction = "+newSatisfaction);	 
+						if(increment) {
+							newSatisfaction += 4;
+						}
+						else {
+							newSatisfaction -= 4;
+						}
+						
+						newCurrentDistrict.setSatisfaction(newSatisfaction);
+						newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 					}
-					else {
-						newSatisfaction -= 4;
-					}
 					
-					newCurrentDistrict.setSatisfaction(newSatisfaction);
-					newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 				}
 			}
 		}
@@ -228,17 +231,19 @@ public class Town {
 			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
 				for(int j=positionY-1 ; j<=positionY+1 ; j++) {
 					District newCurrentDistrict = this.getDistrict(i, j);
-					int newSatisfaction = newCurrentDistrict.getSatisfaction();
-					
-					if(increment) {
-						newSatisfaction += 3;
+					if(newCurrentDistrict != null ) {
+						int newSatisfaction = newCurrentDistrict.getSatisfaction();
+						System.out.println("new satisfaction = "+newSatisfaction);
+						if(increment) {
+							newSatisfaction += 4;
+						}
+						else {
+							newSatisfaction -= 4;
+						}
+						
+						newCurrentDistrict.setSatisfaction(newSatisfaction);
+						newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 					}
-					else {
-						newSatisfaction -= 3;
-					}
-					
-					newCurrentDistrict.setSatisfaction(newSatisfaction);
-					newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 				}
 			}
 		}
@@ -430,7 +435,7 @@ public class Town {
 	}
 	
 	
-//TODO c'est pour chaque élément, c'est pas un prix général O_o ?
+//TODO c'est pour chaque ï¿½lï¿½ment, c'est pas un prix gï¿½nï¿½ral O_o ?
 	/**
 	 * Pay the district maintenance
 	 */
