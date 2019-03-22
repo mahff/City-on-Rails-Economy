@@ -29,7 +29,7 @@ public class TimerEngine implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		hours++;
 		System.out.println(hours);
-		if ( hours == 24 ) {
+		if ( hours == 6 ) {
 			hours=0;
 			days+=1;
 			System.out.println(days+" jours sont passés.\n");
@@ -38,6 +38,9 @@ public class TimerEngine implements ActionListener{
 			map.getTown().collectBusinessTaxes();
 			map.getTown().collectResidentialTaxes();
 			EventInformation.collectTaxes(map.getTown());
+			map.getTown().payLineMaintainance();
+			map.getTown().payStationMaintainance();
+			map.getTown().payStateDistrictMaintainance();
 		}
 		if(map.getTown().getFunds()<=-20000) {
 			new FinalView(false);
