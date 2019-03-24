@@ -27,8 +27,6 @@ public class FirstView {
 	private JButton backup;
 	private JButton close;
     
-    
-	//TODO COMMENTAIRES
 	
     public FirstView() {
     	//Initialize

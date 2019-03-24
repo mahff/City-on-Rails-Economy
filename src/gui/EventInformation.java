@@ -61,7 +61,7 @@ public class EventInformation {
 	}
 	
 	
-	//TODO afficher la liste des stations sur lesquelles passe la ligne creee, pour l'affichage
+	//TODO AMAURY = afficher la liste des stations sur lesquelles passe la ligne creee, pour l'affichage
 	//TODO affiche toujours "Station 0"
 	/**
 	 * Add a line of text in the event information when adding a line

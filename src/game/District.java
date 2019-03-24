@@ -157,7 +157,6 @@ public class District {
 	}
 	
 	
-	//TODO retirer la station dans les statistiques
 	/**
 	 * Remove the station and the lines that cross it
 	 */

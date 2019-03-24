@@ -32,16 +32,8 @@ public class RailsTestAmo extends JFrame  {
 		frame = new JFrame();
 		frame.setBounds(0, 0, GUIParameters.WINDOW_WIDTH,GUIParameters.WINDOW_HEIGHT);
 		frame.setResizable(false);
-		// frame.setBounds(100, 100, 1900,1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// frame.setSize(900*4/3,750*4/3);
-		/*
-		frame.setResizable(false);
-		// frame.add(sp2);
-		
-		// frame.setJMenuBar(menu.getMenu());
 		frame.setLocationRelativeTo(null);
-		*/
 		
 		menu = new EditMenu();
 		card1 = new JPanel();

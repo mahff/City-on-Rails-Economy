@@ -59,7 +59,6 @@ public class EditMenu extends JFrame{
 		menuItemQuit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO : Save avant de quitter ?
 				closeFrame();
 			}
     	});

@@ -1,35 +1,8 @@
 package gui;
 
-/*
-import java.util.Timer;
-import java.util.TimerTask;
-import core.TimerEngine;
-*/
 import game.Town;
 
 public class GeneralInformation {
-	//TODO clock + CODE FANTOME
-	
-	/*
-	private JLabel clock;
-    Timer timer ;
-    int hours;
-    int days;
-	*/
-	
-	/*ANCIEN CONSTRUCTEUR
-	public GeneralInformation(Town town) {
-		clock = new JLabel(); 
-		generalInfo = new JPanel();
-		generalInfo.add(clock);
-		timer = new Timer();
-		hours =  TimerEngine.getInstance().getDaysTestValue();
-		days = 0;
-		start();
-		
-	}
-	*/
-	
 	
 	/**
 	 * Return the statistics of the city
@@ -56,24 +29,4 @@ public class GeneralInformation {
 		return content;
 	}
 	
-	/*
-	private void reset(){
-		hours = 0; 
-        days++; 
-    }
-    public void start(){
-        reset();
-        timer.scheduleAtFixedRate( new TimerTask(){
-            public void run(){
-                if( hours == 15 ) {
-                    reset();
-                }
-                clock.setText( String.format("%d : %02d", days , hours ));
-                clock.setForeground(purple);
-                clock.setFont(font);
-                hours++; 
-            }
-        }, 0, 1000 );
-    }
-	*/
 }

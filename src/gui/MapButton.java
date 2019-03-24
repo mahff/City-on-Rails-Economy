@@ -37,7 +37,7 @@ public class MapButton {
 		
 	    for (int i = 0 ; i < size ; i++) {
 	    	for(int j = 0 ; j < size ; j++) {
-	    		buttonMap[i][j] = new JButton(i+","+j); //TODO utile ?
+	    		buttonMap[i][j] = new JButton(i+","+j);
 	    		buttonMap[i][j].setBackground(Color.WHITE);
 	    		buttonMap[i][j].setForeground(Color.WHITE);
 	    		buttonMap[i][j].setBorderPainted(true);

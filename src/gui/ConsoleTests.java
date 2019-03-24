@@ -96,7 +96,7 @@ public class ConsoleTests {
 		
 		System.out.println(line1.toString());
 		
-		line1.updateStations(stationsArrayList);
+		//line1.updateStations(stationsArrayList);
 		
 		System.out.println("\n==============================================\n");
 		System.out.println(line1.toString());

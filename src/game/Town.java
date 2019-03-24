@@ -162,8 +162,7 @@ public class Town {
 		return 0;
 	}
 	
-
-	//TODO retirer la ligne dans les statistiques
+	
 	/**
 	 * Remove a line from the city (all stations)
 	 * @param line
@@ -228,19 +227,21 @@ public class Town {
 			
 			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
 				for(int j=positionY-1 ; j<=positionY+1 ; j++) {
-					District newCurrentDistrict = this.getDistrict(i, j);
-					if(newCurrentDistrict != null ) {
-						int newSatisfaction = newCurrentDistrict.getSatisfaction();
-						System.out.println("new satisfaction = "+newSatisfaction);
-						if(increment) {
-							newSatisfaction += 4;
+					if(i>=0 && j>=0 && i<getLength() && j< getLength()) {
+						District newCurrentDistrict = this.getDistrict(i, j);
+						if(newCurrentDistrict != null ) {
+							int newSatisfaction = newCurrentDistrict.getSatisfaction();
+							System.out.println("new satisfaction = "+newSatisfaction);
+							if(increment) {
+								newSatisfaction += 4;
+							}
+							else {
+								newSatisfaction -= 4;
+							}
+							
+							newCurrentDistrict.setSatisfaction(newSatisfaction);
+							newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 						}
-						else {
-							newSatisfaction -= 4;
-						}
-						
-						newCurrentDistrict.setSatisfaction(newSatisfaction);
-						newCurrentDistrict.calculateDensity(newCurrentDistrict.getColor());
 					}
 				}
 			}
@@ -299,21 +300,32 @@ public class Town {
 	
 	/**
 	 * Return the number of stations in the city
-	 * @return numberOfStations
+	 * @return nbStations
 	 */
 	public int getGeneralNumberOfStation() {
-		int NumberOfStations = (int) VariableRepository.getInstance().searchByName("NumberOfStations");
-		return NumberOfStations;
+		int nbStations = 0;
+		int length = this.getLength();
+		
+		for(int i=0 ; i<length ; i++){
+			for(int j=0 ; j<length ; j++){
+				District currentDistrict = getDistrict(i, j);
+				if(currentDistrict != null) {
+					if(currentDistrict.getStation() != null) {
+						nbStations++;
+					}
+				}
+			}
+		}
+		return nbStations;
 	}
 	
 	
 	/**
 	 * Return the number of lines in the city
-	 * @return numberOfLines
+	 * @return nbLines
 	 */
 	public int getGeneralNumberOfLines() {
-		int numberOfLines = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
-		return numberOfLines;
+		return getTownLines().size();
 	}
 
 	
@@ -335,7 +347,7 @@ public class Town {
 		else if(funds>=175000) return 20000;
 		else return 15000;
 	}
-	public int getStationMaintainancePrice() {
+	public int getStationMaintenancePrice() {
 		if(funds>=500000) return 3500;
 		else if(funds>=250000) return 3000;
 		else if(funds>=175000) return 2000;
@@ -349,7 +361,7 @@ public class Town {
 		else if(funds>=175000) return 35000;
 		else return 30000;
 	}
-	public int getStateDistrictMaintainancePrice() {
+	public int getStateDistrictMaintenancePrice() {
 		if(funds>=500000) return 7000;
 		else if(funds>=250000) return 5000;
 		else if(funds>=175000) return 4000;
@@ -369,7 +381,7 @@ public class Town {
 		else if(funds>=175000) return 6000;
 		else return 5000;
 	}
-	public int getLineMaintainancePrice() {
+	public int getLineMaintenancePrice() {
 		if(funds>=500000) return 2500;
 		else if(funds>=250000) return 2000;
 		else if(funds>=175000) return 1500;
@@ -433,11 +445,10 @@ public class Town {
 	}
 	
 	
-//TODO c'est pour chaque �l�ment, c'est pas un prix g�n�ral O_o ?
 	/**
-	 * Pay the district maintenance
+	 * Pay the state districts maintenance
 	 */
-	public void payStateDistrictMaintainance(){
+	public void payStateDistrictMaintenance(){
 		int quantity = 0;
 		 for(int i=0;i<length;i++) {
 			 for(int j=0;j<length;j++){
@@ -448,10 +459,14 @@ public class Town {
 				 }
 			 }
 		 }
-		funds -= quantity*getStateDistrictMaintainancePrice();
+		funds -= quantity*getStateDistrictMaintenancePrice();
 	}
 	
-	public void payLineMaintainance(){
+	//TODO pas fini ?
+	/**
+	 * Pay the lines maintenance
+	 */
+	public void payLineMaintenance(){
 		int quantity = 0;
 		ArrayList<Line> visited = new ArrayList<Line>();
 		for(int i=0;i<length;i++) {
@@ -469,10 +484,13 @@ public class Town {
 				 }
 			 }
 		 }
-		funds -= getLineMaintainancePrice();
+		funds -= getLineMaintenancePrice();
 	}
 	
-	public void payStationMaintainance(){
+	/**
+	 * Pay the stations maintenance
+	 */
+	public void payStationMaintenance(){
 		int quantity = 0;
 		for(int i=0;i<length;i++) {
 			 for(int j=0;j<length;j++){
@@ -484,7 +502,7 @@ public class Town {
 				 }
 			 }
 		 }
-		funds -= quantity*getStationMaintainancePrice();
+		funds -= quantity*getStationMaintenancePrice();
 	}
 	
 	

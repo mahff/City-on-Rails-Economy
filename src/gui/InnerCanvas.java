@@ -329,7 +329,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     }
 	
     
-	// TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
     public void buildArrayListLinesPoints() {
     	int guiScale = GUIParameters.SCALE;
     	ArrayList<Line> linesArrayList = town.getTownLines();
@@ -347,9 +346,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     				for (int i = 0; i < town.getLength(); i++) {
     					for (int j = 0; j < town.getLength(); j++) {
     						// System.out.println("testLoop3");
-    						if ( town.getDistrict(j, i) != null && town.getDistrict(j, i).getStation() != null ) {
-    							if (town.getDistrict(j, i).getStation() != null) {
-    								if ( station.equals(town.getDistrict(j, i).getStation())  ) {
+    						if ( town.getDistrict(j, i) != null) {
+    							Station currentStation = town.getDistrict(j, i).getStation();
+    							if (currentStation != null) {
+    								if ( station.equals(currentStation)  ) {
     									actualPointsArrayList.add(new Point(j*guiScale,i*guiScale));
     								}
     							}

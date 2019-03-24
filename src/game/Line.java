@@ -2,7 +2,6 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 
 import core.VariableRepository;
 
@@ -15,8 +14,6 @@ public class Line {
 	
 	public Line(ArrayList<Station> stations, int intervalSubway, Date departureHour) {
 		int numberOfLines = (int) VariableRepository.getInstance().searchByName("NumberOfLines");
-		
-		// this.stations = new ArrayList<Station>();
 		
 		this.setStations(stations);
 		this.setIntervalSubway(intervalSubway);
@@ -88,55 +85,5 @@ public class Line {
 		toReturn.append("Line Informations : \n\tStations : " + this.stations.toString() + " \n\tInterval Subway : " + this.intervalSubway + " \n\tdepartureHour : " + this.departureHour + ".\n");
 		return toReturn.toString();
 	}
-	
-	
-/*************************************************************************************************/
-	
-	//TODO CODE FANTOME ???
-	
-	// TODO Amaury - Maybe change to Boolean ? 
-	// public Line buildLine(HashMap<String, Station> stationsParam) {
-	/*
-	public Line buildLine(HashMap<String, Station> stationsToBuildParam) {
-		// TODO - Update Lines and Stations instances correctly !!!!!
-		Town townInstance = (Town) VariableRepository.getInstance().searchByName("Town");
-		ArrayList<Station> newLineStations = new ArrayList<Station>(); 
-		
-		Collection cl = stationsToBuildParam.values();
-		Iterator itr = cl.iterator();
-		  
-		while (itr.hasNext()) {
-			// System.out.println(itr.next());
-			Station toPutInArrayList = (Station) itr.next();
-			newLineStations.add(toPutInArrayList);
-		}
-		
-		// TODO - 
-		Line lineToCreate = new Line(newLineStations, 5, new Date());
-		
-		// townInstance
-		
-		return lineToCreate;
-	}
-	*/
-	
-	
-	public void updateStations(ArrayList<Station> stationsToBuildParam) {
-		//ArrayList<Station> newLineStations = stationsToBuildParam; 
-		// TODO - Update Lines and Stations instances correctly !!!!!
-		Iterator<Station> itr = stationsToBuildParam.iterator();
-		
-		while (itr.hasNext()) {
-			// System.out.println(itr.next());
-			Station station= (Station) itr.next();
-			station.addLine(this);
-		}
-		
-		// TODO - 
-		// Line lineToCreate = new Line(newLineStations, 5, new Date());
-		
-		// townInstance
-	}
-	
 	
 }
