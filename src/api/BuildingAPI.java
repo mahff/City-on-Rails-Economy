@@ -25,10 +25,7 @@ public class BuildingAPI {
 	public BuildingAPI() {
 		
 	}
-	// touchhhhhhhhhhhhhhhhhhhhh
-	/*
-	 * Weird method to actually return the argument of this method
-	 */
+	
 	public Object returnValue(Object varToReturn) {
 		return varToReturn;
 	}

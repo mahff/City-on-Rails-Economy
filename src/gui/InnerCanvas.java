@@ -34,6 +34,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	// TODO - Find a way to avoid making this attribute as static
 	private static Town town;
 	private Graphics2D g;
+	
 	// For alpha purpose
 	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
 	private static Boolean hasToRefreshLinesPoints;
@@ -48,7 +49,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 		this.addMouseMotionListener(this);
 		this.mousePosition = new Point(0,0);
 		InnerCanvas.ArrayListOfPointsArrayList = new ArrayList<ArrayList<Point>>();
-		// this.g = (Graphics2D) this.getGraphics();
+		
 		timer = new Timer(5000, this);
 		timer.start();
 		try {
@@ -95,7 +96,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     }
     
     public void drawMouseCursor() {
-    	// Point mousePosition = this.getMousePosition();
+    	
     	int guiScale = GUIParameters.SCALE;
     	
     	int xPos = (int) this.mousePosition.getX();
@@ -249,22 +250,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     			}
     			
     		} 
-    		/*
-    		else if (!(DistrictOptions.canBuildLine()) && tempArrayListForLineBuilding.size() > 0 ) {
-    			Line newLine = new Line(tempArrayListForLineBuilding, 20, new Date());
-    			
-    			for(Station station : tempArrayListForLineBuilding) {
-    				station.addLine(newLine);
-    			}
-    			
-    			
-    			EventInformation.addLine(tempArrayListForLineBuilding);
-    			town.payLineSegmentConstruction();
-				
-				tempArrayListForLineBuilding.clear();
-				System.out.println("EndBuildingLine");
-    		}
-    		*/
     	}
     	
     	//destroy station
@@ -364,23 +349,12 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     			InnerCanvas.ArrayListOfPointsArrayList.add(pointsArrayListToAdd);
     			System.out.println(actualPointsArrayList);
     			actualPointsArrayList = null;
-				//System.out.println(ArrayListOfPointsArrayList.toString());
-    			
-    			/*
-    			if (!InnerCanvas.ArrayListOfPointsArrayList.contains(actualPointsArrayList)) {
-    				InnerCanvas.ArrayListOfPointsArrayList.add(actualPointsArrayList);
-    				System.out.println(ArrayListOfPointsArrayList.toString());
-    			}
-    			*/
     			
     		}
     		hasToRefreshLinesPoints = false;
     		
     	}
     	repaint();
-    	
-    	// System.out.println(ArrayListOfPointsArrayList.size());
-    	//repaint();
     }
     
     // TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
@@ -394,8 +368,19 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	if (!(DistrictOptions.canBuildLine()) && tempArrayListForLineBuilding.size() > 1 ) {
 			Line newLine = new Line( copy, 20, new Date());
 			
-			for(Station station : tempArrayListForLineBuilding) {
-				station.addLine(newLine);
+			if ( !town.getTownLines().contains(newLine) ) {
+				for(Station station : tempArrayListForLineBuilding) {
+					station.addLine(newLine);
+				}
+				
+				town.getTownLines().add(newLine);
+				
+				EventInformation.addLine(tempArrayListForLineBuilding);
+				tempArrayListForLineBuilding.clear();
+				
+				hasToRefreshLinesPoints = true;
+			} else {
+				EventInformation.lineAlreadyExist();
 			}
 			
 			town.getTownLines().add(newLine);

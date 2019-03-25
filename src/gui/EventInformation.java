@@ -96,4 +96,8 @@ public class EventInformation {
 	public static void notEnoughStationsSelected() {
 		listModel.add(0, "Warning : A line has to be build with at least 2 stations !");
 	}
+
+	public static void lineAlreadyExist() {
+		listModel.add(0, "An identical line already exists in town !");
+	}
 }
