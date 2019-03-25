@@ -65,14 +65,14 @@ public class StationNamesHashMap {
 		    while (it.hasNext() && i < randomChoosedIndice) {
 		        pair = (Entry<String, Boolean>)it.next();
 		        
-		        name = (String) pair.getKey();
+		        name = (String) "Station " + pair.getKey();
 		        isUsed = (Boolean) pair.getValue();
 		        it.remove(); // avoids a ConcurrentModificationException
 		        i++;
 		    }
 		    
 		    if (!it.hasNext()) {
-		    	name = "Station" + String.valueOf(id);
+		    	name = "Station " + String.valueOf(id);
 		    	id++;
 		    	foundName = true;
 		    } else if (isUsed == false ) {

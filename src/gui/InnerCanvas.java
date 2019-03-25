@@ -37,6 +37,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	
 	// For alpha purpose
 	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
+	private ArrayList<Point> ArrayListOfPointsOfFutureLine;
 	private static Boolean hasToRefreshLinesPoints;
 	Timer timer;
 	
@@ -245,6 +246,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     				
     				if ( !tempArrayListForLineBuilding.contains(currentDistrictStation) ) {
     					tempArrayListForLineBuilding.add(currentDistrictStation);
+    					
         				System.out.println("BuildingLine");
     				}
     			}
@@ -382,14 +384,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			} else {
 				EventInformation.lineAlreadyExist();
 			}
-			
-			town.getTownLines().add(newLine);
-			
-			EventInformation.addLine(tempArrayListForLineBuilding);
-			tempArrayListForLineBuilding.clear();
-			
-			// buildArrayListLinesPoints();
-			hasToRefreshLinesPoints = true;
 		} else {
 			tempArrayListForLineBuilding.clear();
 			EventInformation.notEnoughStationsSelected();
