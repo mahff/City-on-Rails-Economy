@@ -14,6 +14,7 @@ import javax.swing.Timer;
 import javax.swing.JComponent;
 
 import game.*;
+import core.StationNamesHashMap;
 import core.VariableRepository;
 
 public class InnerCanvas extends JComponent implements MouseListener, MouseMotionListener,ActionListener {
@@ -117,9 +118,10 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			for (int j = 0; j < InnerCanvas.town.getLength(); j++) {
 				x = j*guiScale;
 				y = i*guiScale;
+				this.g.setColor(new Color(195, 203, 213));
 				this.g.drawRect(x, y, guiScale, guiScale);
 				this.g.drawString("["+ String.valueOf(i)+" "+String.valueOf(j) +"]", j*guiScale+2, i*guiScale+67);
-				this.g.setColor(new Color(195, 203, 213));
+				// 
 				
 				if (InnerCanvas.town.getDistrict(j, i) != null) {
 					Color color = InnerCanvas.town.getDistrict(j, i).getColor();
@@ -206,7 +208,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     		if (DistrictOptions.canBuildStation()) {
     			boolean isBuild = false;
     			
-    			Station newStation = new Station(50, false, 0);
+    			Station newStation = new Station(50, false, 0, StationNamesHashMap.getInstance().chooseRandomName());
     			
         		District currentDistrict = town.getDistrict((int) xPosss, (int) yPosss);
     			Station currentDistrictStation = currentDistrict.getStation();
@@ -290,7 +292,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	repaint();
     }
     
-    
+    /*
     public void drawDistrictBorder(double x, double y) {
     	int guiScale = GUIParameters.SCALE;
     	
@@ -300,7 +302,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	
     	repaint();
     }
-    
+    */
     private float colorMultiplier=0.0f;
     
 	public void drawLines() {

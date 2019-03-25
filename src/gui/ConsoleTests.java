@@ -66,15 +66,15 @@ public class ConsoleTests {
 		testMapPrint(length, town);
 		
 		// Instanciation of stations
-		Station station1 = new Station(100, false, 20);
-		Station station2 = new Station(200, false, 21);
-		Station station3 = new Station(300, false, 22);
-		Station station4 = new Station(400, false, 23);
-		Station station5 = new Station(500, false, 24);
+		Station station1 = new Station(100, false, 20, "Test1");
+		Station station2 = new Station(200, false, 21, "Test2");
+		Station station3 = new Station(300, false, 22, "Test3");
+		Station station4 = new Station(400, false, 23, "Test4");
+		Station station5 = new Station(500, false, 24, "Test5");
 		
 		//Station station6 = new Station(110, false, 24);
 		//Station station7 = new Station(220, false, 24);
-		Station station8 = new Station(330, false, 24);
+		Station station8 = new Station(330, false, 24, "Test6");
 		
 		// Instanciation of ArrayList<Station>
 		ArrayList<Station> stationsArrayList = new ArrayList<Station>();

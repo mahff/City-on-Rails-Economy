@@ -12,7 +12,7 @@ public class Station {
 	private String name;
 	
 	
-	public Station(int capacity, Boolean overload, int numberPassenger) {
+	public Station(int capacity, Boolean overload, int numberPassenger, String name) {
 		int numberOfStations = (int) VariableRepository.getInstance().searchByName("NumberOfStations");
 		
 		this.lines = new ArrayList<Line>();
@@ -21,7 +21,8 @@ public class Station {
 		this.setOverload(overload);
 		this.setNumberPassenger(numberPassenger);
 		
-		this.setName("Station " + numberOfStations);
+		// this.setName("Station " + numberOfStations);
+		this.setName(name);
 		VariableRepository.getInstance().register("NumberOfStations", numberOfStations++);
 	}
 	
