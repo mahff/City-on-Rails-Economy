@@ -391,11 +391,8 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	@SuppressWarnings("unchecked")
     	ArrayList<Station> copy = (ArrayList<Station>) tempArrayListForLineBuilding.clone();
     	
-    	if (!(DistrictOptions.canBuildLine()) && tempArrayListForLineBuilding.size() > 0 ) {
+    	if (!(DistrictOptions.canBuildLine()) && tempArrayListForLineBuilding.size() > 1 ) {
 			Line newLine = new Line( copy, 20, new Date());
-			
-			System.out.println(newLine);
-			System.out.println(town.getTownLines());
 			
 			for(Station station : tempArrayListForLineBuilding) {
 				station.addLine(newLine);
@@ -408,6 +405,9 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			
 			// buildArrayListLinesPoints();
 			hasToRefreshLinesPoints = true;
+		} else {
+			tempArrayListForLineBuilding.clear();
+			EventInformation.notEnoughStationsSelected();
 		}
     }
     

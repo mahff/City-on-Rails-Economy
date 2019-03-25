@@ -92,4 +92,8 @@ public class EventInformation {
 	public static void notEnoughMoney() {
 		listModel.add(0, "YOU DON'T HAVE ENOUGH MONEY TO DO THAT!");
 	}
+	
+	public static void notEnoughStationsSelected() {
+		listModel.add(0, "Warning : A line has to be build with at least 2 stations !");
+	}
 }

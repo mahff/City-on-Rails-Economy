@@ -76,8 +76,6 @@ public class StationNamesHashMap {
 		    	id++;
 		    	foundName = true;
 		    } else if (isUsed == false ) {
-		    	System.out.println("name" + name);
-		    	System.out.println("i " + i);
 		    	pair.setValue(true);
 		    	foundName = true;
 		    }

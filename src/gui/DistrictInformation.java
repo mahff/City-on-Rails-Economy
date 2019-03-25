@@ -15,7 +15,7 @@ public class DistrictInformation {
 		String content = "<html>"
 				+ "<style> html{ padding-left: 60px; }</style>"
 				+ "<center><u>Current District Statistics:</u></center><br/>";
-		
+		// String stationName = district.getStation().get;
 		int population = district.getPopulation();
 		int satisfaction = district.getSatisfaction();
 		int nbLines = district.getNumberOfLines();
