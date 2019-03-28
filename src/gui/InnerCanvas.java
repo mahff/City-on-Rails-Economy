@@ -17,7 +17,7 @@ import game.*;
 import core.StationNamesHashMap;
 import core.VariableRepository;
 
-public class InnerCanvas extends JComponent implements MouseListener, MouseMotionListener,ActionListener {
+public class InnerCanvas extends JComponent implements MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -39,7 +39,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
 	private ArrayList<Point> ArrayListOfPointsOfFutureLine;
 	private static Boolean hasToRefreshLinesPoints;
-	Timer timer;
+
 	
 	
 	public InnerCanvas (Town town) {
@@ -50,9 +50,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 		this.addMouseMotionListener(this);
 		this.mousePosition = new Point(0,0);
 		InnerCanvas.ArrayListOfPointsArrayList = new ArrayList<ArrayList<Point>>();
-		
-		timer = new Timer(5000, this);
-		timer.start();
+
 		try {
 			this.grassImage = ImageIO.read(new File("grass.png"));
 			this.residentDistrictImage = ImageIO.read(new File("resident.png"));
@@ -82,8 +80,9 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 		
         paintTown();
         drawMouseCursor();
-        
         this.buildArrayListLinesPoints();
+        showGeneralInformation();
+        paramarea.changeTime(); 
         drawLines();
     }  
     
@@ -447,12 +446,5 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 		this.mousePosition = arg0.getPoint();
 		// System.out.println("MOUSE MOVE");
 		// this.drawMouseCursor(arg0);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-		showGeneralInformation();
-		
 	}
 }

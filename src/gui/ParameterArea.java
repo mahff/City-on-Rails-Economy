@@ -5,27 +5,30 @@ import java.awt.Component;
 import java.awt.Font;
 import javax.swing.*;
 
+import core.TimerEngine;
 import game.District;
 import game.Town;
 
 public class ParameterArea {
 	public static JComboBox<String> districtType;
 	public static JPanel districtPanel;
-	static JLabel generalInfo; 
+	static JLabel generalInfo, time; 
 	private static JLabel districtInfo;
-	
+	private TimerEngine timer; 
 	
 	public ParameterArea(Town town) {
 		generalInfo = new JLabel();
-		
+		time = new JLabel(); 
 		//Style
 		Color purple = new Color(51, 102, 204);
 		Font font = new Font("Tahoma", Font.BOLD, 15);
-		
+		timer = new TimerEngine(town); 
 		generalInfo.setForeground(purple);
 		generalInfo.setFont(font);
-		
+		time.setFont(new Font("Tahoma", Font.BOLD, 22));
+		time.setForeground(purple);
 		changeGeneralInformation(town);
+		changeTime(); 
 	}
 
 	public ParameterArea(){
@@ -51,17 +54,22 @@ public class ParameterArea {
 		districtType = DistrictOptions.getComboBox();
 		districtPanel = DistrictOptions.getButtons();
 		
+		
 		JSplitPane sumSug = new JSplitPane(JSplitPane.VERTICAL_SPLIT, districtType, districtPanel);
 		JSplitPane linelab = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sumSug, districtInfo);
 		JSplitPane splitMap = new JSplitPane(JSplitPane.VERTICAL_SPLIT,  linelab, generalInfo);	
+		JSplitPane splitTime = new JSplitPane(JSplitPane.VERTICAL_SPLIT,  splitMap, time);	
+		
 		
 		splitMap.setEnabled(false);
 		linelab.setEnabled(false);
 		sumSug.setEnabled(false);
+		splitTime.setEnabled(false);
 		
-		splitMap.setDividerLocation(450);
-		linelab.setDividerLocation(260);
-		sumSug.setDividerLocation(27);    
+		sumSug.setDividerLocation(40);
+		splitMap.setDividerLocation(425);
+		linelab.setDividerLocation(200);
+		splitTime.setDividerLocation(735);
 		
 		
 		//Style
@@ -69,8 +77,8 @@ public class ParameterArea {
 		
 		linelab.setBackground(darkgrey);
 		splitMap.setBackground(darkgrey);
-
-		return splitMap;
+		splitTime.setBackground(darkgrey);
+		return splitTime;
 	}
 	
 	
@@ -80,6 +88,10 @@ public class ParameterArea {
 	 */
 	public void changeGeneralInformation(Town town) {
 		generalInfo.setText(GeneralInformation.updateGeneralInfo(town));
+	}
+	
+	public void changeTime() {
+		time.setText(timer.toString());
 	}
 	
 	

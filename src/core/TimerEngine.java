@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import game.Town;
 import gui.EventInformation;
 import gui.FinalView;
 import gui.MapAreaTest;
@@ -13,13 +14,13 @@ import gui.RailsTestAmo;
 public class TimerEngine implements ActionListener{
 	
 	private Timer timer;
-	private MapAreaTest map;
+	private Town map;
 	// Amaury - Temporary variables for testing purpose
-	private int days;
-	private int hours;
+	public int days;
+	public int hours;
 	
-	public TimerEngine (MapAreaTest mapAreaTest) {
-		this.map = mapAreaTest;
+	public TimerEngine (Town town) {
+		this.map = town;
 		hours = 0;
 		days = 0;
 		this.timer = new Timer(1000, this);
@@ -33,16 +34,17 @@ public class TimerEngine implements ActionListener{
 			hours=0;
 			days+=1;
 			System.out.println(days+" jours sont passés.\n");
+			
 		}
 		if(days%7==0&&hours==0) {
-			map.getTown().collectBusinessTaxes();
-			map.getTown().collectResidentialTaxes();
-			EventInformation.collectTaxes(map.getTown());
-			map.getTown().payLineMaintenance();
-			map.getTown().payStationMaintenance();
-			map.getTown().payStateDistrictMaintenance();
+			map.collectBusinessTaxes();
+			map.collectResidentialTaxes();
+			EventInformation.collectTaxes(map);
+			map.payLineMaintenance();
+			map.payStationMaintenance();
+			map.payStateDistrictMaintenance();
 		}
-		if(map.getTown().getFunds()<=-20000&&hours==0) {
+		if(map.getFunds()<=-20000&&hours==0) {
 			new FinalView(false);
 			VariableRepository repo = VariableRepository.getInstance();
 			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
@@ -57,6 +59,15 @@ public class TimerEngine implements ActionListener{
 
 	public Timer getTimerTest() {
 		return timer;
+	}
+	
+
+
+	@Override
+	public String toString() {
+		return  "<html>"
+				+ "<style> html{ padding-left: 200px; }</style>"
+				+ "<center><u>TIME:</u> "+ days + ": " + hours*4+"</html>";
 	}
 
 	public void setTimerTest(Timer timerTest) {
