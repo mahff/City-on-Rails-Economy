@@ -47,7 +47,7 @@ public class TimerEngine implements ActionListener{
 		if ( hours == 6 ) {
 			hours=0;
 			days+=1;
-			System.out.println(days+" jours sont passés.\n");
+			System.out.println(days+" jours sont passes.\n");
 			
 		}
 		if(days%7==0&&hours==0) {
@@ -60,18 +60,18 @@ public class TimerEngine implements ActionListener{
 		}
 		
 		
-//		if(days%7!=0 && days%6!=0 && hours==2) {
-//			movements.goTo(map, true);
-//		}
-//		if(days%7!=0 && days%6!=0 && hours==4) {
-//			movements.goBackHome(map);
-//		}
-//		if(days%7==0 && days%6==0 && hours==3) {
-//			movements.goTo(map, false);
-//		}
-//		if(days%7==0 && days%6==0 && hours==4) {
-//			movements.goBackHome(map);
-//		}
+		if(days%7!=0 && days%6!=0 && hours==2) {
+			movements.goTo(map, true);
+		}
+		if(days%7!=0 && days%6!=0 && hours==4) {
+			movements.goBackHome(map);
+		}
+		if(days%7==0 && days%6==0 && hours==3) {
+			movements.goTo(map, false);
+		}
+		if(days%7==0 && days%6==0 && hours==4) {
+			movements.goBackHome(map);
+		}
 		
 		
 		if(map.endGame()==-1) {

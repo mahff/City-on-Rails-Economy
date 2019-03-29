@@ -28,17 +28,17 @@ public class StationNamesHashMap {
 		stationsNames.put("Atlantide", false);
 		stationsNames.put("Abydos", false);
 		stationsNames.put("Troie", false);
-		stationsNames.put("Thèbes", false);
+		stationsNames.put("Thebes", false);
 		stationsNames.put("Karnak", false);
 		stationsNames.put("Olympe", false);
 		stationsNames.put("John Wick", false);
 		stationsNames.put("Gilets Rouges", false);
-		stationsNames.put("Napoléon", false);
+		stationsNames.put("Napoleon", false);
 		stationsNames.put("Exodus", false);
 		stationsNames.put("Polis Massa", false);
 		stationsNames.put("Heildar", false);
 		stationsNames.put("Esplanade de la Def", false);
-		stationsNames.put("Belvédère", false);
+		stationsNames.put("Belvedere", false);
 		stationsNames.put("Colosse de Rhodes", false);
 		stationsNames.put("Rive du Styx", false);
 		/*
