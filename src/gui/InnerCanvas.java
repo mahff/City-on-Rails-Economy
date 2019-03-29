@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.Timer;
 import javax.swing.JComponent;
 
 import game.*;
@@ -37,7 +36,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	
 	// For alpha purpose
 	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
-	private ArrayList<Point> ArrayListOfPointsOfFutureLine;
+	//private ArrayList<Point> ArrayListOfPointsOfFutureLine;
 	private static Boolean hasToRefreshLinesPoints;
 
 	

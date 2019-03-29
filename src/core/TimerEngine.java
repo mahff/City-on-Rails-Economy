@@ -2,24 +2,25 @@ package core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Timer;
 
+import game.Moving;
 import game.Town;
 import gui.EventInformation;
 import gui.FinalView;
-import gui.MapAreaTest;
 import gui.RailsTestAmo;
 
 public class TimerEngine implements ActionListener{
 	
 	private Timer timer;
 	private Town map;
+	private Moving movements;
 	// Amaury - Temporary variables for testing purpose
 	public int days;
 	public int hours;
 	
 	public TimerEngine (Town town) {
+		this.movements = new Moving();
 		this.map = town;
 		hours = 0;
 		days = 0;
@@ -44,12 +45,34 @@ public class TimerEngine implements ActionListener{
 			map.payStationMaintenance();
 			map.payStateDistrictMaintenance();
 		}
-		if(map.getFunds()<=-20000&&hours==0) {
+		
+		
+		if(days%7!=0 && days%6!=0 && hours==2) {
+			movements.goTo(map, true);
+		}
+		if(days%7!=0 && days%6!=0 && hours==4) {
+			movements.goBackHome(map);
+		}
+		if(days%7==0 && days%6==0 && hours==3) {
+			movements.goTo(map, false);
+		}
+		if(days%7==0 && days%6==0 && hours==4) {
+			movements.goBackHome(map);
+		}
+		
+		
+		if(map.endGame()==-1) {
 			new FinalView(false);
 			VariableRepository repo = VariableRepository.getInstance();
 			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
 			rta.getFrame().dispose();
-			//FAUT TROUVER UN MOYEN DE TOUT REINITIALISER
+			timer.stop();
+		}
+		else if(map.endGame()==1) {
+			new FinalView(true);
+			VariableRepository repo = VariableRepository.getInstance();
+			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
+			rta.getFrame().dispose();
 			timer.stop();
 		}
 	}

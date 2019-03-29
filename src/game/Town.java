@@ -156,7 +156,7 @@ public class Town {
 		if(this.getFunds()<=-20000 || (this.getGeneralSatisfaction()<=5 && this.getGeneralPopulation() > 100)) {
 			return -1;
 		}
-		else if(this.getGeneralSatisfaction()>=100) {
+		else if(this.getGeneralSatisfaction()>=100 /*|| this.getFunds()>=5000000*/) {
 			return 1;
 		}
 		return 0;

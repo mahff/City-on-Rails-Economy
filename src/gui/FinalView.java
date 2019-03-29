@@ -74,8 +74,7 @@ public class FinalView {
         //Listener
         btnOk.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
-    	        frame.dispose();
-    	        new FirstView(); 
+    	    	System.exit(0);
     	    }
     	});
         
@@ -93,8 +92,7 @@ public class FinalView {
 	public void closeFrame() {
     	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to end this game?", "End game?",JOptionPane.YES_NO_OPTION);
 	    if (confirmed == JOptionPane.YES_OPTION) {
-	    		frame.dispose();
-	    		new FirstView();
+	    		System.exit(0);
 	    }
     }
 }
