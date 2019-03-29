@@ -34,10 +34,12 @@ public class TimerEngine implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		for(District[] districtLine : map.getMap()){
 			for(District district : districtLine){
-				Station station = district.getStation();
-				if(station!=null) {
-					if(station.getNumberPassenger()>300) station.setNumberPassenger(station.getNumberPassenger()-300);
-					else station.setNumberPassenger(0);
+				if(district!=null) {
+					Station station = district.getStation();
+					if(station!=null) {
+						if(station.getNumberPassenger()>300) station.setNumberPassenger(station.getNumberPassenger()-300);
+						else station.setNumberPassenger(0);
+					}
 				}
 			}
 		}
@@ -58,18 +60,18 @@ public class TimerEngine implements ActionListener{
 		}
 		
 		
-		if(days%7!=0 && days%6!=0 && hours==2) {
-			movements.goTo(map, true);
-		}
-		if(days%7!=0 && days%6!=0 && hours==4) {
-			movements.goBackHome(map);
-		}
-		if(days%7==0 && days%6==0 && hours==3) {
-			movements.goTo(map, false);
-		}
-		if(days%7==0 && days%6==0 && hours==4) {
-			movements.goBackHome(map);
-		}
+//		if(days%7!=0 && days%6!=0 && hours==2) {
+//			movements.goTo(map, true);
+//		}
+//		if(days%7!=0 && days%6!=0 && hours==4) {
+//			movements.goBackHome(map);
+//		}
+//		if(days%7==0 && days%6==0 && hours==3) {
+//			movements.goTo(map, false);
+//		}
+//		if(days%7==0 && days%6==0 && hours==4) {
+//			movements.goBackHome(map);
+//		}
 		
 		
 		if(map.endGame()==-1) {
