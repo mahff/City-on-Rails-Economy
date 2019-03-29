@@ -184,7 +184,7 @@ public class Moving {
 	}
 	
 	
-	//TODO gerer avec les lignes :'(
+	//TODO gerer avec les lignes
 	/**
 	 * Go to the nearest station from the given position
 	 * @param town
@@ -222,7 +222,6 @@ public class Moving {
 									lastStation = currentStation;
 									currentStation.addPassenger();
 									
-									//TODO overload false quand les gens sont montes dans le metro
 									currentStation.setOverload(true);
 									
 									return currentCircle;

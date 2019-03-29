@@ -462,7 +462,7 @@ public class Town {
 		funds -= quantity*getStateDistrictMaintenancePrice();
 	}
 	
-	//TODO pas fini ?
+	
 	/**
 	 * Pay the lines maintenance
 	 */
