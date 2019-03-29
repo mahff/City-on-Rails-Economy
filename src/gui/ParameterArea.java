@@ -25,7 +25,7 @@ public class ParameterArea {
 		timer = new TimerEngine(town); 
 		generalInfo.setForeground(purple);
 		generalInfo.setFont(font);
-		time.setFont(new Font("Tahoma", Font.BOLD, 22));
+		time.setFont(new Font("Tahoma", Font.BOLD, 20));
 		time.setForeground(purple);
 		changeGeneralInformation(town);
 		changeTime(); 

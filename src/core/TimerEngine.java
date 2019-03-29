@@ -66,7 +66,7 @@ public class TimerEngine implements ActionListener{
 	@Override
 	public String toString() {
 		return  "<html>"
-				+ "<style> html{ padding-left: 200px; }</style>"
+				+ "<style> html{ padding-left: 100px; }</style>"
 				+ "<center><u>TIME:</u> "+ days + ": " + hours*4+"</html>";
 	}
 

@@ -23,10 +23,7 @@ public class MapAreaTest extends JPanel {
 	public static ParameterArea paramCity;
 	private InnerCanvas canvas;
 	
-	private TimerEngine timer;
-	
 	public MapAreaTest() {
-		timer = new TimerEngine(this);
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.town = new Town(11);
         
