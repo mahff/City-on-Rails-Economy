@@ -35,8 +35,10 @@ public class TimerEngine implements ActionListener{
 		for(District[] districtLine : map.getMap()){
 			for(District district : districtLine){
 				Station station = district.getStation();
-				if(station.getNumberPassenger()>300) station.setNumberPassenger(station.getNumberPassenger()-300);
-				else station.setNumberPassenger(0);
+				if(station!=null) {
+					if(station.getNumberPassenger()>300) station.setNumberPassenger(station.getNumberPassenger()-300);
+					else station.setNumberPassenger(0);
+				}
 			}
 		}
 		hours++;
