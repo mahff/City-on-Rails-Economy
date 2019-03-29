@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import game.Moving;
+import game.District;
+import game.Station;
 import game.Town;
 import gui.EventInformation;
 import gui.FinalView;
@@ -30,6 +32,13 @@ public class TimerEngine implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		for(District[] districtLine : map.getMap()){
+			for(District district : districtLine){
+				Station station = district.getStation();
+				if(station.getNumberPassenger()>300) station.setNumberPassenger(station.getNumberPassenger()-300);
+				else station.setNumberPassenger(0);
+			}
+		}
 		hours++;
 		if ( hours == 6 ) {
 			hours=0;
