@@ -289,7 +289,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	repaint();
     }
     */
-    private float colorMultiplier=0.0f;
+    private static float colorMultiplier=0.0f;
     
 	public void drawLines() {
     	int guiScaleMiddle = GUIParameters.SCALE_MIDDLE;
@@ -387,6 +387,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			tempArrayListForLineBuilding.clear();
 			EventInformation.notEnoughStationsSelected();
 		}
+    	colorMultiplier += 0.15f;
     }
     
     @Override
