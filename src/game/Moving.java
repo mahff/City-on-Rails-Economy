@@ -267,7 +267,7 @@ public class Moving {
 								lastStation = currentStation;
 								currentStation.addPassenger();
 								
-								//TODO overload false quand les gens sont montés dans le métro
+								//TODO overload false quand les gens sont montes dans le metro
 								currentStation.setOverload(true);
 								
 								return currentCircle;
