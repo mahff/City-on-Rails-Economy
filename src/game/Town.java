@@ -477,14 +477,17 @@ public class Town {
 						 ArrayList<Line> lines = station.getLines();
 						 if(lines!=null) {
 							 for(Line line : lines) {
-								 quantity += line.getStations().size();
+								 if(!visited.contains(line)) {
+									 quantity += line.getStations().size();
+									 visited.add(line);
+								 }
 							 }
 						 }
 					 }
 				 }
 			 }
 		 }
-		funds -= getLineMaintenancePrice();
+		funds -= quantity*getLineMaintenancePrice();
 	}
 	
 	/**
