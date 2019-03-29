@@ -1,60 +1,8 @@
 package game;
 
 import java.awt.Color;
-import java.util.Date;
 
 public class Moving {
-	private int weekendMovingRate;
-	private Date workStartHour;
-	private Date workEndHour;
-	
-	
-	public Moving(/*int weekendMovingRate, Date workStartHour, Date workEndHour*/) {
-		/*this.weekendMovingRate = weekendMovingRate;
-		this.workStartHour = workStartHour;
-		this.workEndHour = workEndHour;*/
-	}
-
-	
-	/**
-	 * @return the weekendMovingRate
-	 */
-	public int getWeekendMovingRate() {
-		return weekendMovingRate;
-	}
-	/**
-	 * @param weekendMovingRate the weekendMovingRate to set
-	 */
-	public void setWeekendMovingRate(int weekendMovingRate) {
-		this.weekendMovingRate = weekendMovingRate;
-	}
-
-	/**
-	 * @return the workStartHour
-	 */
-	public Date getWorkStartHour() {
-		return workStartHour;
-	}
-	/**
-	 * @param workStartHour the workStartHour to set
-	 */
-	public void setWorkStartHour(Date workStartHour) {
-		this.workStartHour = workStartHour;
-	}
-
-	/**
-	 * @return the workEndHour
-	 */
-	public Date getWorkEndHour() {
-		return workEndHour;
-	}
-	/**
-	 * @param workEndHour the workEndHour to set
-	 */
-	public void setWorkEndHour(Date workEndHour) {
-		this.workEndHour = workEndHour;
-	}
-
 	
 /*************************************************************************************************/
 	
