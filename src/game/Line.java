@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Date;
 
+import core.LineNamesHashMap;
 import core.VariableRepository;
 
 public class Line {
@@ -21,6 +22,7 @@ public class Line {
 		
 		this.setName("Line " + numberOfLines);
 		VariableRepository.getInstance().register("NumberOfLines", numberOfLines++);
+		this.setName(LineNamesHashMap.getInstance().giveIdToLine());
 	}
 	
 	
