@@ -9,10 +9,10 @@ public class Moving {
 	private Date workEndHour;
 	
 	
-	public Moving(int weekendMovingRate, Date workStartHour, Date workEndHour) {
-		this.weekendMovingRate = weekendMovingRate;
+	public Moving(/*int weekendMovingRate, Date workStartHour, Date workEndHour*/) {
+		/*this.weekendMovingRate = weekendMovingRate;
 		this.workStartHour = workStartHour;
-		this.workEndHour = workEndHour;
+		this.workEndHour = workEndHour;*/
 	}
 
 	
