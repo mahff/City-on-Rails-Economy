@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
 
 public class StationNamesHashMap {
 	public static HashMap<String, Boolean> stationsNames = new HashMap<>();
@@ -48,7 +47,7 @@ public class StationNamesHashMap {
 	}
 	
 	public String chooseRandomName() {
-		int hashMapSize = this.stationsNames.size();
+		int hashMapSize = StationNamesHashMap.stationsNames.size();
 		int randomChoosedIndice = 0;
 		Boolean foundName = false;
 		Boolean isUsed = false;

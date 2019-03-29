@@ -8,7 +8,6 @@ import javax.swing.Timer;
 import game.Town;
 import gui.EventInformation;
 import gui.FinalView;
-import gui.MapAreaTest;
 import gui.RailsTestAmo;
 
 public class TimerEngine implements ActionListener{
@@ -44,12 +43,18 @@ public class TimerEngine implements ActionListener{
 			map.payStationMaintenance();
 			map.payStateDistrictMaintenance();
 		}
-		if(map.getFunds()<=-20000&&hours==0) {
+		if(map.endGame()==-1) {
 			new FinalView(false);
 			VariableRepository repo = VariableRepository.getInstance();
 			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
 			rta.getFrame().dispose();
-			//FAUT TROUVER UN MOYEN DE TOUT REINITIALISER
+			timer.stop();
+		}
+		else if(map.endGame()==1) {
+			new FinalView(true);
+			VariableRepository repo = VariableRepository.getInstance();
+			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
+			rta.getFrame().dispose();
 			timer.stop();
 		}
 	}
