@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.Timer;
 import javax.swing.JComponent;
 
 import game.*;
@@ -37,7 +36,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	
 	// For alpha purpose
 	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
-	private ArrayList<Point> ArrayListOfPointsOfFutureLine;
+	//private ArrayList<Point> ArrayListOfPointsOfFutureLine;
 	private static Boolean hasToRefreshLinesPoints;
 
 	
@@ -289,7 +288,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	repaint();
     }
     */
-    private float colorMultiplier=0.0f;
+    private static float colorMultiplier=0.0f;
     
 	public void drawLines() {
     	int guiScaleMiddle = GUIParameters.SCALE_MIDDLE;
@@ -387,6 +386,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 			tempArrayListForLineBuilding.clear();
 			EventInformation.notEnoughStationsSelected();
 		}
+    	colorMultiplier += 0.15f;
     }
     
     @Override

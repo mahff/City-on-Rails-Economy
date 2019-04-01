@@ -1,60 +1,8 @@
 package game;
 
 import java.awt.Color;
-import java.util.Date;
 
 public class Moving {
-	private int weekendMovingRate;
-	private Date workStartHour;
-	private Date workEndHour;
-	
-	
-	public Moving(int weekendMovingRate, Date workStartHour, Date workEndHour) {
-		this.weekendMovingRate = weekendMovingRate;
-		this.workStartHour = workStartHour;
-		this.workEndHour = workEndHour;
-	}
-
-	
-	/**
-	 * @return the weekendMovingRate
-	 */
-	public int getWeekendMovingRate() {
-		return weekendMovingRate;
-	}
-	/**
-	 * @param weekendMovingRate the weekendMovingRate to set
-	 */
-	public void setWeekendMovingRate(int weekendMovingRate) {
-		this.weekendMovingRate = weekendMovingRate;
-	}
-
-	/**
-	 * @return the workStartHour
-	 */
-	public Date getWorkStartHour() {
-		return workStartHour;
-	}
-	/**
-	 * @param workStartHour the workStartHour to set
-	 */
-	public void setWorkStartHour(Date workStartHour) {
-		this.workStartHour = workStartHour;
-	}
-
-	/**
-	 * @return the workEndHour
-	 */
-	public Date getWorkEndHour() {
-		return workEndHour;
-	}
-	/**
-	 * @param workEndHour the workEndHour to set
-	 */
-	public void setWorkEndHour(Date workEndHour) {
-		this.workEndHour = workEndHour;
-	}
-
 	
 /*************************************************************************************************/
 	
@@ -72,63 +20,64 @@ public class Moving {
 				District currentDistrict = town.getDistrict(i, j);
 				int numberOfAngryPeople = 0;
 				int numberOfHappyPeople = 0;
-				
-				if(currentDistrict.getColor() == Resident.residentColor) {
-					int population = currentDistrict.getPopulation();
-					int peopleWhoGoes = -1;
-					
-					if(toWork) {
-						peopleWhoGoes = population;
-					}
-					else {
-						peopleWhoGoes = (int) Math.random()%population;
-					}
-					
-					for(int p=0 ; p<peopleWhoGoes ; p++) {
-						int cycleForStation = goToNearestStation(town, i, j);
-						int cycleForDistrict = -1;
+				if(currentDistrict != null) {
+					if(currentDistrict.getColor() == Resident.residentColor) {
+						int population = currentDistrict.getPopulation();
+						int peopleWhoGoes = -1;
 						
-						
-						Color districtColorToGoTo;
-						int random = (int) Math.random()%100+1;
-						if(random <= 50) {
-							districtColorToGoTo = State.stateColor;
+						if(toWork) {
+							peopleWhoGoes = population;
 						}
 						else {
-							districtColorToGoTo = Business.businessColor;
+							peopleWhoGoes = (int) Math.random()%population;
 						}
 						
-						cycleForDistrict = goToNearestDistrictType(town, districtColorToGoTo, i, j);
-						
-						
-						if(cycleForStation != -1) {
-							if(cycleForDistrict != -1) {
-								currentDistrict.removePeople(1);
-								
-								//Time in minutes
-								int timeToGoToStation = (int) (cycleForStation*Math.random()%5+1);
-								int timeToGoToDistrict = (int) (cycleForDistrict*Math.random()%10+1);
-								
-								int totalTime = timeToGoToStation + timeToGoToDistrict;
-								
-								if(totalTime > 60) {
-									numberOfAngryPeople++;
-								}
-								else {
-									numberOfHappyPeople++;
-								}
+						for(int p=0 ; p<peopleWhoGoes ; p++) {
+							int cycleForStation = goToNearestStation(town, i, j);
+							int cycleForDistrict = -1;
+							
+							
+							Color districtColorToGoTo;
+							int random = (int) Math.random()%100+1;
+							if(random <= 50) {
+								districtColorToGoTo = State.stateColor;
 							}
 							else {
-								numberOfAngryPeople++;
+								districtColorToGoTo = Business.businessColor;
+							}
+							
+							cycleForDistrict = goToNearestDistrictType(town, districtColorToGoTo, i, j);
+							
+							
+							if(cycleForStation != -1) {
+								if(cycleForDistrict != -1) {
+									currentDistrict.removePeople(1);
+									
+									//Time in minutes
+									int timeToGoToStation = (int) (cycleForStation*Math.random()%5+1);
+									int timeToGoToDistrict = (int) (cycleForDistrict*Math.random()%10+1);
+									
+									int totalTime = timeToGoToStation + timeToGoToDistrict;
+									
+									if(totalTime > 60) {
+										numberOfAngryPeople++;
+									}
+									else {
+										numberOfHappyPeople++;
+									}
+								}
+								else {
+									numberOfAngryPeople++;
+								}
 							}
 						}
-					}
-					
-					if(numberOfHappyPeople > numberOfAngryPeople) {
-						town.changeDensity("moving", i, j, true);
-					}
-					else {
-						town.changeDensity("moving", i, j, false);
+						
+						if(numberOfHappyPeople > numberOfAngryPeople) {
+							town.changeDensity("moving", i, j, true);
+						}
+						else {
+							town.changeDensity("moving", i, j, false);
+						}
 					}
 				}
 			}
@@ -149,41 +98,43 @@ public class Moving {
 				int numberOfAngryPeople = 0;
 				int numberOfHappyPeople = 0;
 				
-				if(currentDistrict.getColor() != Resident.residentColor) {
-					int population = currentDistrict.getPopulation();
-					
-					for(int p=0 ; p<population ; p++) {
-						int cycleForStation = goToNearestStation(town, i, j);
-						int cycleForDistrict = goToNearestDistrictType(town, Resident.residentColor, i, j);
+				if(currentDistrict != null) {
+					if(currentDistrict.getColor() != Resident.residentColor) {
+						int population = currentDistrict.getPopulation();
 						
-						if(cycleForStation != -1) {
-							if(cycleForDistrict != -1) {
-								currentDistrict.removePeople(1);
-								
-								//Time in minutes
-								int timeToGoToStation = (int) (cycleForStation*Math.random()%5+1);
-								int timeToGoToDistrict = (int) (cycleForDistrict*Math.random()%10+1);
-								
-								int totalTime = timeToGoToStation + timeToGoToDistrict;
-								
-								if(totalTime > 60) {
-									numberOfAngryPeople++;
+						for(int p=0 ; p<population ; p++) {
+							int cycleForStation = goToNearestStation(town, i, j);
+							int cycleForDistrict = goToNearestDistrictType(town, Resident.residentColor, i, j);
+							
+							if(cycleForStation != -1) {
+								if(cycleForDistrict != -1) {
+									currentDistrict.removePeople(1);
+									
+									//Time in minutes
+									int timeToGoToStation = (int) (cycleForStation*Math.random()%5+1);
+									int timeToGoToDistrict = (int) (cycleForDistrict*Math.random()%10+1);
+									
+									int totalTime = timeToGoToStation + timeToGoToDistrict;
+									
+									if(totalTime > 60) {
+										numberOfAngryPeople++;
+									}
+									else {
+										numberOfHappyPeople++;
+									}
 								}
 								else {
-									numberOfHappyPeople++;
+									numberOfAngryPeople++;
 								}
 							}
-							else {
-								numberOfAngryPeople++;
-							}
 						}
-					}
-					
-					if(numberOfHappyPeople > numberOfAngryPeople) {
-						town.changeDensity("moving", i, j, true);
-					}
-					else {
-						town.changeDensity("moving", i, j, false);
+						
+						if(numberOfHappyPeople > numberOfAngryPeople) {
+							town.changeDensity("moving", i, j, true);
+						}
+						else {
+							town.changeDensity("moving", i, j, false);
+						}
 					}
 				}
 			}
@@ -210,14 +161,16 @@ public class Moving {
 					if(i>=0 && j>=00 && i<length && j<length) {
 						District currentDistrict = town.getDistrict(i, j);
 						
-						if(currentDistrict.getColor() == districtColor) {
-							int totalPlace = currentDistrict.getMaxPopulation();
-							int currentPeopleNumber = currentDistrict.getPopulation();
-							
-							if(currentPeopleNumber != -1 && currentPeopleNumber <= totalPlace) {
-								currentDistrict.addPerson();
+						if(currentDistrict != null) {
+							if(currentDistrict.getColor() == districtColor) {
+								int totalPlace = currentDistrict.getMaxPopulation();
+								int currentPeopleNumber = currentDistrict.getPopulation();
 								
-								return currentCircle;
+								if(currentPeopleNumber != -1 && currentPeopleNumber <= totalPlace) {
+									currentDistrict.addPerson();
+									
+									return currentCircle;
+								}
 							}
 						}
 					}
@@ -231,7 +184,7 @@ public class Moving {
 	}
 	
 	
-	//TODO gerer avec les lignes :'(
+	//TODO gerer avec les lignes
 	/**
 	 * Go to the nearest station from the given position
 	 * @param town
@@ -260,17 +213,19 @@ public class Moving {
 					
 					if(i>=0 && j>=00 && i<length && j<length) {
 						District currentDistrict = town.getDistrict(i, j);
-						Station currentStation = currentDistrict.getStation();
 						
-						if(currentStation != null) {
-							if(currentStation.getOverload() == false) {
-								lastStation = currentStation;
-								currentStation.addPassenger();
-								
-								//TODO overload false quand les gens sont montés dans le métro
-								currentStation.setOverload(true);
-								
-								return currentCircle;
+						if(currentDistrict != null) {
+							Station currentStation = currentDistrict.getStation();
+							
+							if(currentStation != null) {
+								if(currentStation.getOverload() == false) {
+									lastStation = currentStation;
+									currentStation.addPassenger();
+									
+									currentStation.setOverload(true);
+									
+									return currentCircle;
+								}
 							}
 						}
 					}
@@ -280,9 +235,12 @@ public class Moving {
 			currentCircle++;
 		}
 		
-		lastStation.addPassenger();
-		
-		return currentCircle;
+		if(lastStation != null) {
+			lastStation.addPassenger();
+			
+			return currentCircle;
+		}
+		return -1;
 	}
 	
 }

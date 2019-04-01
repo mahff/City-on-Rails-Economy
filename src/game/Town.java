@@ -156,7 +156,7 @@ public class Town {
 		if(this.getFunds()<=-20000 || (this.getGeneralSatisfaction()<=5 && this.getGeneralPopulation() > 100)) {
 			return -1;
 		}
-		else if(this.getGeneralSatisfaction()>=100) {
+		else if(this.getGeneralSatisfaction()>=100 /*|| this.getFunds()>=5000000*/) {
 			return 1;
 		}
 		return 0;
@@ -462,7 +462,7 @@ public class Town {
 		funds -= quantity*getStateDistrictMaintenancePrice();
 	}
 	
-	//TODO pas fini ?
+	
 	/**
 	 * Pay the lines maintenance
 	 */
@@ -477,14 +477,17 @@ public class Town {
 						 ArrayList<Line> lines = station.getLines();
 						 if(lines!=null) {
 							 for(Line line : lines) {
-								 quantity += line.getStations().size();
+								 if(!visited.contains(line)) {
+									 quantity += line.getStations().size();
+									 visited.add(line);
+								 }
 							 }
 						 }
 					 }
 				 }
 			 }
 		 }
-		funds -= getLineMaintenancePrice();
+		funds -= quantity*getLineMaintenancePrice();
 	}
 	
 	/**
