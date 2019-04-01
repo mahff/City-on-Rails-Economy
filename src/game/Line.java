@@ -107,7 +107,7 @@ public class Line {
 	 */
 	public String toString() {
 		StringBuffer toReturn = new StringBuffer();
-		toReturn.append("Line Informations : \n\tStations : " + this.stations.toString() + " \n\tInterval Subway : " + this.intervalSubway + " \n\tdepartureHour : " + this.departureHour + ".\n");
+		toReturn.append("Line Informations : \n\tStations : " + this.stations.toString() + " \n\tInterval Subway : " + this.intervalSubway + " \n\tdepartureHour : " + this.departureHour + "\n\tname"+this.name + ".\n");
 		return toReturn.toString();
 	}
 	
