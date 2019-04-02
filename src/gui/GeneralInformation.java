@@ -1,9 +1,9 @@
 package gui;
 
+import core.TimerEngine;
 import game.Town;
 
 public class GeneralInformation {
-	
 	/**
 	 * Return the statistics of the city
 	 * @param town

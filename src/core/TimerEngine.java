@@ -60,34 +60,37 @@ public class TimerEngine implements ActionListener{
 		}
 		
 		
-		if(days%7!=0 && days%6!=0 && hours==2) {
+		if((days%7!=0 || days%6!=0) && hours==2) {
 			movements.goTo(map, true);
 		}
-		if(days%7!=0 && days%6!=0 && hours==4) {
+		if((days%7!=0 || days%6!=0) && hours==4) {
 			movements.goBackHome(map);
 		}
-		if(days%7==0 && days%6==0 && hours==3) {
+		if((days%7==0 || days%6==0) && hours==3) {
 			movements.goTo(map, false);
 		}
-		if(days%7==0 && days%6==0 && hours==4) {
+		if((days%7==0 || days%6==0) && hours==4) {
 			movements.goBackHome(map);
 		}
 		
+		if(days%15 == 14) {
+			System.out.print(map.getGeneralSatisfaction());
+			if(map.endGame()==-1) {
+				new FinalView(false);
+				VariableRepository repo = VariableRepository.getInstance();
+				RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
+				rta.getFrame().dispose();
+				timer.stop();
+			}
+			else if(map.endGame()==1) {
+				new FinalView(true);
+				VariableRepository repo = VariableRepository.getInstance();
+				RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
+				rta.getFrame().dispose();
+				timer.stop();
+			}
+		}
 		
-		if(map.endGame()==-1) {
-			new FinalView(false);
-			VariableRepository repo = VariableRepository.getInstance();
-			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
-			rta.getFrame().dispose();
-			timer.stop();
-		}
-		else if(map.endGame()==1) {
-			new FinalView(true);
-			VariableRepository repo = VariableRepository.getInstance();
-			RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
-			rta.getFrame().dispose();
-			timer.stop();
-		}
 	}
     public void start(){
         //...
@@ -103,7 +106,7 @@ public class TimerEngine implements ActionListener{
 	public String toString() {
 		return  "<html>"
 				+ "<style> html{ padding-left: 100px; }</style>"
-				+ "<center><u>TIME:</u> "+ days + ": " + hours*4+"</html>";
+				+ "<center>D:  "+ days   + "  H: " + hours*4+"</html>";
 	}
 
 	public void setTimerTest(Timer timerTest) {

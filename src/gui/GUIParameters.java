@@ -1,6 +1,8 @@
 package gui;
 
 public class GUIParameters {
+	
+	
 	public static final int WINDOW_WIDTH = 890 * 4/3;
 
 	public static final int BASIC = WINDOW_WIDTH / (890 * 4/3);

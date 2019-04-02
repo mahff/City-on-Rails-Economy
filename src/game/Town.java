@@ -62,19 +62,6 @@ public class Town {
 	public void setMap(District[][] map) {
 		this.map = map;
 	}
-
-	/**
-	 * @return the time
-	 */
-	public Date getTime() {
-		return time;
-	}
-	/**
-	 * @param time the time to set
-	 */
-	public void setTime(Date time) {
-		this.time = time;
-	}
 	
 	/**
 	 * @return the funds
@@ -125,6 +112,7 @@ public class Town {
 	 */
 	public void setDistrict(int positionX, int positionY, District district) {
 		this.map[positionX][positionY] = district;
+		System.out.println(getGeneralSatisfaction());
 	}
 	
 	
@@ -182,18 +170,18 @@ public class Town {
 		
 		if(type == "moving") {
 			if(increment) {
-				satisfaction += 3;
+				satisfaction *= 1.2;
 			}
 			else {
-				satisfaction -= 3;
+				satisfaction *= 0.90;
 			}
 		}
 		else if(type == "station") {
 			if(increment) {
-				satisfaction += 7;
+				satisfaction *= 1.3;
 			}
 			else {
-				satisfaction -= 7;
+				satisfaction *= 0.80;
 			}
 			
 			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
@@ -219,10 +207,10 @@ public class Town {
 		}
 		else if(type == "business") {
 			if(increment) {
-				satisfaction += 5;
+				satisfaction *= 1.35;
 			}
 			else {
-				satisfaction -= 5;
+				satisfaction *= 0.8;
 			}
 			
 			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
@@ -263,18 +251,22 @@ public class Town {
 	public int getGeneralSatisfaction() {
 		int generalSatisfaction = 0;
 		int div = 1;
+		int nbDisctrict = 0; 
 		int length = this.getLength();
-		
+		int satisf; 
 		for(int i=0 ; i<length ; i++){
 			for(int j=0 ; j<length ; j++){
 				District currentDistrict = getDistrict(i, j);
 				if(currentDistrict != null) {
 					generalSatisfaction += currentDistrict.getSatisfaction();
 					div++;
+					nbDisctrict = div -1; 
 				}
 			}
 		}
-		return generalSatisfaction/div;
+		if(div ==1) satisf = generalSatisfaction; 
+		else satisf = generalSatisfaction/nbDisctrict; 
+		return satisf;
 	}
 	
 	
