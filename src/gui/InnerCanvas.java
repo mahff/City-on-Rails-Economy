@@ -119,7 +119,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 				y = i*guiScale;
 				this.g.setColor(new Color(195, 203, 213));
 				this.g.drawRect(x, y, guiScale, guiScale);
-				this.g.drawString("["+ String.valueOf(i)+" "+String.valueOf(j) +"]", j*guiScale+2, i*guiScale+67);
+				// this.g.drawString("["+ String.valueOf(i)+" "+String.valueOf(j) +"]", j*guiScale+2, i*guiScale+67);
 				// 
 				
 				if (InnerCanvas.town.getDistrict(j, i) != null) {
