@@ -75,25 +75,15 @@ public class FinalView {
         //Listener
         btnOk.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
-    	    	new FirstView(); 
+    	    	frame.dispose();
+    	    	new FirstView().initializeMap();
     	    }
     	});
         
         frame.addWindowListener(new WindowAdapter() {
 			  public void windowClosing(WindowEvent e) {
-				   closeFrame();
+				  System.exit(0);
 			  }
 		});
 	}
-	
-	
-	/**
-	 * Close the frame with a confirm dialog
-	 */
-	public void closeFrame() {
-    	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to end this game?", "End game?",JOptionPane.YES_NO_OPTION);
-	    if (confirmed == JOptionPane.YES_OPTION) {
-	    		System.exit(0);
-	    }
-    }
 }

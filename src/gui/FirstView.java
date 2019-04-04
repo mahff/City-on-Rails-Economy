@@ -132,14 +132,14 @@ public class FirstView {
         
         frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				closeFrame();
+				System.exit(0);
 			}
 		});
         
         close.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				closeFrame();
+				System.exit(0);
 			}
     	});
     }
@@ -161,7 +161,6 @@ public class FirstView {
     	newGame.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
-    	        System.out.println("Going to Map!"+e);
     	        frame.dispose();
     	        EventQueue.invokeLater(new Runnable() {
     				public void run() {
@@ -176,16 +175,7 @@ public class FirstView {
     	    }
     	});
     }
-
-    
-    public void closeFrame() {
-    	int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit Program?",JOptionPane.YES_NO_OPTION);
-	    if (confirmed == JOptionPane.YES_OPTION) {
-	    		System.exit(0);
-	    }
-    }
-    
-    
+  
     public void Backup(File save) {
     	
     }

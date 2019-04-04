@@ -168,7 +168,7 @@ public class Town {
 		
 		if(type == "moving") {
 			if(increment) {
-				satisfaction *= 1.5;
+				satisfaction *= 1.2;
 			}
 			else {
 				satisfaction *= 0.90;
@@ -176,10 +176,10 @@ public class Town {
 		}
 		else if(type == "station") {
 			if(increment) {
-				satisfaction *= 1.6;
+				satisfaction *= 1.3;
 			}
 			else {
-				satisfaction *= 0.80;
+				satisfaction *= 0.85;
 			}
 			
 			for(int i=positionX-1 ; i<=positionX+1 ; i++) {
@@ -188,12 +188,11 @@ public class Town {
 						District newCurrentDistrict = this.getDistrict(i, j);
 						if(newCurrentDistrict != null) {
 							int newSatisfaction = newCurrentDistrict.getSatisfaction();
-							System.out.println("new satisfaction = "+newSatisfaction);	 
 							if(increment) {
-								newSatisfaction += 4;
+								newSatisfaction *=1.15;
 							}
 							else {
-								newSatisfaction -= 4;
+								newSatisfaction *=0.98;
 							}
 							
 							newCurrentDistrict.setSatisfaction(newSatisfaction);
@@ -205,7 +204,7 @@ public class Town {
 		}
 		else if(type == "business") {
 			if(increment) {
-				satisfaction *= 1.6;
+				satisfaction *= 1.4;
 			}
 			else {
 				satisfaction *= 0.8;
@@ -217,12 +216,11 @@ public class Town {
 						District newCurrentDistrict = this.getDistrict(i, j);
 						if(newCurrentDistrict != null ) {
 							int newSatisfaction = newCurrentDistrict.getSatisfaction();
-							System.out.println("new satisfaction = "+newSatisfaction);
 							if(increment) {
-								newSatisfaction += 4;
+								newSatisfaction *= 1.05;
 							}
 							else {
-								newSatisfaction -= 4;
+								newSatisfaction *= 0.98;
 							}
 							
 							newCurrentDistrict.setSatisfaction(newSatisfaction);
