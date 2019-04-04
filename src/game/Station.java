@@ -20,8 +20,6 @@ public class Station {
 		this.setCapacity(capacity);
 		this.setOverload(overload);
 		this.setNumberPassenger(numberPassenger);
-		
-		// this.setName("Station " + numberOfStations);
 		this.setName(name);
 		VariableRepository.getInstance().register("NumberOfStations", numberOfStations++);
 	}

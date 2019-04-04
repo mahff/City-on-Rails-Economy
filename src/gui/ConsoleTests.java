@@ -40,12 +40,9 @@ public class ConsoleTests {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//Cr�ation ville / carte
-		//int timerSpeed = 1000;
 		int length = 5;
 		int weekEndMovingRate = 5;
-		//Date date1 = new Date();
-		//Date date2 = new Date();
+		
 		
 		Town town = new Town(6);
 			// town.printMap();
@@ -96,8 +93,6 @@ public class ConsoleTests {
 		
 		System.out.println(line1.toString());
 		
-		//line1.updateStations(stationsArrayList);
-		
 		System.out.println("\n==============================================\n");
 		System.out.println(line1.toString());
 		
@@ -105,9 +100,7 @@ public class ConsoleTests {
 		System.out.println(station2.toString());
 		System.out.println(station8.toString());
 		
-		System.out.println(town.getGeneralNumberOfStation());
-				
-		//System.out.println("Pop="+town.getGeneralPopulation()+" Satisf="+town.getGeneralSatisfaction());
+		System.out.println(town.getGeneralNumberOfStation());	
 		
 	}
 

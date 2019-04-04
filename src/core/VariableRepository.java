@@ -45,16 +45,6 @@ public class VariableRepository {
 	}
 	
 	
-	/*
-	public void modify(String name, Object initialValue) {
-		this.variables.computeIfPresent(name, (k, v) -> initialValue);
-	}
-	
-	public int search(Object variable) {
-		return variables.get(variable.getName());
-	}
-	*/
-	
 	/**
 	 * Method that is called when we want to retrieve an object/variable from the HashMap of the VariableRepository.
 	 * 

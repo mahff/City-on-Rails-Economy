@@ -54,13 +54,8 @@ public class BuildingAPI {
 		while (i.hasNext()) {
 			Station toUpdate = (Station) i.next();
 			toUpdate.addLine(lineToAdd);
-			// System.out.println(i.next());
 		}
 	};
 	
-	/*
-	public HashMap<String, Station> getStationsFromGUI() {
-		return null;
-	}
-	*/
+
 }

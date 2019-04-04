@@ -30,13 +30,12 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	private BufferedImage businessStationImage;
 	private BufferedImage stateStationImage;
 	 
-	// TODO - Find a way to avoid making this attribute as static
+
 	private static Town town;
 	private Graphics2D g;
 	
 	// For alpha purpose
 	public static ArrayList<ArrayList<Point>> ArrayListOfPointsArrayList;
-	//private ArrayList<Point> ArrayListOfPointsOfFutureLine;
 	private static Boolean hasToRefreshLinesPoints;
 
 	
@@ -277,17 +276,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	repaint();
     }
     
-    /*
-    public void drawDistrictBorder(double x, double y) {
-    	int guiScale = GUIParameters.SCALE;
-    	
-    	this.g.setColor(Color.BLUE);
-    	this.g.drawRect((int)x*guiScale, (int)y*guiScale, guiScale, guiScale);
-    	this.g.drawImage(this.residentDistrictImage, (int) x*guiScale, (int) y*guiScale, guiScale, guiScale, null);
-    	
-    	repaint();
-    }
-    */
     private static float colorMultiplier=0.0f;
     
 	public void drawLines() {
@@ -319,7 +307,7 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     public void buildArrayListLinesPoints() {
     	int guiScale = GUIParameters.SCALE;
     	ArrayList<Line> linesArrayList = town.getTownLines();
-    	// ArrayList<Point> actualPointsArrayList = null;
+
     	
     	if (hasToRefreshLinesPoints == true) {
     		InnerCanvas.ArrayListOfPointsArrayList.clear();
@@ -328,8 +316,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     			ArrayList<Point> actualPointsArrayList = new ArrayList<Point>();
         		
     			for (Station station : line.getStations()) {
-    			
-    				// TODO - Optimize with a while loop, to avoid iterating over the WHOLE town-array while we already found ALL the stations of a line.
     				for (int i = 0; i < town.getLength(); i++) {
     					for (int j = 0; j < town.getLength(); j++) {
     						// System.out.println("testLoop3");
@@ -357,7 +343,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
     	repaint();
     }
     
-    // TODO - Somehow find a solution so that we DON'T have to call this method in a static way into the DistrictOptions endCreationLine() method ...
     public static void createLine() {
     	@SuppressWarnings("unchecked")
 		ArrayList<Station> tempArrayListForLineBuilding = (ArrayList<Station>) VariableRepository.getInstance().searchByName("stationArrayListForLineBuilding");
@@ -408,7 +393,6 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	public void showDistrictInformation(District district) {
     	if(district !=null) {
     		paramarea.changeDistrictInformation(district);
-    		//System.out.println(DistrictInformation.updateGeneralInfo(district));
     	}
     }
 	
@@ -444,7 +428,5 @@ public class InnerCanvas extends JComponent implements MouseListener, MouseMotio
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		this.mousePosition = arg0.getPoint();
-		// System.out.println("MOUSE MOVE");
-		// this.drawMouseCursor(arg0);
 	}
 }

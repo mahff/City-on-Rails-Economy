@@ -1,6 +1,5 @@
 package gui;
 
-import core.TimerEngine;
 import game.Town;
 
 public class GeneralInformation {

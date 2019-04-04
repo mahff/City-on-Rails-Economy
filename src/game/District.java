@@ -130,10 +130,6 @@ public class District {
 		return this.name;
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "District [station=" + station + ", satisfaction=" + satisfaction
@@ -161,22 +157,22 @@ public class District {
 	 * Remove the station and the lines that cross it
 	 */
 	public void removeStation() {
-		//supprimer les lignes
+		//delete lines
 		Station station = this.getStation();
 		ArrayList<Line> lines = station.getLines();
 		ArrayList<Station> stationsToModify = new ArrayList<Station>();
 		
-		//recup toutes les station possedant la ligne (toutes les lignes)
+		//get the subway station which contains the line 
 		for(Line line : lines) {
 			stationsToModify.addAll(line.getStations());
 		}
 		
-		//supprimer les doublons
+		// delete duplicate
 		Set<Station> set = new HashSet<>(stationsToModify);
 		stationsToModify.clear();
 		stationsToModify.addAll(set);
 		
-		//pour chaque station supprimer la ligne
+		//for each state : delete line 
 		for(Station s : stationsToModify) {
 			for(Line l : lines) {
 				s.removeLine(l);
@@ -184,7 +180,7 @@ public class District {
 			
 		}
 		
-		//supprimer la station du district et donc de la carte
+		// delete station from district => from town
 		this.setStation(null);
 	}
 	

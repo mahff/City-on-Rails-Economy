@@ -13,9 +13,6 @@ public class GUIParameters {
 	
 	public static final int SCALE_MIDDLE = (BASIC * 70) / 2;
 
-	// public static final int RADIUS = BASIC * 40;
-
-
 	public static final int STRING_AJUSTEMENT = BASIC * 10;
 
 	public static final int POLICE_SIZE = BASIC * 30;

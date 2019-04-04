@@ -11,7 +11,6 @@ import core.VariableRepository;
 public class Town {
 	private int length;
 	private District[][] map;
-	private Date time;
 	private int funds;
 	private ArrayList<Line> townLines;
 	
@@ -23,7 +22,7 @@ public class Town {
 		
 		setTownLines(new ArrayList<Line>());
 		
-		funds = 750000; //TODO 75000 par defaut ? d'apres le CDC
+		funds = 750000;
 		
 		this.setLength(length);
 		
@@ -170,7 +169,7 @@ public class Town {
 		
 		if(type == "moving") {
 			if(increment) {
-				satisfaction *= 1.2;
+				satisfaction *= 1.5;
 			}
 			else {
 				satisfaction *= 0.90;
@@ -178,7 +177,7 @@ public class Town {
 		}
 		else if(type == "station") {
 			if(increment) {
-				satisfaction *= 1.3;
+				satisfaction *= 1.6;
 			}
 			else {
 				satisfaction *= 0.80;
@@ -207,7 +206,7 @@ public class Town {
 		}
 		else if(type == "business") {
 			if(increment) {
-				satisfaction *= 1.35;
+				satisfaction *= 1.6;
 			}
 			else {
 				satisfaction *= 0.8;
@@ -517,7 +516,6 @@ public class Town {
 			 }
 		 }
 		 funds += amount;
-		 //...
 	}
 	
 	
@@ -538,6 +536,5 @@ public class Town {
 			 }
 		 }
 		 funds += amount;
-		 //...
 	}
 }

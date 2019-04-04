@@ -10,14 +10,14 @@ import game.Station;
 import game.Town;
 import gui.EventInformation;
 import gui.FinalView;
-import gui.RailsTestAmo;
+import gui.RailsCity;
 
 public class TimerEngine implements ActionListener{
 	
 	private Timer timer;
 	private Town map;
 	private Moving movements;
-	// Amaury - Temporary variables for testing purpose
+
 	public int days;
 	public int hours;
 	
@@ -73,22 +73,22 @@ public class TimerEngine implements ActionListener{
 			movements.goBackHome(map);
 		}
 		
-		if(days%15 == 14) {
+		if(days%7 == 6 ) {
 			System.out.print(map.getGeneralSatisfaction());
 			if(map.endGame()==-1) {
 				new FinalView(false);
 				VariableRepository repo = VariableRepository.getInstance();
-				RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
+				RailsCity rta = (RailsCity) repo.searchByName("mainframe");
 				rta.getFrame().dispose();
 				timer.stop();
 			}
-			else if(map.endGame()==1) {
-				new FinalView(true);
-				VariableRepository repo = VariableRepository.getInstance();
-				RailsTestAmo rta = (RailsTestAmo) repo.searchByName("mainframe");
-				rta.getFrame().dispose();
-				timer.stop();
-			}
+		}
+		if(map.endGame()==1) {
+			new FinalView(true);
+			VariableRepository repo = VariableRepository.getInstance();
+			RailsCity rta = (RailsCity) repo.searchByName("mainframe");
+			rta.getFrame().dispose();
+			timer.stop();
 		}
 		
 	}
@@ -102,7 +102,6 @@ public class TimerEngine implements ActionListener{
 	
 
 
-	@Override
 	public String toString() {
 		return  "<html>"
 				+ "<style> html{ padding-left: 100px; }</style>"

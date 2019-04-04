@@ -166,7 +166,7 @@ public class FirstView {
     	        EventQueue.invokeLater(new Runnable() {
     				public void run() {
     					try {
-    						RailsTestAmo window = new RailsTestAmo();
+    						RailsCity window = new RailsCity();
     						window.frame.setVisible(true);
     					} catch (Exception e) {
     						e.printStackTrace();

@@ -1,11 +1,6 @@
 package core;
 
-import java.util.HashMap;
-
-import game.Line;
-
 public class LineNamesHashMap {
-	//public static HashMap<String, Boolean> linesNames = new HashMap<>();
 	private static LineNamesHashMap instance = new LineNamesHashMap();
 	private static int id;
 	
