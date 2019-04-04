@@ -74,8 +74,7 @@ public class TimerEngine implements ActionListener{
 			movements.goBackHome(map);
 		}
 		
-		if(days%7 == 6 ) {
-			System.out.print(map.getGeneralSatisfaction());
+		if(days>7) {
 			if(map.endGame()==-1) {
 				new FinalView(false);
 				VariableRepository repo = VariableRepository.getInstance();
