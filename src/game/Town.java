@@ -4,7 +4,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import core.VariableRepository;
 
@@ -323,7 +322,6 @@ public class Town {
 /*************************************************************************************************/
 				/*Funds management*/
 	
-//TODO COMMENTAIRES
 	
 	public int getStationConstructionPrice() {
 		if(funds>=500000) return 100000;

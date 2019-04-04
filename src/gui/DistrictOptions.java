@@ -137,12 +137,12 @@ public class DistrictOptions {
 		destroyLine.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
-    	    	String[] lines = {"line 1", "line 2"}; //TODO recuperer les lignes
+    	    	String[] lines = {"line 1", "line 2"}; //TODO collect lines name
     	    	String selected = (String)JOptionPane.showInputDialog(null, "Please select the line to destroy", "Destroy Line", JOptionPane.QUESTION_MESSAGE, null, lines, lines[0]);
     	    	System.out.println("SELECTED="+selected);
     	    	
     	    	if(selected != null) {
-    	    		//TODO trouver ligne correspondante dans town.getTownLines() et appeler town.removeLine()
+    	    		//TODO find the line in town.getTownLines() and call town.removeLine()=
         	    	
     	    	}
     	    	

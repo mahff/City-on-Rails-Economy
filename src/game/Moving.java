@@ -184,7 +184,7 @@ public class Moving {
 	}
 	
 	
-	//TODO gerer avec les lignes
+	//TODO Follow lines...
 	/**
 	 * Go to the nearest station from the given position
 	 * @param town
