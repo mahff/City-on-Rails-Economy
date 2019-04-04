@@ -318,15 +318,22 @@ public class Town {
 
 	
 /*************************************************************************************************/
-				/*Funds management*/
 	
-	
+	/**
+	 * Get the construction price for a station
+	 * @return corresponding construction price
+	 */
 	public int getStationConstructionPrice() {
 		if(funds>=500000) return 100000;
 		else if(funds>=250000) return 70000;
 		else if(funds>=175000) return 60000;
 		else return 50000;
 	}
+	
+	/**
+	 * Get the destruction price for a station
+	 * @return corresponding destruction price
+	 */
 	public int getStationDestructionPrice() {
 		if(funds>=500000) return 30000;
 		else if(funds>=250000) return 25000;		 
@@ -334,6 +341,11 @@ public class Town {
 		else if(funds>=175000) return 20000;
 		else return 15000;
 	}
+	
+	/**
+	 * Get the maintenance price for a station
+	 * @return corresponding maintenance price
+	 */
 	public int getStationMaintenancePrice() {
 		if(funds>=500000) return 3500;
 		else if(funds>=250000) return 3000;
@@ -341,13 +353,21 @@ public class Town {
 		else return 1500;
 	}
 	
-	
+	/**
+	 * Get the construction price for a station
+	 * @return corresponding construction price
+	 */
 	public int getStateDistrictConstructionPrice() {
 		if(funds>=500000) return 60000;
 		else if(funds>=250000) return 40000;
 		else if(funds>=175000) return 35000;
 		else return 30000;
 	}
+	
+	/**
+	 * Get the construction price for a station
+	 * @return corresponding construction price
+	 */
 	public int getStateDistrictMaintenancePrice() {
 		if(funds>=500000) return 7000;
 		else if(funds>=250000) return 5000;
@@ -355,19 +375,32 @@ public class Town {
 		else return 3500;
 	}
 	
-	
+	/**
+	 * Get the construction price for a line section
+	 * @return corresponding construction price
+	 */
 	public int getLineSegmentConstructionPrice() {
 		if(funds>=500000) return 40000;
 		else if(funds>=250000) return 30000;
 		else if(funds>=175000) return 250000;
 		else return 20000;
 	}
+	
+	/**
+	 * Get the destruction price for a line section
+	 * @return corresponding destruction price
+	 */
 	public int getLineSegmentDestructionPrice() {
 		if(funds>=500000) return 10000;
 		else if(funds>=250000) return 7000;
 		else if(funds>=175000) return 6000;
 		else return 5000;
 	}
+	
+	/**
+	 * Get the Maintenance price for a line section
+	 * @return corresponding maintenance price
+	 */
 	public int getLineMaintenancePrice() {
 		if(funds>=500000) return 2500;
 		else if(funds>=250000) return 2000;
@@ -375,7 +408,10 @@ public class Town {
 		else return 1000;
 	}
 	
-	
+	/**
+	 * Updates funds after buying a station
+	 * @return true on success, false if funds are too low
+	 */
 	public boolean payStationConstruction(){
 		int price = this.getStationConstructionPrice();
 		if(funds>=price) {
@@ -386,6 +422,11 @@ public class Town {
 			return false;
 		}
 	}
+	
+	/**
+	 * Updates funds after destroying a station
+	 * @return true on success, false if funds are too low
+	 */
 	public boolean payStationDestruction(){
 		int price = this.getStationDestructionPrice();
 		if(funds>=price) {
@@ -397,7 +438,10 @@ public class Town {
 		}
 	}
 
-	
+	/**
+	 * Updates funds after buying a state district
+	 * @return true on success, false if funds are too low
+	 */
 	public boolean payStateDistrictConstruction(){
 		int price = this.getStateDistrictConstructionPrice();
 		if(funds>=price) {
@@ -409,7 +453,10 @@ public class Town {
 		}
 	}
 	
-	
+	/**
+	 * Updates funds after buying a line section
+	 * @return true on success, false if funds are too low
+	 */
 	public boolean payLineSegmentConstruction(){
 		int price = this.getLineSegmentConstructionPrice();
 		if(funds>=price) {
@@ -420,6 +467,11 @@ public class Town {
 			return false;
 		}
 	}
+	
+	/**
+	 * Updates funds after destroying a line section
+	 * @return true on success, false if funds are too low
+	 */
 	public boolean payLineSegmentDestruction(){
 		int price = this.getLineSegmentDestructionPrice();
 		if(funds>=price) {
@@ -433,7 +485,7 @@ public class Town {
 	
 	
 	/**
-	 * Pay the state districts maintenance
+	 * Updates funds after maintenance on state district
 	 */
 	public void payStateDistrictMaintenance(){
 		int quantity = 0;
@@ -451,7 +503,7 @@ public class Town {
 	
 	
 	/**
-	 * Pay the lines maintenance
+	 * Updates funds after maintenance on line section
 	 */
 	public void payLineMaintenance(){
 		int quantity = 0;
@@ -478,7 +530,7 @@ public class Town {
 	}
 	
 	/**
-	 * Pay the stations maintenance
+	 * Updates funds after maintenance on station
 	 */
 	public void payStationMaintenance(){
 		int quantity = 0;
@@ -495,7 +547,9 @@ public class Town {
 		funds -= quantity*getStationMaintenancePrice();
 	}
 	
-	
+	/**
+	 * Updates funds after collecting residential taxes
+	 */
 	public void collectResidentialTaxes(){
 		int amount = 0;
 		 for(int i=0;i<length;i++) {
@@ -514,7 +568,9 @@ public class Town {
 		 funds += amount;
 	}
 	
-	
+	/**
+	 * Updates funds after collecting business taxes
+	 */
 	public void collectBusinessTaxes(){
 		int amount = 0;
 		int length = this.getLength();
