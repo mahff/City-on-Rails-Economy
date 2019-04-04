@@ -32,6 +32,7 @@ public class FinalView {
 		else {
 			lblSuccess.setText("End of game!");
 			lblInfo.setText("You lose the game!");
+			
 		}
 		
 		
@@ -74,7 +75,7 @@ public class FinalView {
         //Listener
         btnOk.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
-    	    	System.exit(0);
+    	    	new FirstView(); 
     	    }
     	});
         
